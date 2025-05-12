@@ -1,0 +1,1600 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introduction to Linear Programming with Pyomo &#8212; Linear Programming Chapter</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/2_2/2_2';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.3 Graphical Solution of Linear Programming Problems" href="../2_3/2_3_1.html" />
+    <link rel="prev" title="2.2 The Art and Skill of Problem Formulation" href="2_2_md.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Linear Programming Chapter</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Linear Programming
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.2</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="2_2_md.html">2.2 The Art and Skill of Problem Formulation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to Linear Programming with Pyomo</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_1.html">2.3 Graphical Solution of Linear Programming Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_2.html">2.3.2 Graphical Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_3.html">2.3.3 Multiple Optimal Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_4.html">2.3.4 No Optimal Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_5.html">2.3.5 No Feasible Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_6.html">2.3.6 General Solution Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3.html">Introduction to Linear Programming and Graphical Solutions</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_4/2_4_1.html">2.4 Preparation for the Simplex Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_4/2_4_2.html">2.4.2 Solutions of Linear Systems</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_5/2_5.html">2.5 The Simplex Method</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_6/2_6_1.html">2.6 Initial Solutions for General Constraints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_6/2_6_2.html">2.6.2 The Two Phase Method</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/2_2/2_2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction to Linear Programming with Pyomo</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction to Linear Programming with Pyomo</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-pyomo">What is Pyomo?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-abstract-model-in-pyomo">What is the Abstract Model in Pyomo?</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-pyomo-and-abstract-model">Setting Up Pyomo and Abstract Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-pyomo-components">Key Pyomo Components</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-variables">1. <strong>Defining Variables</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-parameters">2. <strong>Defining Parameters</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-objectives">3. <strong>Defining Objectives</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-constraints">4. <strong>Defining Constraints</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solver-setup">5. <strong>Solver Setup</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example-code-walkthrough">Example Code Walkthrough</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-2-1-wireless-router-production">Example 2.2.1: Wireless Router Production</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-statement">Problem Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-formulation">Model Formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-definition">Model Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-instantiation">Data Instantiation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">Explanation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solver-interpretation">Solver Interpretation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-implementation">Code Implementation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-examples">Additional Examples</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-2-2-satellite-launch-scheduling">Example 2.2.2: Satellite Launch Scheduling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Problem Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Model Formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#procedure">Procedure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Code implementation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-2-3-production-and-inventory-management">Example 2.2.3: Production and Inventory Management</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Problem Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Model Formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Procedure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Code implementation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-2-4-freeze-dried-vegetable-mixture">Example 2.2.4: Freeze-Dried Vegetable Mixture</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Problem Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Model Formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Procedure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Code implementation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-2-5-sawmill-profit-maximization">Example 2.2.5: Sawmill Profit Maximization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Problem Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Model Formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Procedure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Code implementation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-2-6-dual-processor-job-scheduling">Example 2.2.6: Dual Processor Job Scheduling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Problem Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Model Formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">Procedure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Code implementation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#end">End</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-linear-programming-with-pyomo">
+<h1>Introduction to Linear Programming with Pyomo<a class="headerlink" href="#introduction-to-linear-programming-with-pyomo" title="Link to this heading">#</a></h1>
+<p>Using examples (2.2.1 to 2.2.6) within <em>Operations Research: A Practical Introduction</em> book, this Jupyter Notebook introduces linear programming (LP). A strong mathematical method for optimizing a linear function with an objective under a set of linear constraints is called linear programming. It is extensively used in several disciplines, including economics, engineering, logistics, and operations research.</p>
+<p>This notebook will use <strong>Pyomo</strong>, a flexible and reliable Python optimization modeling language, to specify and tackle these linear programming problems. In order to improve scalability and problem management, we will use the <strong>Abstract Model</strong> approach, which divides problem definition from data specification.</p>
+<hr class="docutils" />
+<section id="what-is-pyomo">
+<h2>What is Pyomo?<a class="headerlink" href="#what-is-pyomo" title="Link to this heading">#</a></h2>
+<p>A Python library called Pyomo (Python Optimization Modeling Objects) offers a flexible and user-friendly method for defining optimization models. Linear, nonlinear, and integer programming are among the problem types it supports. Pyomo allows you to:</p>
+<ul class="simple">
+<li><p>Define decision variables</p></li>
+<li><p>Formulate constraints</p></li>
+<li><p>Specify the objective function</p></li>
+<li><p>Solve models using multiple solvers (like CBC, Gurobi, or CPLEX)</p></li>
+</ul>
+<p>Users can express models symbolically using Pyomo’s Abstract Model method, which provides real problem data at runtime. Pyomo is an effective tool for defining scalable and flexible optimization problems because of this abstraction.</p>
+</section>
+<hr class="docutils" />
+<section id="what-is-the-abstract-model-in-pyomo">
+<h2>What is the Abstract Model in Pyomo?<a class="headerlink" href="#what-is-the-abstract-model-in-pyomo" title="Link to this heading">#</a></h2>
+<p>Pyomo’s <strong>Abstract Model</strong> makes it possible to distinguish precisely between an optimization problem’s input data and its structure. When testing different data scenarios with the same model structure, this modeling approach is perfect. Important advantages include:</p>
+<ul class="simple">
+<li><p>Enhanced problem scalability</p></li>
+<li><p>Better model maintainability</p></li>
+<li><p>Cleaner separation of data and problem logic</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="setting-up-pyomo-and-abstract-model">
+<h1>Setting Up Pyomo and Abstract Model<a class="headerlink" href="#setting-up-pyomo-and-abstract-model" title="Link to this heading">#</a></h1>
+<section id="key-pyomo-components">
+<h2>Key Pyomo Components<a class="headerlink" href="#key-pyomo-components" title="Link to this heading">#</a></h2>
+<section id="defining-variables">
+<h3>1. <strong>Defining Variables</strong><a class="headerlink" href="#defining-variables" title="Link to this heading">#</a></h3>
+<p>Variables represent decision points in an optimization problem. In Pyomo, they can be defined using:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyomo.environ</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This line defines <code class="docutils literal notranslate"><span class="pre">x</span></code> as a variable constrained to take only non-negative real values.</p>
+</section>
+<section id="defining-parameters">
+<h3>2. <strong>Defining Parameters</strong><a class="headerlink" href="#defining-parameters" title="Link to this heading">#</a></h3>
+<p>Parameters are constants whose values remain fixed during optimization. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">coeff</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Parameters can be indexed, allowing the definition of multiple parameter values.</p>
+</section>
+<section id="defining-objectives">
+<h3>3. <strong>Defining Objectives</strong><a class="headerlink" href="#defining-objectives" title="Link to this heading">#</a></h3>
+<p>The objective function specifies what we want to maximize or minimize. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="k">lambda</span> <span class="n">model</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">coeff</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">sense</span><span class="o">=</span><span class="n">maximize</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="defining-constraints">
+<h3>4. <strong>Defining Constraints</strong><a class="headerlink" href="#defining-constraints" title="Link to this heading">#</a></h3>
+<p>Constraints restrict the feasible region of solutions:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">constraint1</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="k">lambda</span> <span class="n">model</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="solver-setup">
+<h3>5. <strong>Solver Setup</strong><a class="headerlink" href="#solver-setup" title="Link to this heading">#</a></h3>
+<p>Pyomo supports several solvers, such as CBC and GLPK. To solve a model, we use:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">solver</span> <span class="o">=</span> <span class="n">SolverFactory</span><span class="p">(</span><span class="s1">&#39;cbc&#39;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="example-code-walkthrough">
+<h1>Example Code Walkthrough<a class="headerlink" href="#example-code-walkthrough" title="Link to this heading">#</a></h1>
+<p>Here, we analyze an example using Pyomo with abstract model.</p>
+<section id="example-2-2-1-wireless-router-production">
+<h2>Example 2.2.1: Wireless Router Production<a class="headerlink" href="#example-2-2-1-wireless-router-production" title="Link to this heading">#</a></h2>
+<section id="problem-statement">
+<h3>Problem Statement<a class="headerlink" href="#problem-statement" title="Link to this heading">#</a></h3>
+<p>A manufacturer produces two models of wireless routers (Model A and Model B). Each model requires different amounts of materials and labor, and the manufacturer wants to maximize profits while staying within the available resources.</p>
+</section>
+<section id="model-formulation">
+<h3>Model Formulation<a class="headerlink" href="#model-formulation" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Decision Variables</strong>:</p>
+<ul class="simple">
+<li><p>Let ( <span class="math notranslate nohighlight">\(x_A\)</span> ) = number of Model A routers produced.</p></li>
+<li><p>Let ( <span class="math notranslate nohighlight">\(x_B\)</span> ) = number of Model B routers produced.</p></li>
+</ul>
+</li>
+<li><p><strong>Objective Function</strong>:</p>
+<ul class="simple">
+<li><p>Maximize profit: ( <span class="math notranslate nohighlight">\(z\)</span> = 22 <span class="math notranslate nohighlight">\(x_A\)</span> + 28 <span class="math notranslate nohighlight">\(x_B\)</span> ).</p></li>
+</ul>
+</li>
+<li><p><strong>Constraints</strong>:</p>
+<ul class="simple">
+<li><p>Materials constraint: ( 8 <span class="math notranslate nohighlight">\(x_A\)</span> + 10 <span class="math notranslate nohighlight">\(x_B\)</span> <span class="math notranslate nohighlight">\(\leq\)</span> 3400 ).</p></li>
+<li><p>Labor constraint: ( 2 <span class="math notranslate nohighlight">\(x_A\)</span> + 3 <span class="math notranslate nohighlight">\(x_B\)</span> <span class="math notranslate nohighlight">\(\leq\)</span> 960 ).</p></li>
+<li><p>Non-negativity: ( <span class="math notranslate nohighlight">\(x_A\)</span> <span class="math notranslate nohighlight">\( \geq\)</span> 0 ), ( <span class="math notranslate nohighlight">\(x_B\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> 0 ).</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="model-definition">
+<h3>Model Definition<a class="headerlink" href="#model-definition" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">build_abstract_model_221</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Builds an abstract Pyomo model for a linear programming problem,</span>
+<span class="sd">    representing a production planning scenario with two products.</span>
+
+<span class="sd">    This model structure is designed to be flexible and reusable with</span>
+<span class="sd">    different data sets by using abstract components (like Param).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        model: An abstract Pyomo model object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">AbstractModel</span><span class="p">()</span>  <span class="c1"># Creates an abstract model object to define the problem structure</span>
+
+    <span class="c1"># Decision variables representing the production quantity of each product</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">xA</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>  <span class="c1"># Quantity of product A to produce (must be non-negative)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">xB</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>  <span class="c1"># Quantity of product B to produce (must be non-negative)</span>
+
+    <span class="c1"># Parameters that will hold the objective function coefficients</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff_A</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>  <span class="c1"># Profit coefficient for product A</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff_B</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>  <span class="c1"># Profit coefficient for product B</span>
+
+    <span class="c1"># Parameters for the materials constraint</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">materials_coeff_A</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>  <span class="c1"># Material usage coefficient for product A</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">materials_coeff_B</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>  <span class="c1"># Material usage coefficient for product B</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">materials_rhs</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>      <span class="c1"># Total available materials (right-hand side of the constraint)</span>
+
+    <span class="c1"># Parameters for the labor constraint</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">labor_coeff_A</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>  <span class="c1"># Labor usage coefficient for product A</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">labor_coeff_B</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>  <span class="c1"># Labor usage coefficient for product B</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">labor_rhs</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>      <span class="c1"># Total available labor (right-hand side of the constraint)</span>
+
+    <span class="c1"># Defines the objective function to maximize profit</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">obj_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculates the total profit based on production quantities and profit coefficients.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff_A</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">xA</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff_B</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">xB</span>  <span class="c1"># Profit = (Profit per A * A quantity) + (Profit per B * B quantity)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">obj_rule</span><span class="p">,</span> <span class="n">sense</span><span class="o">=</span><span class="n">maximize</span><span class="p">)</span>  <span class="c1"># Sets the objective to maximization</span>
+
+    <span class="c1"># Defines the materials constraint</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">materials_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Ensures that the total material usage is within the available limit.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">materials_coeff_A</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">xA</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">materials_coeff_B</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">xB</span> <span class="o">&lt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">materials_rhs</span>  <span class="c1"># Material usage &lt;= Available materials</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">materials</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">materials_rule</span><span class="p">)</span>  <span class="c1"># Creates the materials constraint</span>
+
+    <span class="c1"># Defines the labor constraint</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">labor_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Ensures that the total labor usage is within the available limit.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">labor_coeff_A</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">xA</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">labor_coeff_B</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">xB</span> <span class="o">&lt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">labor_rhs</span>  <span class="c1"># Labor usage &lt;= Available labor</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">labor</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">labor_rule</span><span class="p">)</span>  <span class="c1"># Creates the labor constraint</span>
+
+    <span class="k">return</span> <span class="n">model</span>  <span class="c1"># Returns the built abstract model</span>
+</pre></div>
+</div>
+</section>
+<section id="data-instantiation">
+<h3>Data Instantiation<a class="headerlink" href="#data-instantiation" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Data for Example 2.2.1, structured as a dictionary for Pyomo</span>
+<span class="n">data_221</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kc">None</span><span class="p">:</span> <span class="p">{</span>  <span class="c1"># This outer &#39;None&#39; key is common in Pyomo abstract models</span>
+        <span class="s1">&#39;obj_coeff_A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">22</span><span class="p">},</span> <span class="s1">&#39;obj_coeff_B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">28</span><span class="p">},</span>  <span class="c1"># Objective function coefficients for xA and xB</span>
+        <span class="s1">&#39;materials_coeff_A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">8</span><span class="p">},</span> <span class="s1">&#39;materials_coeff_B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span> <span class="s1">&#39;materials_rhs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">3400</span><span class="p">},</span>  <span class="c1"># Materials constraint coefficients and RHS</span>
+        <span class="s1">&#39;labor_coeff_A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="s1">&#39;labor_coeff_B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="s1">&#39;labor_rhs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">960</span><span class="p">}</span>  <span class="c1"># Labor constraint coefficients and RHS</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># Creates a concrete model instance by loading data into the abstract model.</span>
+<span class="n">model_221</span> <span class="o">=</span> <span class="n">build_abstract_model_221</span><span class="p">()</span><span class="o">.</span><span class="n">create_instance</span><span class="p">(</span><span class="n">data_221</span><span class="p">)</span>
+
+<span class="c1"># Solves the model instance and prints the results.</span>
+<span class="n">solve_model</span><span class="p">(</span><span class="n">model_221</span><span class="p">,</span> <span class="s2">&quot;Example 2.2.1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="explanation">
+<h3>Explanation<a class="headerlink" href="#explanation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Variables (<code class="docutils literal notranslate"><span class="pre">xA</span></code>, <code class="docutils literal notranslate"><span class="pre">xB</span></code>)</strong>: Represent production levels.</p></li>
+<li><p><strong>Objective function (<code class="docutils literal notranslate"><span class="pre">obj</span></code>)</strong>: Defines the profit to be maximized.</p></li>
+<li><p><strong>Constraints (<code class="docutils literal notranslate"><span class="pre">materials</span></code>, <code class="docutils literal notranslate"><span class="pre">labor</span></code>)</strong>: Restrict production based on resource limits.</p></li>
+</ul>
+</section>
+</section>
+<section id="solver-interpretation">
+<h2>Solver Interpretation<a class="headerlink" href="#solver-interpretation" title="Link to this heading">#</a></h2>
+<p>The solver reads the abstract model, substitutes data values, and searches for the optimal variable assignments satisfying all constraints.</p>
+<section id="code-implementation">
+<h3>Code Implementation<a class="headerlink" href="#code-implementation" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importing Pyomo environment</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyomo.environ</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span> <span class="c1"># Imports all components from the Pyomo environment, like Var, Param, Objective, Constraint, etc.</span>
+
+<span class="c1"># Function to solve and display results of an optimization model</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">solve_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">example_name</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span> <span class="c1"># Prints a separator line for better output formatting.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; Solving </span><span class="si">{</span><span class="n">example_name</span><span class="si">}</span><span class="s2"> &quot;</span><span class="p">)</span> <span class="c1"># Prints the name of the example being solved.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span> <span class="c1"># Prints another separator line.</span>
+    <span class="n">solver</span> <span class="o">=</span> <span class="n">SolverFactory</span><span class="p">(</span><span class="s1">&#39;cbc&#39;</span><span class="p">)</span> <span class="c1"># Creates a solver object using the CBC solver.</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">model</span><span class="p">)</span> <span class="c1"># Solves the given Pyomo model using the CBC solver.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Optimal Solution:&quot;</span><span class="p">)</span> <span class="c1"># Prints a header for the optimal solution.</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">component_objects</span><span class="p">(</span><span class="n">Var</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span> <span class="c1"># Iterates through all active variables in the model.</span>
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span> <span class="c1"># Iterates through any indices of the variable (if it&#39;s indexed).</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># Prints the variable name and its optimal value.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Objective Value:&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">obj</span><span class="p">())</span> <span class="c1"># Prints the optimal value of the objective function.</span>
+
+<span class="c1"># Function to build the abstract Pyomo model for Example 2.2.1</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_abstract_model_221</span><span class="p">():</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">AbstractModel</span><span class="p">()</span> <span class="c1"># Creates an AbstractModel object, which is a Pyomo model that is defined without specific data values.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">xA</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span> <span class="c1"># Defines a decision variable `xA` representing the number of Model A routers produced, constrained to be non-negative.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">xB</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span> <span class="c1"># Defines a decision variable `xB` representing the number of Model B routers produced, constrained to be non-negative.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff_A</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span> <span class="c1"># Defines a parameter `obj_coeff_A` for the objective function coefficient of `xA`.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff_B</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span> <span class="c1"># Defines a parameter `obj_coeff_B` for the objective function coefficient of `xB`.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">materials_coeff_A</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span> <span class="c1"># Defines a parameter `materials_coeff_A` for the materials constraint coefficient of `xA`.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">materials_coeff_B</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span> <span class="c1"># Defines a parameter `materials_coeff_B` for the materials constraint coefficient of `xB`.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">materials_rhs</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span> <span class="c1"># Defines a parameter `materials_rhs` for the right-hand side of the materials constraint.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">labor_coeff_A</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span> <span class="c1"># Defines a parameter `labor_coeff_A` for the labor constraint coefficient of `xA`.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">labor_coeff_B</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span> <span class="c1"># Defines a parameter `labor_coeff_B` for the labor constraint coefficient of `xB`.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">labor_rhs</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span> <span class="c1"># Defines a parameter `labor_rhs` for the right-hand side of the labor constraint.</span>
+
+    <span class="c1"># Defines the objective function rule</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">obj_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff_A</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">xA</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff_B</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">xB</span> <span class="c1"># Specifies the objective function to maximize profit.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">obj_rule</span><span class="p">,</span> <span class="n">sense</span><span class="o">=</span><span class="n">maximize</span><span class="p">)</span> <span class="c1"># Creates the objective function object with the defined rule and maximization sense.</span>
+
+    <span class="c1"># Defines the materials constraint rule</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">materials_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">materials_coeff_A</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">xA</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">materials_coeff_B</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">xB</span> <span class="o">&lt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">materials_rhs</span> <span class="c1"># Specifies the materials constraint.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">materials</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">materials_rule</span><span class="p">)</span> <span class="c1"># Creates the materials constraint object with the defined rule.</span>
+
+    <span class="c1"># Defines the labor constraint rule</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">labor_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">labor_coeff_A</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">xA</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">labor_coeff_B</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">xB</span> <span class="o">&lt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">labor_rhs</span> <span class="c1"># Specifies the labor constraint.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">labor</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">labor_rule</span><span class="p">)</span> <span class="c1"># Creates the labor constraint object with the defined rule.</span>
+    <span class="k">return</span> <span class="n">model</span> <span class="c1"># Returns the built abstract model.</span>
+
+<span class="c1"># Data for Example 2.2.1</span>
+<span class="n">data_221</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kc">None</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;obj_coeff_A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">22</span><span class="p">},</span> <span class="s1">&#39;obj_coeff_B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">28</span><span class="p">},</span> <span class="c1"># Objective function coefficients for xA and xB</span>
+        <span class="s1">&#39;materials_coeff_A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">8</span><span class="p">},</span> <span class="s1">&#39;materials_coeff_B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span> <span class="s1">&#39;materials_rhs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">3400</span><span class="p">},</span> <span class="c1"># Materials constraint coefficients and RHS</span>
+        <span class="s1">&#39;labor_coeff_A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="s1">&#39;labor_coeff_B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="s1">&#39;labor_rhs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">960</span><span class="p">}</span> <span class="c1"># Labor constraint coefficients and RHS</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">model_221</span> <span class="o">=</span> <span class="n">build_abstract_model_221</span><span class="p">()</span><span class="o">.</span><span class="n">create_instance</span><span class="p">(</span><span class="n">data_221</span><span class="p">)</span> <span class="c1"># Creates a concrete model instance by loading data into the abstract model.</span>
+<span class="n">solve_model</span><span class="p">(</span><span class="n">model_221</span><span class="p">,</span> <span class="s2">&quot;Example 2.2.1&quot;</span><span class="p">)</span> <span class="c1"># Solves the model instance and prints the results.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========================================
+ Solving Example 2.2.1 
+========================================
+
+Optimal Solution:
+  xA = 150.0
+  xB = 220.0
+
+Objective Value: 9460.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="additional-examples">
+<h1>Additional Examples<a class="headerlink" href="#additional-examples" title="Link to this heading">#</a></h1>
+<section id="example-2-2-2-satellite-launch-scheduling">
+<h2>Example 2.2.2: Satellite Launch Scheduling<a class="headerlink" href="#example-2-2-2-satellite-launch-scheduling" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3>Problem Statement<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>A space agency wants to schedule satellite launches over three years. There are two types of payloads (T1 and T2), each with different success probabilities, costs, and preparation times. The agency wants to maximize its expected net income while meeting policy constraints and ensuring a minimum number of successful deployments.</p>
+</section>
+<section id="id2">
+<h3>Model Formulation<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Decision Variables</strong>:</p>
+<ul class="simple">
+<li><p>Let ( <span class="math notranslate nohighlight">\(x_1\)</span> ) = number of T1 payloads launched.</p></li>
+<li><p>Let ( <span class="math notranslate nohighlight">\(x_2\)</span> ) = number of T2 payloads launched.</p></li>
+</ul>
+</li>
+<li><p><strong>Objective Function</strong>:</p>
+<ul class="simple">
+<li><p>Maximize expected net income: ( <span class="math notranslate nohighlight">\(z\)</span> = 0.225 <span class="math notranslate nohighlight">\(x_1\)</span> + 0.2<span class="math notranslate nohighlight">\( x_2\)</span> ).</p></li>
+</ul>
+</li>
+<li><p><strong>Constraints</strong>:</p>
+<ul class="simple">
+<li><p>Policy constraints: ( <span class="math notranslate nohighlight">\(x_1\)</span> <span class="math notranslate nohighlight">\(\leq\)</span> 88 ), ( <span class="math notranslate nohighlight">\(x_2\)</span> <span class="math notranslate nohighlight">\(\leq\)</span> 126 ).</p></li>
+<li><p>Successful deployments: ( 0.85 <span class="math notranslate nohighlight">\(x_1\)</span> + 0.75 <span class="math notranslate nohighlight">\(x_2\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> 60 ).</p></li>
+<li><p>Preparation time: ( 2 <span class="math notranslate nohighlight">\(x_1\)</span> + <span class="math notranslate nohighlight">\(x_2\)</span> <span class="math notranslate nohighlight">\(\leq\)</span> 156 ).</p></li>
+<li><p>Non-negativity: ( <span class="math notranslate nohighlight">\(x_1\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> 0 ), ( <span class="math notranslate nohighlight">\(x_2\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> 0 ).</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="procedure">
+<h3>Procedure<a class="headerlink" href="#procedure" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Define the decision variables ( <span class="math notranslate nohighlight">\(x_1\)</span> ) and ( <span class="math notranslate nohighlight">\(x_2\)</span> ).</p></li>
+<li><p>Set up the objective function to maximize expected net income.</p></li>
+<li><p>Add constraints for policy limits, successful deployments, and preparation time.</p></li>
+<li><p>Solve the model using the CBC solver to determine the optimal number of payloads to launch.</p></li>
+</ol>
+</section>
+<section id="id3">
+<h3>Code implementation<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ========================================</span>
+<span class="c1"># Example 2.2.2: Satellite launch scheduling</span>
+<span class="c1"># ========================================</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyomo.environ</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span> <span class="c1"># importing Pyomo environment</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">solve_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">example_name</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; Solving </span><span class="si">{</span><span class="n">example_name</span><span class="si">}</span><span class="s2"> &quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+    <span class="n">solver</span> <span class="o">=</span> <span class="n">SolverFactory</span><span class="p">(</span><span class="s1">&#39;cbc&#39;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Optimal Solution:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">component_objects</span><span class="p">(</span><span class="n">Var</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Objective Value:&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">obj</span><span class="p">())</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">build_abstract_model_222</span><span class="p">():</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">AbstractModel</span><span class="p">()</span>
+
+    <span class="c1"># Decision variables</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>  <span class="c1"># T1 payloads launched</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>  <span class="c1"># T2 payloads launched</span>
+
+    <span class="c1"># Parameters for objective coefficients and constraints</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff</span> <span class="o">=</span> <span class="n">Param</span><span class="p">([</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">],</span> <span class="n">within</span><span class="o">=</span><span class="n">Any</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">policy_constraints</span> <span class="o">=</span> <span class="n">Param</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">within</span><span class="o">=</span><span class="n">Any</span><span class="p">)</span>  <span class="c1"># Maximum values for x1 and x2</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">successful_deployments_coeffs</span> <span class="o">=</span> <span class="n">Param</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">within</span><span class="o">=</span><span class="n">Any</span><span class="p">)</span>  <span class="c1"># Coefficients for successful deployments</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">preparation_time_coeffs</span> <span class="o">=</span> <span class="n">Param</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">within</span><span class="o">=</span><span class="n">Any</span><span class="p">)</span>  <span class="c1"># Coefficients for preparation time constraint</span>
+
+    <span class="c1"># Objective function</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">obj_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">obj_rule</span><span class="p">,</span> <span class="n">sense</span><span class="o">=</span><span class="n">maximize</span><span class="p">)</span>
+
+    <span class="c1"># Constraints</span>
+    <span class="c1"># Policy constraints</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">policy_constraint1_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">&lt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">policy_constraints</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">policy_constraint1</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">policy_constraint1_rule</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">policy_constraint2_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">&lt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">policy_constraints</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">policy_constraint2</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">policy_constraint2_rule</span><span class="p">)</span>
+
+    <span class="c1"># Successful deployments constraint</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">successful_deployments_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">successful_deployments_coeffs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">successful_deployments_coeffs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">&gt;=</span> <span class="mi">60</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">successful_deployments</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">successful_deployments_rule</span><span class="p">)</span>
+
+    <span class="c1"># Preparation time constraint</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">preparation_time_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">preparation_time_coeffs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">preparation_time_coeffs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">&lt;=</span> <span class="mi">156</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">preparation_time</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">preparation_time_rule</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">model</span>
+
+<span class="n">data_222</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kc">None</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;obj_coeff&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x1&#39;</span><span class="p">:</span> <span class="mf">0.225</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">},</span>  <span class="c1"># Objective function coefficients</span>
+        <span class="s1">&#39;policy_constraints&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">88</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">126</span><span class="p">},</span>  <span class="c1"># Maximum values for x1 and x2</span>
+        <span class="s1">&#39;successful_deployments_coeffs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mf">0.85</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">},</span>  <span class="c1"># Coefficients for successful deployments</span>
+        <span class="s1">&#39;preparation_time_coeffs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>  <span class="c1"># Coefficients for preparation time constraint</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># Instantiate the model</span>
+<span class="n">model_222</span> <span class="o">=</span> <span class="n">build_abstract_model_222</span><span class="p">()</span>
+<span class="n">instance_222</span> <span class="o">=</span> <span class="n">model_222</span><span class="o">.</span><span class="n">create_instance</span><span class="p">(</span><span class="n">data_222</span><span class="p">)</span>
+<span class="n">solve_model</span><span class="p">(</span><span class="n">instance_222</span><span class="p">,</span> <span class="s2">&quot;Example 2.2.2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========================================
+ Solving Example 2.2.2 
+========================================
+
+Optimal Solution:
+  x1 = 15.0
+  x2 = 126.0
+
+Objective Value: 28.575000000000003
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="example-2-2-3-production-and-inventory-management">
+<h2>Example 2.2.3: Production and Inventory Management<a class="headerlink" href="#example-2-2-3-production-and-inventory-management" title="Link to this heading">#</a></h2>
+<section id="id4">
+<h3>Problem Statement<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>A company wants to minimize its combined production and inventory costs over a four-week period. The company must meet weekly demand while maintaining a minimum inventory level and staying within production capacity limits.</p>
+</section>
+<section id="id5">
+<h3>Model Formulation<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Decision Variables</strong>:</p>
+<ul class="simple">
+<li><p>Let ( <span class="math notranslate nohighlight">\(x_i\)</span> ) = number of units produced in week ( <span class="math notranslate nohighlight">\(i\)</span> ) (for ( <span class="math notranslate nohighlight">\(i\)</span> = 1, 2, 3, 4 )).</p></li>
+<li><p>Let ( <span class="math notranslate nohighlight">\(A_i\)</span> ) = inventory at the end of week ( <span class="math notranslate nohighlight">\(i\)</span> ).</p></li>
+</ul>
+</li>
+<li><p><strong>Objective Function</strong>:</p>
+<ul class="simple">
+<li><p>Minimize total cost: ( <span class="math notranslate nohighlight">\(z\)</span> = 15(<span class="math notranslate nohighlight">\(x_1\)</span> + <span class="math notranslate nohighlight">\(x_2\)</span> + <span class="math notranslate nohighlight">\(x_3\)</span> + <span class="math notranslate nohighlight">\(x_4\)</span>) + 3(<span class="math notranslate nohighlight">\(A_1\)</span> + <span class="math notranslate nohighlight">\(A_2\)</span> + <span class="math notranslate nohighlight">\(A_3\)</span>) ).</p></li>
+</ul>
+</li>
+<li><p><strong>Constraints</strong>:</p>
+<ul class="simple">
+<li><p>Inventory balance: ( <span class="math notranslate nohighlight">\(A_1\)</span> = 250 + <span class="math notranslate nohighlight">\(x_1\)</span> - 900 ), ( <span class="math notranslate nohighlight">\(A_2\)</span> = <span class="math notranslate nohighlight">\(A_1\)</span> + <span class="math notranslate nohighlight">\(x_2\)</span> - 600 ), etc.</p></li>
+<li><p>Minimum inventory: ( <span class="math notranslate nohighlight">\(A_i\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> 50 ) for ( <span class="math notranslate nohighlight">\(i\)</span> = 1, 2, 3 ).</p></li>
+<li><p>Production capacity: ( 500 <span class="math notranslate nohighlight">\(\leq\)</span> <span class="math notranslate nohighlight">\(x_i\)</span> <span class="math notranslate nohighlight">\(\leq\)</span> <span class="math notranslate nohighlight">\(\text{capacity}\)</span> ) for each week.</p></li>
+<li><p>Non-negativity: ( <span class="math notranslate nohighlight">\(x_i\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> 0 ), ( <span class="math notranslate nohighlight">\(A_i\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> 0 ).</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="id6">
+<h3>Procedure<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Define the decision variables ( <span class="math notranslate nohighlight">\(x_i\)</span> ) and ( <span class="math notranslate nohighlight">\(A_i\)</span> ).</p></li>
+<li><p>Set up the objective function to minimize total cost.</p></li>
+<li><p>Add constraints for inventory balance, minimum inventory, and production capacity.</p></li>
+<li><p>Solve the model using the CBC solver to determine the optimal production and inventory levels.</p></li>
+</ol>
+</section>
+<section id="id7">
+<h3>Code implementation<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ========================================</span>
+<span class="c1"># Example 2.2.3: Production and inventory cost minimization</span>
+<span class="c1"># ========================================</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyomo.environ</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span> <span class="c1"># importing Pyomo environment</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">solve_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">example_name</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; Solving </span><span class="si">{</span><span class="n">example_name</span><span class="si">}</span><span class="s2"> &quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+    <span class="n">solver</span> <span class="o">=</span> <span class="n">SolverFactory</span><span class="p">(</span><span class="s1">&#39;cbc&#39;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Optimal Solution:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">component_objects</span><span class="p">(</span><span class="n">Var</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Objective Value:&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">obj</span><span class="p">())</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">build_abstract_model_223</span><span class="p">():</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">AbstractModel</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">T</span> <span class="o">=</span> <span class="n">Set</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">T_inv</span> <span class="o">=</span> <span class="n">Set</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">initial_inventory</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">demand</span> <span class="o">=</span> <span class="n">Param</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">capacity</span> <span class="o">=</span> <span class="n">Param</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">production_cost</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">inventory_cost</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">min_production</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">min_inventory</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
+
+    <span class="n">model</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">A</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">T_inv</span><span class="p">,</span> <span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">obj_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">production_cost</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">+</span> \
+               <span class="nb">sum</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">inventory_cost</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">T_inv</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">obj_rule</span><span class="p">,</span> <span class="n">sense</span><span class="o">=</span><span class="n">minimize</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">inventory_balance_rule</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">==</span> <span class="n">model</span><span class="o">.</span><span class="n">initial_inventory</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">-</span> <span class="n">model</span><span class="o">.</span><span class="n">demand</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="nb">max</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">T_inv</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">-</span> <span class="n">model</span><span class="o">.</span><span class="n">demand</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">==</span> <span class="n">model</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">-</span> <span class="n">model</span><span class="o">.</span><span class="n">demand</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">inventory_balance</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">inventory_balance_rule</span><span class="p">)</span>
+
+    <span class="n">model</span><span class="o">.</span><span class="n">production_min</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="k">lambda</span> <span class="n">m</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">m</span><span class="o">.</span><span class="n">min_production</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">production_max</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="k">lambda</span> <span class="n">m</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="o">.</span><span class="n">capacity</span><span class="p">[</span><span class="n">t</span><span class="p">])</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">inventory_min</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">T_inv</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="k">lambda</span> <span class="n">m</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">m</span><span class="o">.</span><span class="n">min_inventory</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span>
+
+<span class="n">data_223</span> <span class="o">=</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">},</span> <span class="s1">&#39;T_inv&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span>
+    <span class="s1">&#39;initial_inventory&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">250</span><span class="p">},</span>
+    <span class="s1">&#39;demand&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">900</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">800</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mi">600</span><span class="p">},</span>
+    <span class="s1">&#39;capacity&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">800</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mi">800</span><span class="p">},</span>
+    <span class="s1">&#39;production_cost&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">15</span><span class="p">},</span> <span class="s1">&#39;inventory_cost&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
+    <span class="s1">&#39;min_production&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">500</span><span class="p">},</span> <span class="s1">&#39;min_inventory&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">50</span><span class="p">}</span>
+<span class="p">}}</span>
+<span class="n">model_223</span> <span class="o">=</span> <span class="n">build_abstract_model_223</span><span class="p">()</span><span class="o">.</span><span class="n">create_instance</span><span class="p">(</span><span class="n">data_223</span><span class="p">)</span>
+<span class="n">solve_model</span><span class="p">(</span><span class="n">model_223</span><span class="p">,</span> <span class="s2">&quot;Example 2.2.3&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:pyomo.core:Initializing ordered Set T with a fundamentally unordered data source (type: set).  This WILL potentially lead to nondeterministic behavior in Pyomo
+WARNING:pyomo.core:Initializing ordered Set T_inv with a fundamentally unordered data source (type: set).  This WILL potentially lead to nondeterministic behavior in Pyomo
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========================================
+ Solving Example 2.2.3 
+========================================
+
+Optimal Solution:
+  x[1] = 800.0
+  x[2] = 700.0
+  x[3] = 600.0
+  x[4] = 550.0
+  A[1] = 150.0
+  A[2] = 250.0
+  A[3] = 50.0
+
+Objective Value: 41100.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="example-2-2-4-freeze-dried-vegetable-mixture">
+<h2>Example 2.2.4: Freeze-Dried Vegetable Mixture<a class="headerlink" href="#example-2-2-4-freeze-dried-vegetable-mixture" title="Link to this heading">#</a></h2>
+<section id="id8">
+<h3>Problem Statement<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>A company wants to minimize the cost of a freeze-dried vegetable mixture while meeting nutritional requirements and ingredient constraints. The mixture must contain specific amounts of iron, phosphorus, and calcium, and the proportions of beans and potatoes are limited.</p>
+</section>
+<section id="id9">
+<h3>Model Formulation<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Decision Variables</strong>:</p>
+<ul class="simple">
+<li><p>Let ( <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span>, <span class="math notranslate nohighlight">\(x_3\)</span>, <span class="math notranslate nohighlight">\(x_4\)</span>, <span class="math notranslate nohighlight">\(x_5\)</span> ) = pounds of beans, corn, broccoli, cabbage, and potatoes, respectively.</p></li>
+</ul>
+</li>
+<li><p><strong>Objective Function</strong>:</p>
+<ul class="simple">
+<li><p>Minimize cost: ( <span class="math notranslate nohighlight">\(z\)</span> = 20 <span class="math notranslate nohighlight">\(x_1\)</span> + 18 <span class="math notranslate nohighlight">\(x_2\)</span> + 32 <span class="math notranslate nohighlight">\(x_3\)</span> + 28 <span class="math notranslate nohighlight">\(x_4\)</span> + 16 <span class="math notranslate nohighlight">\(x_5\)</span> ).</p></li>
+</ul>
+</li>
+<li><p><strong>Constraints</strong>:</p>
+<ul class="simple">
+<li><p>Ingredient limits: ( <span class="math notranslate nohighlight">\(x_1\)</span> <span class="math notranslate nohighlight">\(\leq\)</span> 0.4 (<span class="math notranslate nohighlight">\(x_1\)</span> + <span class="math notranslate nohighlight">\(x_2\)</span> + <span class="math notranslate nohighlight">\(x_3\)</span> + <span class="math notranslate nohighlight">\(x_4\)</span> + <span class="math notranslate nohighlight">\(x_5\)</span>) ), ( <span class="math notranslate nohighlight">\(x_5\)</span> <span class="math notranslate nohighlight">\(\leq\)</span> 0.32 (<span class="math notranslate nohighlight">\(x_1\)</span> + <span class="math notranslate nohighlight">\(x_2\)</span> + <span class="math notranslate nohighlight">\(x_3\)</span> + <span class="math notranslate nohighlight">\(x_4\)</span> + <span class="math notranslate nohighlight">\(x_5\)</span>) ).</p></li>
+<li><p>Nutritional requirements: Iron, phosphorus, and calcium constraints.</p>
+<ul>
+<li><p>( 0.5 <span class="math notranslate nohighlight">\(x_1\)</span> + 0.5 <span class="math notranslate nohighlight">\(x_2\)</span> + 1.2 <span class="math notranslate nohighlight">\(x_3\)</span> + 0.3 <span class="math notranslate nohighlight">\(x_4\)</span> + 0.4 <span class="math notranslate nohighlight">\(x_5\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> 5,000 )</p></li>
+<li><p>( 10 <span class="math notranslate nohighlight">\(x_1\)</span> + 20 <span class="math notranslate nohighlight">\(x_2\)</span> + 40 <span class="math notranslate nohighlight">\(x_3\)</span> + 30 <span class="math notranslate nohighlight">\(x_4\)</span> + 50 <span class="math notranslate nohighlight">\(x_5\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> 36,000 )</p></li>
+<li><p>( 200 <span class="math notranslate nohighlight">\(x_1\)</span> + 280 <span class="math notranslate nohighlight">\(x_2\)</span> + 800 <span class="math notranslate nohighlight">\(x_3\)</span> + 420 <span class="math notranslate nohighlight">\(x_4\)</span> + 360 <span class="math notranslate nohighlight">\(x_5\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> 28,000 )</p></li>
+</ul>
+</li>
+<li><p>Non-negativity: ( <span class="math notranslate nohighlight">\(x_i\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> 0 ) for ( 1 <span class="math notranslate nohighlight">\(\geq\)</span> <span class="math notranslate nohighlight">\(i\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> 5 ).</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="id10">
+<h3>Procedure<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Define the decision variables ( <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span>, <span class="math notranslate nohighlight">\(x_3\)</span>, <span class="math notranslate nohighlight">\(x_4\)</span>, <span class="math notranslate nohighlight">\(x_5\)</span> ).</p></li>
+<li><p>Set up the objective function to minimize cost.</p></li>
+<li><p>Add constraints for ingredient limits and nutritional requirements.</p></li>
+<li><p>Solve the model using the CBC solver to determine the optimal mixture.</p></li>
+</ol>
+</section>
+<section id="id11">
+<h3>Code implementation<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ========================================</span>
+<span class="c1"># Example 2.2.4: Minimizing cost of vegetable mixture</span>
+<span class="c1"># ========================================</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyomo.environ</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span> <span class="c1"># importing Pyomo environment</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">solve_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">example_name</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; Solving </span><span class="si">{</span><span class="n">example_name</span><span class="si">}</span><span class="s2"> &quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+    <span class="n">solver</span> <span class="o">=</span> <span class="n">SolverFactory</span><span class="p">(</span><span class="s1">&#39;cbc&#39;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Optimal Solution:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">component_objects</span><span class="p">(</span><span class="n">Var</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Objective Value:&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">obj</span><span class="p">())</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">build_abstract_model_224</span><span class="p">():</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">AbstractModel</span><span class="p">()</span>
+
+    <span class="c1"># Decision variables for pounds of beans, corn, broccoli, cabbage, and potatoes</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">x3</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">x4</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">x5</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+
+    <span class="c1"># Parameters</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">total_ingredients</span> <span class="o">=</span> <span class="n">Param</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Total of all ingredients</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">iron_requirement</span> <span class="o">=</span> <span class="n">Param</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">phosphorus_requirement</span> <span class="o">=</span> <span class="n">Param</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">36000</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">calcium_requirement</span> <span class="o">=</span> <span class="n">Param</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">28000</span><span class="p">)</span>
+
+    <span class="c1"># Objective function: Minimize cost</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">obj_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">20</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="mi">18</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">+</span> <span class="mi">32</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x3</span> <span class="o">+</span> <span class="mi">28</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x4</span> <span class="o">+</span> <span class="mi">16</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x5</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">obj_rule</span><span class="p">,</span> <span class="n">sense</span><span class="o">=</span><span class="n">minimize</span><span class="p">)</span>
+
+    <span class="c1"># Constraints</span>
+
+    <span class="c1"># Ingredient limits</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ingredient_limit_1_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">&lt;=</span> <span class="mf">0.4</span> <span class="o">*</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">x3</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">x4</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">x5</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">ingredient_limit_1</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">ingredient_limit_1_rule</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">ingredient_limit_2_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">x5</span> <span class="o">&lt;=</span> <span class="mf">0.32</span> <span class="o">*</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">x3</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">x4</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">x5</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">ingredient_limit_2</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">ingredient_limit_2_rule</span><span class="p">)</span>
+
+    <span class="c1"># Nutritional requirements</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">iron_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">+</span> <span class="mf">1.2</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x3</span> <span class="o">+</span> <span class="mf">0.3</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x4</span> <span class="o">+</span> <span class="mf">0.4</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x5</span> <span class="o">&gt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">iron_requirement</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">iron_constraint</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">iron_rule</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">phosphorus_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="mi">20</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">+</span> <span class="mi">40</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x3</span> <span class="o">+</span> <span class="mi">30</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x4</span> <span class="o">+</span> <span class="mi">50</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x5</span> <span class="o">&gt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">phosphorus_requirement</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">phosphorus_constraint</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">phosphorus_rule</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">calcium_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">200</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="mi">280</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">+</span> <span class="mi">800</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x3</span> <span class="o">+</span> <span class="mi">420</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x4</span> <span class="o">+</span> <span class="mi">360</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x5</span> <span class="o">&gt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">calcium_requirement</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">calcium_constraint</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">calcium_rule</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">model</span>
+
+<span class="n">data_224</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kc">None</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;total_ingredients&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>  <span class="c1"># Mapping required for each parameter</span>
+        <span class="s1">&#39;iron_requirement&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">5000</span><span class="p">},</span>
+        <span class="s1">&#39;phosphorus_requirement&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">36000</span><span class="p">},</span>
+        <span class="s1">&#39;calcium_requirement&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">28000</span><span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># Instantiate the model</span>
+<span class="n">model_224</span> <span class="o">=</span> <span class="n">build_abstract_model_224</span><span class="p">()</span>
+<span class="n">instance_224</span> <span class="o">=</span> <span class="n">model_224</span><span class="o">.</span><span class="n">create_instance</span><span class="p">(</span><span class="n">data_224</span><span class="p">)</span>
+<span class="n">solve_model</span><span class="p">(</span><span class="n">instance_224</span><span class="p">,</span> <span class="s2">&quot;Example 2.2.4&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========================================
+ Solving Example 2.2.4 
+========================================
+
+Optimal Solution:
+  x1 = 0.0
+  x2 = 0.0
+  x3 = 4166.6667
+  x4 = 0.0
+  x5 = 0.0
+
+Objective Value: 133333.3344
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="example-2-2-5-sawmill-profit-maximization">
+<h2>Example 2.2.5: Sawmill Profit Maximization<a class="headerlink" href="#example-2-2-5-sawmill-profit-maximization" title="Link to this heading">#</a></h2>
+<section id="id12">
+<h3>Problem Statement<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<p>A sawmill produces fir and spruce logs, each with different processing times and by-products. The sawmill wants to maximize profits while considering the utilization of by-products (sawdust) and market constraints.</p>
+</section>
+<section id="id13">
+<h3>Model Formulation<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Decision Variables</strong>:</p>
+<ul class="simple">
+<li><p>Let ( <span class="math notranslate nohighlight">\(x_1\)</span> ) = number of fir logs produced.</p></li>
+<li><p>Let ( <span class="math notranslate nohighlight">\(x_2\)</span> ) = number of spruce logs produced.</p></li>
+<li><p>Let ( <span class="math notranslate nohighlight">\(x_3\)</span> ) = pounds of spruce sawdust used.</p></li>
+<li><p>Let ( <span class="math notranslate nohighlight">\(x_4\)</span> ) = pounds of spruce sawdust destroyed.</p></li>
+</ul>
+</li>
+<li><p><strong>Objective Function</strong>:</p>
+<ul class="simple">
+<li><p>Maximize profit: ( <span class="math notranslate nohighlight">\(z\)</span> = 4.38 <span class="math notranslate nohighlight">\(x_1\)</span> + 5 <span class="math notranslate nohighlight">\(x_2\)</span> + 0.66 <span class="math notranslate nohighlight">\(x_3\)</span> - 0.15 <span class="math notranslate nohighlight">\(x_4\)</span> ).</p></li>
+</ul>
+</li>
+<li><p><strong>Constraints</strong>:</p>
+<ul class="simple">
+<li><p>Sawdust balance: ( 5 <span class="math notranslate nohighlight">\(x_2\)</span> = <span class="math notranslate nohighlight">\(x_3\)</span> + <span class="math notranslate nohighlight">\(x_4\)</span> ).</p></li>
+<li><p>Market limit for pressed wood: ( <span class="math notranslate nohighlight">\(\frac{3}{5} \)</span><span class="math notranslate nohighlight">\(x_3\)</span> <span class="math notranslate nohighlight">\(\leq\)</span> 60 ).</p></li>
+<li><p>Machine time constraints: Bark peeler, slab saw, and planer.</p>
+<ul>
+<li><p>( 3 <span class="math notranslate nohighlight">\(x_1\)</span> + 2 <span class="math notranslate nohighlight">\(x_2\)</span> <span class="math notranslate nohighlight">\(\leq\)</span> 10 )</p></li>
+<li><p>( 5 <span class="math notranslate nohighlight">\(x_1\)</span> + 6 <span class="math notranslate nohighlight">\(x_2\)</span> <span class="math notranslate nohighlight">\(\leq\)</span> 12 )</p></li>
+<li><p>( 2 <span class="math notranslate nohighlight">\(x_1\)</span> + 2 <span class="math notranslate nohighlight">\(x_2\)</span> <span class="math notranslate nohighlight">\(\leq\)</span> 14 )</p></li>
+</ul>
+</li>
+<li><p>Non-negativity: ( <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span>, <span class="math notranslate nohighlight">\(x_3\)</span>, <span class="math notranslate nohighlight">\(x_4\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> 0 ).</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="id14">
+<h3>Procedure<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Define the decision variables ( <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span>, <span class="math notranslate nohighlight">\(x_3\)</span>, <span class="math notranslate nohighlight">\(x_4\)</span> ).</p></li>
+<li><p>Set up the objective function to maximize profit.</p></li>
+<li><p>Add constraints for sawdust balance, market limits, and machine time.</p></li>
+<li><p>Solve the model using the CBC solver to determine the optimal production levels.</p></li>
+</ol>
+</section>
+<section id="id15">
+<h3>Code implementation<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ========================================</span>
+<span class="c1"># Example 2.2.5: Maximizing profit in a sawmill</span>
+<span class="c1"># ========================================</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyomo.environ</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span> <span class="c1"># importing Pyomo environment</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">solve_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">example_name</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; Solving </span><span class="si">{</span><span class="n">example_name</span><span class="si">}</span><span class="s2"> &quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+    <span class="n">solver</span> <span class="o">=</span> <span class="n">SolverFactory</span><span class="p">(</span><span class="s1">&#39;cbc&#39;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Optimal Solution:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">component_objects</span><span class="p">(</span><span class="n">Var</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Objective Value:&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">obj</span><span class="p">())</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">build_abstract_model_225</span><span class="p">():</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">AbstractModel</span><span class="p">()</span>
+
+    <span class="c1"># Decision variables</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>  <span class="c1"># Fir logs produced</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>  <span class="c1"># Spruce logs produced</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">x3</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>  <span class="c1"># Pounds of spruce sawdust used</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">x4</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>  <span class="c1"># Pounds of spruce sawdust destroyed</span>
+
+    <span class="c1"># Parameters for objective coefficients and constraints</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff</span> <span class="o">=</span> <span class="n">Param</span><span class="p">([</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">,</span> <span class="s1">&#39;x3&#39;</span><span class="p">,</span> <span class="s1">&#39;x4&#39;</span><span class="p">],</span> <span class="n">within</span><span class="o">=</span><span class="n">Any</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">machine_time_constraints</span> <span class="o">=</span> <span class="n">Param</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">within</span><span class="o">=</span><span class="n">Any</span><span class="p">)</span>  <span class="c1"># For machine time constraints</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">sawdust_balance_coeffs</span> <span class="o">=</span> <span class="n">Param</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">within</span><span class="o">=</span><span class="n">Any</span><span class="p">)</span>  <span class="c1"># Sawdust balance coefficients</span>
+
+    <span class="c1"># Objective function</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">obj_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">+</span> \
+               <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff</span><span class="p">[</span><span class="s1">&#39;x3&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x3</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff</span><span class="p">[</span><span class="s1">&#39;x4&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x4</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">obj_rule</span><span class="p">,</span> <span class="n">sense</span><span class="o">=</span><span class="n">maximize</span><span class="p">)</span>
+
+    <span class="c1"># Constraints for sawdust balance</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sawdust_balance_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">sawdust_balance_coeffs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">==</span> <span class="n">model</span><span class="o">.</span><span class="n">x3</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">x4</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">sawdust_balance</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">sawdust_balance_rule</span><span class="p">)</span>
+
+    <span class="c1"># Market limit for pressed wood</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">market_limit_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">3</span> <span class="o">/</span> <span class="mi">5</span><span class="p">)</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x3</span> <span class="o">&lt;=</span> <span class="mi">60</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">market_limit</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">market_limit_rule</span><span class="p">)</span>
+
+    <span class="c1"># Machine time constraints</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">machine_time1_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">&lt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">machine_time_constraints</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">machine_time1</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">machine_time1_rule</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">machine_time2_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">&lt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">machine_time_constraints</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">machine_time2</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">machine_time2_rule</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">machine_time3_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">&lt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">machine_time_constraints</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">machine_time3</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">machine_time3_rule</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">model</span>
+
+<span class="n">data_225</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kc">None</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;obj_coeff&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x1&#39;</span><span class="p">:</span> <span class="mf">4.38</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;x3&#39;</span><span class="p">:</span> <span class="mf">0.66</span><span class="p">,</span> <span class="s1">&#39;x4&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.15</span><span class="p">},</span>  <span class="c1"># Objective function coefficients</span>
+        <span class="s1">&#39;machine_time_constraints&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">14</span><span class="p">},</span>  <span class="c1"># Machine time limits for the constraints</span>
+        <span class="s1">&#39;sawdust_balance_coeffs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>  <span class="c1"># Sawdust balance coefficients</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># Instantiate the model</span>
+<span class="n">model_225</span> <span class="o">=</span> <span class="n">build_abstract_model_225</span><span class="p">()</span>
+<span class="n">instance_225</span> <span class="o">=</span> <span class="n">model_225</span><span class="o">.</span><span class="n">create_instance</span><span class="p">(</span><span class="n">data_225</span><span class="p">)</span>
+<span class="n">solve_model</span><span class="p">(</span><span class="n">instance_225</span><span class="p">,</span> <span class="s2">&quot;Example 2.2.5&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========================================
+ Solving Example 2.2.5 
+========================================
+
+Optimal Solution:
+  x1 = 0.0
+  x2 = 2.0
+  x3 = 10.0
+  x4 = 0.0
+
+Objective Value: 16.6
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="example-2-2-6-dual-processor-job-scheduling">
+<h2>Example 2.2.6: Dual Processor Job Scheduling<a class="headerlink" href="#example-2-2-6-dual-processor-job-scheduling" title="Link to this heading">#</a></h2>
+<section id="id16">
+<h3>Problem Statement<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<p>A computing facility must schedule administrative and scientific jobs on two processors. The goal is to minimize the total time the system is occupied while ensuring each processor is used for at least 10 hours.</p>
+</section>
+<section id="id17">
+<h3>Model Formulation<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Decision Variables</strong>:</p>
+<ul class="simple">
+<li><p>Let ( <span class="math notranslate nohighlight">\(x_1\)</span> ) = number of administrative jobs.</p></li>
+<li><p>Let ( <span class="math notranslate nohighlight">\(x_2\)</span> ) = number of scientific jobs.</p></li>
+<li><p>Let ( <span class="math notranslate nohighlight">\(x_3\)</span> ) = maximum time spent on either processor.</p></li>
+</ul>
+</li>
+<li><p><strong>Objective Function</strong>:</p>
+<ul class="simple">
+<li><p>Minimize ( <span class="math notranslate nohighlight">\(x_3\)</span> ), where ( <span class="math notranslate nohighlight">\(x_3\)</span> = <span class="math notranslate nohighlight">\(\max\)</span> (2 <span class="math notranslate nohighlight">\(x_1\)</span> + 5 <span class="math notranslate nohighlight">\(x_2\)</span>, 6 <span class="math notranslate nohighlight">\(x_1\)</span> + 3 <span class="math notranslate nohighlight">\(x_2\)</span>) ).</p></li>
+</ul>
+</li>
+<li><p><strong>Constraints</strong>:</p>
+<ul class="simple">
+<li><p>Processor time: ( 2 <span class="math notranslate nohighlight">\(x_1\)</span> + 5 <span class="math notranslate nohighlight">\(x_2\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> 36,000 ), ( 6 <span class="math notranslate nohighlight">\(x_1\)</span> + 3 <span class="math notranslate nohighlight">\(x_2\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> 36,000 ).</p></li>
+<li><p>Linearization : ( <span class="math notranslate nohighlight">\(x_3\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> 2 <span class="math notranslate nohighlight">\(x_1\)</span> + 5 <span class="math notranslate nohighlight">\(x_2\)</span>) and ( <span class="math notranslate nohighlight">\(x_3\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> 6 <span class="math notranslate nohighlight">\(x_1\)</span> + 3 <span class="math notranslate nohighlight">\(x_2\)</span> )</p></li>
+<li><p>Non-negativity: ( <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span>, <span class="math notranslate nohighlight">\(x_3\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> 0 ).</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="id18">
+<h3>Procedure<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Define the decision variables ( <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span>, <span class="math notranslate nohighlight">\(x_3\)</span> ).</p></li>
+<li><p>Set up the objective function to minimize the maximum processor time.</p></li>
+<li><p>Add constraints for processor time requirements.</p></li>
+<li><p>Solve the model using the CBC solver to determine the optimal job schedule.</p></li>
+</ol>
+</section>
+<section id="id19">
+<h3>Code implementation<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ========================================</span>
+<span class="c1"># Example 2.2.6: Minimizing computing time on dual processors</span>
+<span class="c1"># ========================================</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyomo.environ</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span> <span class="c1"># importing Pyomo environment</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">solve_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">example_name</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; Solving </span><span class="si">{</span><span class="n">example_name</span><span class="si">}</span><span class="s2"> &quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+    <span class="n">solver</span> <span class="o">=</span> <span class="n">SolverFactory</span><span class="p">(</span><span class="s1">&#39;cbc&#39;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Optimal Solution:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">component_objects</span><span class="p">(</span><span class="n">Var</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Objective Value:&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">obj</span><span class="p">())</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">build_abstract_model_226</span><span class="p">():</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">AbstractModel</span><span class="p">()</span>
+
+    <span class="c1"># Decision variables</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">x3</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>  <span class="c1"># The maximum time variable</span>
+
+    <span class="c1"># Parameters for processor coefficients (indexed by 1 and 2 for x1 and x2)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">processor1_coeffs</span> <span class="o">=</span> <span class="n">Param</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">within</span><span class="o">=</span><span class="n">Any</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">processor2_coeffs</span> <span class="o">=</span> <span class="n">Param</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">within</span><span class="o">=</span><span class="n">Any</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">processor1_min</span> <span class="o">=</span> <span class="n">Param</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">Any</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">processor2_min</span> <span class="o">=</span> <span class="n">Param</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">Any</span><span class="p">)</span>
+
+    <span class="c1"># Constraints for processor time (ensuring both expressions are &gt;= 36,000)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">processor1_constraint_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">processor1_coeffs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">processor1_coeffs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">&gt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">processor1_min</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">processor1_constraint</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">processor1_constraint_rule</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">processor2_constraint_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">processor2_coeffs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">processor2_coeffs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">&gt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">processor2_min</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">processor2_constraint</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">processor2_constraint_rule</span><span class="p">)</span>
+
+    <span class="c1"># Linearization for the max function: x3 should be greater than both expressions</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">linearization_constraint1_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">x3</span> <span class="o">&gt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">processor1_coeffs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">processor1_coeffs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">linearization_constraint1</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">linearization_constraint1_rule</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">linearization_constraint2_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">x3</span> <span class="o">&gt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">processor2_coeffs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">processor2_coeffs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">linearization_constraint2</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">linearization_constraint2_rule</span><span class="p">)</span>
+
+    <span class="c1"># Objective function: Minimize x3</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">obj_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">x3</span>  <span class="c1"># Minimize the maximum time</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">obj_rule</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">model</span>
+
+<span class="n">data_226</span> <span class="o">=</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">&#39;processor1_coeffs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">},</span> <span class="s1">&#39;processor1_min&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">36000</span><span class="p">},</span>
+    <span class="s1">&#39;processor2_coeffs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span> <span class="s1">&#39;processor2_min&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">18000</span><span class="p">}</span>
+<span class="p">}}</span>
+<span class="n">model_226</span> <span class="o">=</span> <span class="n">build_abstract_model_226</span><span class="p">()</span>
+<span class="n">instance_226</span> <span class="o">=</span> <span class="n">model_226</span><span class="o">.</span><span class="n">create_instance</span><span class="p">(</span><span class="n">data_226</span><span class="p">)</span>
+<span class="n">solve_model</span><span class="p">(</span><span class="n">instance_226</span><span class="p">,</span> <span class="s2">&quot;Example 2.2.6&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========================================
+ Solving Example 2.2.6 
+========================================
+
+Optimal Solution:
+  x1 = 0.0
+  x2 = 18000.0
+  x3 = 36000.0
+
+Objective Value: 36000.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="end">
+<h1>End<a class="headerlink" href="#end" title="Link to this heading">#</a></h1>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/2_2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="2_2_md.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">2.2 The Art and Skill of Problem Formulation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../2_3/2_3_1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">2.3 Graphical Solution of Linear Programming Problems</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction to Linear Programming with Pyomo</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-pyomo">What is Pyomo?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-abstract-model-in-pyomo">What is the Abstract Model in Pyomo?</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-pyomo-and-abstract-model">Setting Up Pyomo and Abstract Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-pyomo-components">Key Pyomo Components</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-variables">1. <strong>Defining Variables</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-parameters">2. <strong>Defining Parameters</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-objectives">3. <strong>Defining Objectives</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-constraints">4. <strong>Defining Constraints</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solver-setup">5. <strong>Solver Setup</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example-code-walkthrough">Example Code Walkthrough</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-2-1-wireless-router-production">Example 2.2.1: Wireless Router Production</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-statement">Problem Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-formulation">Model Formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-definition">Model Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-instantiation">Data Instantiation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">Explanation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solver-interpretation">Solver Interpretation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-implementation">Code Implementation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-examples">Additional Examples</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-2-2-satellite-launch-scheduling">Example 2.2.2: Satellite Launch Scheduling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Problem Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Model Formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#procedure">Procedure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Code implementation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-2-3-production-and-inventory-management">Example 2.2.3: Production and Inventory Management</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Problem Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Model Formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Procedure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Code implementation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-2-4-freeze-dried-vegetable-mixture">Example 2.2.4: Freeze-Dried Vegetable Mixture</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Problem Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Model Formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Procedure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Code implementation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-2-5-sawmill-profit-maximization">Example 2.2.5: Sawmill Profit Maximization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Problem Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Model Formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Procedure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Code implementation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-2-6-dual-processor-job-scheduling">Example 2.2.6: Dual Processor Job Scheduling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Problem Statement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Model Formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">Procedure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Code implementation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#end">End</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ghaith Rabadi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,818 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2.2 The Art and Skill of Problem Formulation &#8212; Linear Programming Chapter</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/2_2/2_2_md';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Introduction to Linear Programming with Pyomo" href="2_2.html" />
+    <link rel="prev" title="Linear Programming" href="../../intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Linear Programming Chapter</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Linear Programming
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.2</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2.2 The Art and Skill of Problem Formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_2.html">Introduction to Linear Programming with Pyomo</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_1.html">2.3 Graphical Solution of Linear Programming Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_2.html">2.3.2 Graphical Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_3.html">2.3.3 Multiple Optimal Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_4.html">2.3.4 No Optimal Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_5.html">2.3.5 No Feasible Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_6.html">2.3.6 General Solution Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3.html">Introduction to Linear Programming and Graphical Solutions</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_4/2_4_1.html">2.4 Preparation for the Simplex Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_4/2_4_2.html">2.4.2 Solutions of Linear Systems</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_5/2_5.html">2.5 The Simplex Method</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_6/2_6_1.html">2.6 Initial Solutions for General Constraints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_6/2_6_2.html">2.6.2 The Two Phase Method</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/2_2/2_2_md.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>2.2 The Art and Skill of Problem Formulation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="the-art-and-skill-of-problem-formulation">
+<h1>2.2 The Art and Skill of Problem Formulation<a class="headerlink" href="#the-art-and-skill-of-problem-formulation" title="Link to this heading">#</a></h1>
+<p>A combination of practical insight and technical skill is required in order to recognize <em>which</em> problems can be appropriately modeled in a linear programming format, and then to formulate those problems accurately. Because of the wide variety of problems that can be made to fall into the linear programming mold, it is difficult to give guidelines that are universally applicable to the process of problem formulation. Rather, problem formulation is an art that must be cultivated through practice and experience. Several examples are given to point the way, and to illustrate the creativity that is sometimes helpful in framing problems as linear programs. The exercises at the end of the chapter should then provide some of the practice necessary to develop the skill of formulating linear programming models.</p>
+<ul>
+<br />
+<p>Example 2.2.1
+<br /></p>
+<p>A manufacturer of computer system components assembles two models of wireless routers, model A and model B. The amounts of materials and labor required for each assembly, and the total amounts available, are shown in the following table. The profits that can be realized from the sale of each router are <span class="math notranslate nohighlight">\(22 and \)</span>28 for models A and B, respectively, and we assume there is a market for as many routers as can be manufactured.
+<br />
+<br /></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Resources Required per Unit</p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p>Resources Available</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p></p></td>
+<td><p>A</p></td>
+<td><p>B</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Materials</p></td>
+<td><p>8</p></td>
+<td><p>10</p></td>
+<td><p>3400</p></td>
+</tr>
+<tr class="row-even"><td><p>Labor</p></td>
+<td><p>2</p></td>
+<td><p>3</p></td>
+<td><p>960</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<br />
+<p>The manufacturer would like to determine how many of each model to assemble in
+order to maximize profits.
+<br />
+<br /></p>
+<p>Formulation 2.2.1
+<br /></p>
+<p>Because the solution to this problem involves establishing the number of routers to be assembled, we define the decision variables as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Let } x_A = \text{number of model A routers to be assembled}
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+x_B = \text{number of model B routers to be assembled}
+\]</div>
+<p>In order to maximize profits, we establish the objective criterion as</p>
+<div class="math notranslate nohighlight">
+\[
+\text{maximize } z = 22 x_A + 28 x_B
+\]</div>
+<p>Two types of resource limitations are in effect. The materials constraint is expressed by
+the inequality</p>
+<div class="math notranslate nohighlight">
+\[
+8 x_A +  10 x_b \leq 3400
+\]</div>
+<p>and the labor constraint by</p>
+<div class="math notranslate nohighlight">
+\[
+2 x_A + 3 x_B \leq 960
+\]</div>
+<p>Finally, as it would be meaningless to have a negative number of terminals manufactured, we also include the constraints <span class="math notranslate nohighlight">\(x_A\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> 0 and <span class="math notranslate nohighlight">\(x_B\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> 0.</p>
+<br />
+<br />
+<p>Example 2.2.2</p>
+<p>A space agency planning team wishes to set up a schedule for launching satellites over a period of three years. Experimental payloads are of two types (say, T1 and T2), and each launch carries only one experiment. Externally negotiated agency policies dictate that at most 88 of payload type T1 and 126 of type T2 can be supported. For each launch, type T1 payloads will operate successfully with probability 0.85 and type T2 payloads with probability 0.75. In order for the program to be viable, there must be a total of at least 60 successful deployments. The agency is paid $ 1.5 million for each successful T1 payload, and $ 1.2 million for each successful T2 payload. The costs to the agency to prepare and launch the two types of payloads are $ 1.05 million for each T1 and $ 0.7 million for each T2. One week of time must be devoted to the preparation of each T2 launch payload and two weeks are required for T1 launch payloads. The agency, while providing a public service, wishes to maximize its expected net income from the satellite program.</p>
+<br />
+<br />
+<p>Formulation 2.2.2</p>
+<p>Let <span class="math notranslate nohighlight">\(x_1 =\)</span> number of satellites launched carrying a type T1 payload, and <span class="math notranslate nohighlight">\(x_2 =\)</span> number of satellites launched carrying a type T2 payload. Income is realized only when launches are successful, but costs are incurred for all launches. Therefore, the expected net income is</p>
+<div class="math notranslate nohighlight">
+\[
+(1.5)(0.85)x_1 + (1.2)(0.75)x_2 - (1.05)x_1 - (0.7)x_2 \quad \text{million dollars}
+\]</div>
+<p>The objective is then to maximize <span class="math notranslate nohighlight">\( z = 0.225x_1 + 0.2x_2\)</span>. Problem constraints in this case are of various types. Agency policies impose the two simple constraints</p>
+<div class="math notranslate nohighlight">
+\[
+x_1 \leq 88 \quad \text{and} \quad x_2 \leq 126
+\]</div>
+<p>The successful deployment quota yields the constraint</p>
+<div class="math notranslate nohighlight">
+\[
+0.85x_1 + 0.75x_2 \geq 60
+\]</div>
+<p>If we assume that 52 weeks per year (for three years) can be applied to the satellite program, then the launch preparation time constraint is</p>
+<div class="math notranslate nohighlight">
+\[
+2x_1 + x_2 \leq 156
+\]</div>
+<p>As in the previous example, we include the non-negativity constraints <span class="math notranslate nohighlight">\(x_1 \geq 0\)</span> and <span class="math notranslate nohighlight">\(x_2 \geq 0\)</span>.</p>
+<br />
+<br />
+<p>Example 2.2.3</p>
+<p>A company wishes to minimize its combined costs of production and inventory over a four-week time period. An item produced in a given week is available for consumption during that week, or it may be kept in inventory for use in later weeks. Initial inventory at the beginning of week 1 is 250 units. The minimum allowed inventory carried from one week to the next is 50 units. Unit production cost is $15, and the cost of storing a unit from one week to the next is $3. The following table shows production capacities and the demands that must be met during each week.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Period</p></th>
+<th class="head"><p>Production Capacity</p></th>
+<th class="head"><p>Demand</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>800</p></td>
+<td><p>900</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>700</p></td>
+<td><p>600</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>600</p></td>
+<td><p>800</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>800</p></td>
+<td><p>600</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A minimum production of 500 items per week must be maintained. Inventory costs are not applied to items remaining at the end of the fourth production period, nor is the minimum inventory restriction applied after this final period.</p>
+<br />
+<br />
+<p>Formulation 2.2.3</p>
+<p>Let <span class="math notranslate nohighlight">\(x_i\)</span> be the number of units produced during the <span class="math notranslate nohighlight">\(i\)</span>-th week, for <span class="math notranslate nohighlight">\(i = 1, \ldots, 4\)</span>. The formulation is somewhat more manageable if we let <span class="math notranslate nohighlight">\(A_i\)</span> denote the number of items remaining at the end of each week (accounting for those held over from previous weeks, those produced during the current week, and those consumed during the current week). Note that the <span class="math notranslate nohighlight">\(A_i\)</span> values are not decision variables, but merely serve to simplify our written formulation. Thus,</p>
+<div class="math notranslate nohighlight">
+\[
+A_1 = 250 + x_1 - 900
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+A_2 = A_1 + x_2 - 600
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+A_3 = A_2 + x_3 - 800
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+A_4 = A_3 + x_4 - 600
+\]</div>
+<p>The objective is to minimize</p>
+<div class="math notranslate nohighlight">
+\[
+z = 15(x_1 + x_2 + x_3 + x_4) + 3(A_1 + A_2 + A_3)
+\]</div>
+<p>Minimum inventory constraints are expressed as <span class="math notranslate nohighlight">\(A_i \geq 50\)</span> for <span class="math notranslate nohighlight">\(i=1,2,3\)</span>, and <span class="math notranslate nohighlight">\(A_4 \geq 0\)</span>. Production capacities and minima during each period are enforced with the constraints</p>
+<div class="math notranslate nohighlight">
+\[
+500 \leq x_1 \leq 700
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+500 \leq x_2 \leq 700
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+500 \leq x_3 \leq 600
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+500 \leq x_4 \leq 800
+\]</div>
+<p>Finally, <span class="math notranslate nohighlight">\(x_i \geq 0\)</span> for <span class="math notranslate nohighlight">\(i=1, \ldots, 4\)</span>.
+<br />
+<br /></p>
+<p>Example 2.2.4</p>
+<p>A mixture of freeze-dried vegetables is to be composed of beans, corn, broccoli, cabbage, and potatoes. The mixture is to contain (by weight) at most 40% beans and at most 32% potatoes. The mixture should contain at least 5 grams iron, 36 grams phosphorus, and 28 grams calcium. The nutrients in each vegetable and the costs are shown in the following table.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Vegetable</p></th>
+<th class="head"><p>Iron (mg/lb)</p></th>
+<th class="head"><p>Phosphorus (mg/lb)</p></th>
+<th class="head"><p>Calcium (mg/lb)</p></th>
+<th class="head"><p>Cost (cents/lb)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Beans</p></td>
+<td><p>0.5</p></td>
+<td><p>10</p></td>
+<td><p>200</p></td>
+<td><p>20</p></td>
+</tr>
+<tr class="row-odd"><td><p>Corn</p></td>
+<td><p>0.5</p></td>
+<td><p>20</p></td>
+<td><p>280</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-even"><td><p>Broccoli</p></td>
+<td><p>1.2</p></td>
+<td><p>40</p></td>
+<td><p>800</p></td>
+<td><p>32</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cabbage</p></td>
+<td><p>0.3</p></td>
+<td><p>30</p></td>
+<td><p>420</p></td>
+<td><p>28</p></td>
+</tr>
+<tr class="row-even"><td><p>Potatoes</p></td>
+<td><p>0.4</p></td>
+<td><p>50</p></td>
+<td><p>360</p></td>
+<td><p>16</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The amount of each vegetable to include should be determined so that the cost of the mixture is minimized.
+<br />
+<br /></p>
+<p>Formulation 2.2.4</p>
+<p>Let <span class="math notranslate nohighlight">\(x_1, x_2, x_3, x_4, x_5\)</span> be the number of pounds of beans, corn, broccoli, cabbage, and potatoes, respectively. To minimize the cost of the mixture, we wish to minimize <span class="math notranslate nohighlight">\(z = 20x_1 + 18x_2 + 32x_3 + 28x_4 + 16x_5\)</span>. The percentage of beans in the mixture is <span class="math notranslate nohighlight">\(\frac{x_1}{x_1 + x_2 + x_3 + x_4 + x_5}\)</span>, and must be less than 40%. Therefore,</p>
+<div class="math notranslate nohighlight">
+\[
+x_1 \leq 0.4 (x_1 + x_2 + x_3 + x_4 + x_5)
+\]</div>
+<p>and similarly the potato restriction can be written as</p>
+<div class="math notranslate nohighlight">
+\[
+x_5 \leq 0.32 (x_1 + x_2 + x_3 + x_4 + x_5)
+\]</div>
+<p>To achieve the required level of nutrients, we have three constraints (for iron, phosphorus, and calcium, respectively):</p>
+<div class="math notranslate nohighlight">
+\[
+0.5x_1 + 0.5x_2 + 1.2x_3 + 0.3x_4 + 0.4x_5 \geq 5000
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+10x_1 + 20x_2 + 40x_3 + 30x_4 + 50x_5 \geq 36000
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+200x_1 + 280x_2 + 800x_3 + 420x_4 + 360x_5 \geq 28000
+\]</div>
+<p>Negative amounts are not possible, so <span class="math notranslate nohighlight">\(x_i \geq 0\)</span> for <span class="math notranslate nohighlight">\(i=1, \ldots, 5\)</span>.
+<br />
+<br /></p>
+<p>Example 2.2.5</p>
+<p>A saw mill makes two products for log home kits: fir logs and spruce logs which can be sold at profits of $4 and $5, respectively. Spruce logs require two units of processing time on the bark peeler and six units of time on a slab saw. Fir logs require three units of time on the peeler and five units on the slab saw. Each then requires two units of time on the planer. Because of maintenance requirements and labor restrictions, the bark peeler is available 10 hours per day, the slab saw 12 hours per day, and the planer 14 hours per day. Bark and sawdust are by-products of these operations. All the bark can be put through a chipper and sold in unlimited quantities to a nearby horticulture supplier. Dried fir sawdust can be directed to a similar market, at a net profit of $0.38 per processed log. Limited amounts of the spruce sawdust can be made into marketable pressed wood products, but the rest must be destroyed. For each spruce log produced, enough sawdust (five pounds) is generated to make three pressed wood products, which after manufacturing can be sold at a unit profit of $0.22. However, the market can absorb only 60 of the pressed wood products per day and the remaining spruce sawdust must be destroyed at a cost of $0.15 per pound. The saw mill wishes to make the largest possible profit, considering the cost of destroying the unusable sawdust.
+<br />
+<br /></p>
+<p>Formulation 2.2.5</p>
+<p>The formulation of this problem cannot follow exactly the pattern established in previous examples because the profits to be maximized are not a linear function of the number of logs of each type produced. Spruce log production creates a by-product that is useful and profitable only up to a point, and thereafter any excess must be destroyed at a cost that diminishes total profits. Thus, profits are not a strictly increasing function of production levels. We can still let</p>
+<div class="math notranslate nohighlight">
+\[
+x_1 = \text{number of fir logs produced}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+x_2 = \text{number of spruce logs produced}
+\]</div>
+<p>Because sawdust contributes nonlinearly to profits, we treat it in two parts and let</p>
+<div class="math notranslate nohighlight">
+\[
+x_3 = \text{number of pounds of spruce sawdust used}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+x_4 = \text{number of pounds of spruce sawdust destroyed}
+\]</div>
+<p>Direct profit from the sale of logs is <span class="math notranslate nohighlight">\(4x_1 + 5x_2\)</span>. All the bark can be sold at a profit in unlimited quantities, therefore, although this affects the amount of profit, it does not affect our decision on how many logs of each type to produce. Fir sawdust brings in $0.38 for each processed log, or $0.38 <span class="math notranslate nohighlight">\(x_1\)</span>. For each <span class="math notranslate nohighlight">\(\frac{x_3}{5}\)</span> spruce logs produced, there is enough sawdust to make three products at a profit of $0.22 each, if there is a market. Unmarketable spruce sawdust costs $0.15 <span class="math notranslate nohighlight">\(x_4\)</span> to destroy. The objective is, therefore, to maximize</p>
+<div class="math notranslate nohighlight">
+\[
+z = 4x_1 + 5x_2 + 0.38x_1 +  \frac{3}{5} (0.22) x_3 - 0.15 x_4
+\]</div>
+<p>Relating the number of logs produced to pounds of sawdust by-product, we obtain the constraint</p>
+<div class="math notranslate nohighlight">
+\[
+5x_2 = x_3 + x_4
+\]</div>
+<p>Limitations on demand for the pressed wood product are expressed by</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{3}{5} x_3 \leq 60
+\]</div>
+<p>Constraints on availability of machinery are straightforward. For the bark peeler,</p>
+<div class="math notranslate nohighlight">
+\[
+3x_1 + 2x_2 \leq 10
+\]</div>
+<p>On the slab saw,</p>
+<div class="math notranslate nohighlight">
+\[
+5x_1 + 6x_2 \leq 12
+\]</div>
+<p>And on the planer,</p>
+<div class="math notranslate nohighlight">
+\[
+2x_1 + 2x_2 \leq 14
+\]</div>
+<p>Because all production levels are non-negative, we also require <span class="math notranslate nohighlight">\(x_1 \geq 0\)</span>, <span class="math notranslate nohighlight">\(x_2 \geq 0\)</span>, <span class="math notranslate nohighlight">\(x_3 \geq 0\)</span>, and <span class="math notranslate nohighlight">\(x_4 \geq 0\)</span>.
+<br />
+<br /></p>
+<p>Example 2.2.6</p>
+<p>A dual processor computing facility is to be dedicated to administrative and scientific application jobs for at least 10 hours each day. Administrative jobs require two seconds of execution time on processor 1 and six seconds on processor 2, while scientific jobs require five seconds on processor one and three seconds on processor 2. A scheduler must choose how many of each type of job (administrative and scientific) to execute, in such a way as to minimize the amount of time that the system is occupied with these jobs. The system is considered to be occupied even if one processor is idle. (Assume that the sequencing of the jobs on each processor is not an issue here, just the selection of how many of each type of job.)
+<br />
+<br /></p>
+<p>Formulation 2.2.6</p>
+<p>Let <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> denote, respectively, the number of administrative and scientific jobs selected for execution on the dual processor system. Because policies require that each processor be available for at least 10 hours, we must write the two constraints as:</p>
+<div class="math notranslate nohighlight">
+\[
+2x_1 + 5x_2 \geq 10 \times 3600 \quad \text{(Processor 1)}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+6x_1 + 3x_2 \geq 10 \times 3600 \quad \text{(Processor 2)}
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+x_1 \geq 0, \quad x_2 \geq 0
+\]</div>
+<p>The system is considered occupied as long as either processor is busy. Therefore, to minimize the completion time for the set of jobs, we must</p>
+<div class="math notranslate nohighlight">
+\[
+\min (\max \{ 2x_1 + 5x_2, \; 6x_1 + 3x_2 \})
+\]</div>
+<p>This nonlinear objective can be made linear if we introduce a new variable <span class="math notranslate nohighlight">\(x_3\)</span>, where</p>
+<div class="math notranslate nohighlight">
+\[
+x_3 = \max \{ 2x_1 + 5x_2, \; 6x_1 + 3x_2 \} \geq 0
+\]</div>
+<p>Now if we require</p>
+<div class="math notranslate nohighlight">
+\[
+x_3 \geq 2x_1 + 5x_2, \quad x_3 \geq 6x_1 + 3x_2
+\]</div>
+<p>and make our objective to minimize <span class="math notranslate nohighlight">\(x_3\)</span>, we have the desired linear formulation.</p>
+</ul>
+<br />
+<p>2.2.1 Integer and Nonlinear Models</p>
+<p>There are many problems that appear to fall into the framework of linear programming problem formulations. In some problems, the decision variable values are meaningful only if they are integer values. (For example, it is not possible to launch a fractional number of satellites or to transport a fractional number of products.) In such cases, the linear programming model is modified by adding the requirement that some or all of the variables must take integer values. This gives rise to an <strong>integer programming</strong> problem.</p>
+<p>In other cases, the objective function or some of the constraints may be nonlinear functions of the decision variables. When this occurs, the resulting model is called a <strong>nonlinear programming</strong> problem. Nonlinear programming models are generally more difficult to solve than linear programming models, but many practical problems do require such formulations.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/2_2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../../intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Linear Programming</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2_2.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introduction to Linear Programming with Pyomo</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ghaith Rabadi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
