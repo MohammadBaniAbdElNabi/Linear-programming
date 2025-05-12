@@ -1,0 +1,857 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2.5 The Simplex Method &#8212; Linear Programming Chapter</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/2_5/2_5';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.6 Initial Solutions for General Constraints" href="../2_6/2_6_1.html" />
+    <link rel="prev" title="2.4.2 Solutions of Linear Systems" href="../2_4/2_4_2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Linear Programming Chapter</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Linear Programming
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_2/2_2_md.html">2.2 The Art and Skill of Problem Formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_2/2_2.html">Introduction to Linear Programming with Pyomo</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_1.html">2.3 Graphical Solution of Linear Programming Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_2.html">2.3.2 Graphical Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_3.html">2.3.3 Multiple Optimal Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_4.html">2.3.4 No Optimal Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_5.html">2.3.5 No Feasible Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_6.html">2.3.6 General Solution Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3.html">Introduction to Linear Programming and Graphical Solutions</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_4/2_4_1.html">2.4 Preparation for the Simplex Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_4/2_4_2.html">2.4.2 Solutions of Linear Systems</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.5</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2.5 The Simplex Method</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_6/2_6_1.html">2.6 Initial Solutions for General Constraints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_6/2_6_2.html">2.6.2 The Two Phase Method</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/2_5/2_5.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>2.5 The Simplex Method</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="the-simplex-method">
+<h1>2.5 The Simplex Method<a class="headerlink" href="#the-simplex-method" title="Link to this heading">#</a></h1>
+<p>The Simplex method is a general solution method for solving linear programming problems. It was developed in 1947 by George B. Dantzig and, with some modifications for efficiency, has become the standard method for solving very large linear programming problems on computers. Most real problems are so large that a manual solution via the Simplex method is impractical, and these problems must be solved with Simplex programs implemented on a computer. Small problems, however, are quite useful in demonstrating how the Simplex method operates; therefore, we will use such problems to illustrate the various features of the method.</p>
+<p>The Simplex method is an iterative algorithm that begins with an initial feasible solution, repeatedly moves to a better solution, and stops when an optimal solution has been found and, therefore, no improvement can be made.</p>
+<p>To describe the mechanics of the algorithm, we must specify how an initial feasible solution is obtained, how a transition is made to a better basic feasible solution, and how to recognize an optimal solution. From any basic feasible solution, we have the assurance that, if a better solution exists at all, then there is an adjacent solution that is better than the current one. This is the principle on which the Simplex method is based; thus, an optimal solution is accessible from any starting basic feasible solution.</p>
+<p>We will use the following simple problem as an illustration as we describe the Simplex method:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\text{maximize} \quad &amp; z = 8x_1 + 5x_2 \\
+\text{subject to} \quad &amp; x_1 \leq 150 \\
+&amp; x_2 \leq 250 \\
+&amp; 2x_1 + x_2 \leq 500 \\
+&amp; x_1, x_2 \geq 0
+\end{align*}
+\end{split}\]</div>
+<p>The standard form for this problem is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\text{maximize} \quad &amp; z = 8x_1 + 5x_2 + 0s_1 + 0s_2 + 0s_3 \\
+\text{subject to} \quad &amp; x_1 + s_1 = 150 \\
+&amp; x_2 + s_2 = 250 \\
+&amp; 2x_1 + x_2 + s_3 = 500
+\end{align*}
+\end{split}\]</div>
+<p>(Zero coefficients are given to the slack variables in the objective function because slack variables do not contribute to <span class="math notranslate nohighlight">\(z\)</span>.) The constraints constitute a system of <span class="math notranslate nohighlight">\(m = 3\)</span> equations in <span class="math notranslate nohighlight">\(n = 5\)</span> unknowns. In order to obtain an initial basic feasible solution, we need to select <span class="math notranslate nohighlight">\(n - m = 5 - 3 = 2\)</span> variables as non-basic variables. We can readily see in this case that by choosing the two variables <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> as the non-basic variables, and setting their values to zero, then no significant computation is required in order to solve for the three basic variables: <span class="math notranslate nohighlight">\(s_1 = 150,\quad s_2 = 250,\quad s_3 = 500\)</span>. The value of the objective function at this solution is 0.</p>
+<p>In fact, a starting solution is just this easy to obtain whenever we have <span class="math notranslate nohighlight">\(m\)</span> variables, each of which has a coefficient of one in one equation and zero coefficients in all other equations (a unit vector of coefficients), and each equation has such a variable with a coefficient of one in it. Thus, whenever a slack variable has been added to each constraint, we may choose all the slack variables as the <span class="math notranslate nohighlight">\(m\)</span> basic variables, set the remaining <span class="math notranslate nohighlight">\((n - m)\)</span> variables to zero, and the starting values of the basic variables are simply given by the constants <span class="math notranslate nohighlight">\(b\)</span> on the right-hand sides of the constraints.
+(For cases in which slack variables are not present and, therefore, do not provide a starting basic feasible solution, further techniques will be discussed in Section 2.6.)</p>
+<p>Once we have a solution, a transition to an adjacent solution is made by a <strong>pivot operation</strong>. A pivot operation is a sequence of elementary row operations (see the Appendix) applied to the current system of equations, with the effect of creating an equivalent system in which one new (previously non-basic) variable now has a coefficient of one in one equation and zeros in all other equations.</p>
+<p>During the process of applying pivot operations to a linear programming problem, it is convenient to use a tabular representation of the system of equations. This representation is referred to as a <strong>Simplex tableau</strong>.</p>
+<p>In order to conveniently keep track of the value of the objective function as it is affected by the pivot operations, we treat the objective function as one of the equations in the system of equations, and we include it in the tableau. In our example, the objective function equation is written as:</p>
+<div class="math notranslate nohighlight">
+\[
+1z - 8x_1 - 5x_2 - 0 s_1 -0 s_2 - 0s_3 = 0
+\]</div>
+<p>The tableau for the initial solution is as follows:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Basis</p></th>
+<th class="head"><p>z</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s_1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s_2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s_3\)</span></p></th>
+<th class="head"><p>Solution</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>z</p></td>
+<td><p>1</p></td>
+<td><p>−8</p></td>
+<td><p>−5</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(s_1\)</span></p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>150</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(s_2\)</span></p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>250</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(s_3\)</span></p></td>
+<td><p>0</p></td>
+<td><p>2</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>500</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The first column lists the current basic variables. The second column shows that <span class="math notranslate nohighlight">\(z\)</span> is (and will always be) a basic variable; and because these elements will never change, they really do not need to be explicitly maintained in the tableau. The next five columns are the constraint coefficients of each variable. And the last column is the solution vector; that is, the values of the basic variables. Using this representation of a current solution, we can now describe the purpose and function of each iteration of the Simplex method for a maximization problem.
+Continuing <strong>Section 2.5: The Simplex Method</strong>, here’s the next portion—pivot steps and Simplex iterations—exactly preserved in Markdown:
+Observe that the objective function row represents an equation that must be satisfied for any feasible solution. Since we want to maximize <span class="math notranslate nohighlight">\(z\)</span>, some other (non-basic) term must decrease in order to offset the increase in <span class="math notranslate nohighlight">\(z\)</span>. But all of the non-basic variables are already at their lowest value, zero. Therefore, we want to increase some non-basic variable that has a negative coefficient. As a simple rule, we will choose the variable with the most negative coefficient, because making this variable basic will give the largest (per unit) increase in <span class="math notranslate nohighlight">\(z\)</span>. (Refer to Steps 1 and 2 in the following.)</p>
+<p>The chosen variable is called the <strong>entering variable</strong>, that is, the one that will enter the basis. If this variable increases, we must adjust all of the equations. Specifically, increasing the non-basic variable must be compensated for by using only the one basic variable in each row (having a coefficient of one). If the non-basic coefficient is negative, the corresponding basic variable increases. There is no limit to how much we can increase this. Clearly, if all coefficients are negative (or zero), then we can increase the non-basic variable, and hence the value of <span class="math notranslate nohighlight">\(z\)</span>, indefinitely. In this case, we say that the problem is <strong>unbounded</strong>, and there is no maximum solution.</p>
+<p>If one or more of the coefficients are positive, then increasing the entering variable must be offset by a corresponding decrease in the basic variable. Specifically, if <span class="math notranslate nohighlight">\(a_{ik} &gt; 0\)</span>, for basic variable <span class="math notranslate nohighlight">\(x_i\)</span> in the non-basic column of <span class="math notranslate nohighlight">\(x_k\)</span>, then the new value of <span class="math notranslate nohighlight">\(x_i\)</span>, after <span class="math notranslate nohighlight">\(x_k\)</span> is increased, will be</p>
+<div class="math notranslate nohighlight">
+\[
+x_i = b_i - a_{ik} x_k
+\]</div>
+<p>But <span class="math notranslate nohighlight">\(x_i \geq 0\)</span>; therefore, we can increase <span class="math notranslate nohighlight">\(x_k\)</span> only to that point where</p>
+<div class="math notranslate nohighlight">
+\[
+x_k = \frac{b_i}{a_{ik}}
+\]</div>
+<p>Define <span class="math notranslate nohighlight">\(\theta_i = \frac{b_i}{a_{ik}}\)</span> for all equations <span class="math notranslate nohighlight">\(i\)</span> for which <span class="math notranslate nohighlight">\(a_{ik} &gt; 0\)</span>. Because we want to maximize the increase in <span class="math notranslate nohighlight">\(x_k\)</span>, we increase precisely to the point at which some basic variable first becomes zero (the minimum value of <span class="math notranslate nohighlight">\(\theta_i\)</span>). That variable now <strong>leaves the basis</strong>, and is called the <strong>leaving variable</strong>. (Refer to Steps 3 and 4 in the following.)</p>
+<p>The Simplex method can be summarized succinctly as follows:</p>
+<ul/>
+<p><strong>Step 1:</strong> Examine the elements in the top row (the objective function row). If all elements are <span class="math notranslate nohighlight">\(\geq 0\)</span>, then the current solution is optimal; stop. Otherwise go to Step 2.</p>
+<p><strong>Step 2:</strong> Select as the non-basic variable to enter the basis that variable corresponding to the most negative coefficient in the top row. This identifies the <strong>pivot column</strong>.</p>
+<p><strong>Step 3:</strong> Examine the coefficients in the pivot column. If all elements are <span class="math notranslate nohighlight">\(\leq 0\)</span>, then this problem has an <strong>unbounded solution</strong> (no optimal solution); stop. Otherwise go to Step 4.</p>
+<p><strong>Step 4:</strong> Calculate the ratios</p>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\theta_i = \frac{b_i}{a_{ik}},\quad \text{for all } i = 1, \ldots, m \text{ for which } a_{ik} &gt; 0
+\]</div>
+<p>Then select</p>
+<div class="math notranslate nohighlight">
+\[
+\theta = \min\{\theta_i\}
+\]</div>
+<p>This identifies the <strong>pivot row</strong> and defines the variable that will leave the basis. The <strong>pivot element</strong> is the element in the pivot row and pivot column.</p>
+<p><strong>Step 5:</strong> To obtain the next tableau (which will represent the new basic feasible solution), divide each element in the pivot row by the pivot element. Use this row now to perform row operations on the other rows in order to obtain zeros in the rest of the pivot column, including the <span class="math notranslate nohighlight">\(z\)</span> row. This constitutes a <strong>pivot operation</strong>, performed on the pivot element, for the purpose of creating a unit vector in the pivot column, with a coefficient of one for the variable chosen to enter the basis.</p>
+<p>When we apply these steps to the initial tableau in our example problem, we select x1 (with the most negative coefficient on the z row) as the entering variable:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Basis</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(z\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s_1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s_2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s_3\)</span></p></th>
+<th class="head"><p>Solution</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(z\)</span></p></td>
+<td><p>1</p></td>
+<td><p>−8</p></td>
+<td><p>−5</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(s_1\)</span></p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>150</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(s_2\)</span></p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>250</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(s_3\)</span></p></td>
+<td><p>0</p></td>
+<td><p>2</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>500</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>We compute</p>
+<div class="math notranslate nohighlight">
+\[
+\theta_1 = \frac{150}{1} = 150
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\theta_3 = \frac{500}{2} = 250
+\]</div>
+<p>and select the minimum <span class="math notranslate nohighlight">\(\theta = \theta_1\)</span>. Therefore, the leaving variable is the one corresponding to the first basic variable <span class="math notranslate nohighlight">\(s_1\)</span>. A pivot operation on the pivot element then produces the next tableau which shows the new basic feasible solution</p>
+<div class="math notranslate nohighlight">
+\[
+x_1 = 150,\quad s_2 = 250,\quad s_3 = 200,\quad x_2 = 0,\quad s_1 = 0,\quad z = 1200
+\]</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Basis</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(z\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s_1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s_2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s_3\)</span></p></th>
+<th class="head"><p>Solution</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(z\)</span></p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>−5</p></td>
+<td><p>8</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1200</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(x_1\)</span></p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>150</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(s_2\)</span></p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>250</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(s_3\)</span></p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>−2</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>200</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In the next iteration, <span class="math notranslate nohighlight">\(x_2\)</span> is chosen as the entering variable. Based on the ratios</p>
+<div class="math notranslate nohighlight">
+\[
+\theta_2 = \frac{250}{1},\quad \theta_3 = \frac{200}{1}
+\]</div>
+<p>we select <span class="math notranslate nohighlight">\(\theta = \theta_3\)</span>, and therefore the third basic variable <span class="math notranslate nohighlight">\(s_3\)</span> leaves the basis. A pivot operation produces the new tableau:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Basis</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(z\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s_1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s_2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s_3\)</span></p></th>
+<th class="head"><p>Solution</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(z\)</span></p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>−2</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>2200</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(x_1\)</span></p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>150</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(s_2\)</span></p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>2</p></td>
+<td><p>1</p></td>
+<td><p>−1</p></td>
+<td><p>50</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(x_2\)</span></p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>−2</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>200</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The solution represented by this tableau is</p>
+<div class="math notranslate nohighlight">
+\[
+x_1 = 150,\quad x_2 = 200,\quad s_2 = 50,\quad s_1 = 0,\quad s_3 = 0,\quad z = 2200
+\]</div>
+<p>From this tableau, we can now select <span class="math notranslate nohighlight">\(s_1\)</span> as the entering variable. We compute</p>
+<div class="math notranslate nohighlight">
+\[
+\theta_1 = \frac{150}{1},\quad \theta_2 = \frac{50}{2}
+\]</div>
+<p>choose <span class="math notranslate nohighlight">\(\theta = \theta_2\)</span>, and therefore designate <span class="math notranslate nohighlight">\(s_2\)</span> as the leaving variable. The resulting tableau after a pivot operation is:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Basis</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(z\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s_1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s_2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s_3\)</span></p></th>
+<th class="head"><p>Solution</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(z\)</span></p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>4</p></td>
+<td><p>2250</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(x_1\)</span></p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>−1/2</p></td>
+<td><p>1/2</p></td>
+<td><p>125</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(s_1\)</span></p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>1/2</p></td>
+<td><p>−1/2</p></td>
+<td><p>25</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(x_2\)</span></p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>250</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Because all of the objective function row coefficients are non-negative, the current solution is optimal. The decision variables are:</p>
+<div class="math notranslate nohighlight">
+\[
+x_1 = 125,\quad x_2 = 250
+\]</div>
+<p>and the optimal objective function value, denoted as <span class="math notranslate nohighlight">\(z^*\)</span>, is:</p>
+<div class="math notranslate nohighlight">
+\[
+z^* = 8(125) + 5(250) = 2250
+\]</div>
+<p>The values of the slack variables at optimality also provide useful information. The slack variable <span class="math notranslate nohighlight">\(s_1\)</span> for the first constraint has a value of 25, indicating that there is a difference of 25 in the right and left sides of the constraint; thus, <span class="math notranslate nohighlight">\(x_1 = 125\)</span> is 25 less than 150. (This can typically be interpreted to mean that some resource corresponding to constraint 1 is not fully consumed at optimality; such a constraint is sometimes referred to as a <strong>non-binding constraint</strong>.) Since <span class="math notranslate nohighlight">\(s_2\)</span> and <span class="math notranslate nohighlight">\(s_3\)</span> are non-basic and, therefore, have a value of zero, we can see that the second and third constraints are met as equalities. (These resources are used to capacity at optimality, and these constraints are sometimes called <strong>binding constraints</strong>.)</p>
+<p>If we examine a graphical representation of the feasible region of this linear programming problem in <strong>Figure 2.6</strong>, we can observe the progression from extreme point <strong>A</strong> (initial solution) to extreme point <strong>B</strong>, then <strong>C</strong>, and finally the optimal solution at point <strong>D</strong>. Extreme points <strong>F</strong> and <strong>G</strong> are infeasible, and point <strong>E</strong> is a basic feasible solution but is not examined by the Simplex method.</p>
+<p>In summary, let us briefly review the steps of the Simplex algorithm and the rationale behind each step. Negative coefficients, corresponding to non-basic variables, in the objective function row indicate that the objective function can be increased by making those associated variables basic (non-zero). If in Step 1 we find no negative element, then no change of basis can improve the current solution. Optimality has been achieved and the algorithm terminates.</p>
+<p>Otherwise, in Step 2, we select the non-basic variable to enter the basis that has the greatest potential to improve the objective function. The elements in the objective function row indicate the per unit improvement in the objective function that can be achieved by increasing the non-basic variables. Because these values are merely indicators of potential and do not reveal the actual total improvement in <span class="math notranslate nohighlight">\(z_r\)</span> ties are broken</p>
+<br />
+<p><img alt="image.png" src="data:image/png;base64,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" />
+<br /></p>
+<p>FIGURE 2.6</p>
+<p>Simplex steps.
+<br />
+<br /></p>
+<p>arbitrarily. In actual practice, choosing the most negative coefficient has been found to use about <span class="math notranslate nohighlight">\(20%\)</span> more iterations than some more sophisticated criteria, such as are suggested by (Bixby 1994).
+The basic variable to be replaced in the basis is chosen, in Step 4, to be the basic variable that reaches zero first as the entering variable is increased from zero. We restrict our examination of pivot column elements to positive values only (Step 3) because a pivot operation on a negative element would result in an unlimited increase in the basic variable. If the pivot column elements are all negative or zero, then the solution is unbounded and the algorithm terminates here. Otherwise, a pivot operation is performed as described in Step 5.
+The Simplex tableau not only provides a convenient means of maintaining the system of equations during the iterations of the algorithm, but also contains a wealth of information about the linear programming problem that is being solved. In the following section, we will see various computational phenomena (indicating special problem cases) that may arise during application of the Simplex method, as well as information that may be obtained from an optimal tableau.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/2_5"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../2_4/2_4_2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">2.4.2 Solutions of Linear Systems</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../2_6/2_6_1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">2.6 Initial Solutions for General Constraints</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ghaith Rabadi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

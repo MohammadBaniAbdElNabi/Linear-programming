@@ -1,8 +1,12 @@
 title: Linear Programming Chapter
 author: Ghaith Rabadi
+copyright: "2025"
 execute:
-  execute_notebooks: auto  # Run notebooks only if they have unexecuted cells
+  execute_notebooks: auto
 html:
-  use_repository_button: true
-  use_issues_button: true
-  use_edit_page_button: true
+  use_repository_button: false
+  use_issues_button: false
+  use_edit_page_button: false
+repository:
+  url: https://github.com/MohammadBaniAbdElNabi/Linear-programming  
+  branch: main  

@@ -1,13 +1,14 @@
 format: jb-book
 root: intro
 parts:
-- caption: Section 2.1
+- caption: Setup
   chapters:
-  - file: content/2_1/2_1
+  - file: setup  
 - caption: Section 2.2
   chapters:
-  - file: content/2_2/2_2
+  - file: content/2_2/2_2_md
   - file: content/2_2/2_2.ipynb
+   
 - caption: Section 2.3
   chapters:
   - file: content/2_3/2_3_1
