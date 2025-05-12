@@ -1,0 +1,11 @@
+name: linear-programming
+channels:
+  - conda-forge
+dependencies:
+  - python=3.8
+  - pyomo
+  - numpy
+  - matplotlib
+  - ipywidgets
+  - coinor-cbc
+  - jupyterlab

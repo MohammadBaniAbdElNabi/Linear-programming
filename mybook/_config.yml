@@ -2,11 +2,14 @@ title: Linear Programming Chapter
 author: Ghaith Rabadi
 copyright: "2025"
 execute:
-  execute_notebooks: auto
+  execute_notebooks: force
 html:
   use_repository_button: false
   use_issues_button: false
   use_edit_page_button: false
+launch_buttons:
+  thebe: true  # Enable Thebe for in-page execution
+  binderhub_url: "https://mybinder.org"  # Use Binder as the kernel provider
 repository:
   url: https://github.com/MohammadBaniAbdElNabi/Linear-programming  
   branch: main  
