@@ -1,5 +1,7 @@
-jupyter-book
-matplotlib
-numpy
 pyomo
-cbc
+numpy
+matplotlib
+ipywidgets
+jupyter-book
+ghp-import
+jupyterlab
