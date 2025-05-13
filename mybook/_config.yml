@@ -8,8 +8,11 @@ html:
   use_issues_button: false
   use_edit_page_button: false
 launch_buttons:
-  thebe: true  # Enable Thebe for in-page execution
-  binderhub_url: "https://mybinder.org"  # Use Binder as the kernel provider
+  binderhub_url: https://mybinder.org
+  thebe: true
+interactive:
+  kernel_name: python3
+  use_thebe: true
 repository:
   url: https://github.com/MohammadBaniAbdElNabi/Linear-programming  
   branch: main  
