@@ -11,8 +11,12 @@ launch_buttons:
   binderhub_url: https://mybinder.org
   thebe: true
 interactive:
-  kernel_name: python3
   use_thebe: true
+  thebe_config:
+    requestKernel: true
+    binderOptions:
+      repo: MohammadBaniAbdElNabi/Linear-programming
+      ref: main  
 repository:
   url: https://github.com/MohammadBaniAbdElNabi/Linear-programming  
   branch: main  

@@ -2,10 +2,9 @@ name: linear-programming
 channels:
   - conda-forge
 dependencies:
-  - python=3.8
+  - python=3.10
   - pyomo
-  - numpy
-  - matplotlib
-  - ipywidgets
-  - coinorcbc
-  - jupyterlab
+  - pip
+  - pip:
+      - notebook
+  - coincbc  # solver
