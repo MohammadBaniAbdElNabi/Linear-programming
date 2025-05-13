@@ -7,5 +7,5 @@ dependencies:
   - numpy
   - matplotlib
   - ipywidgets
-  - coinor-cbc
+  - coinorcbc
   - jupyterlab
