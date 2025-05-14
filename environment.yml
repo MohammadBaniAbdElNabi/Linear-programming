@@ -1,4 +1,4 @@
-name: linear-programming
+name: Linear_Programming
 channels:
   - conda-forge
 dependencies:
@@ -7,4 +7,4 @@ dependencies:
   - pip
   - pip:
       - notebook
-  - coincbc  # solver
+  - coincbc  

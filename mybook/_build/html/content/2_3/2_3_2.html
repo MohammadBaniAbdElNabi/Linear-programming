@@ -247,6 +247,55 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/MohammadBaniAbdElNabi/Linear-programming/main?urlpath=tree/content/2_3/2_3_2.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -255,7 +304,7 @@
       
       
       
-      <li><a href="../../_sources/content/2_3/2_3_2.md" target="_blank"
+      <li><a href="../../_sources/content/2_3/2_3_2.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -265,7 +314,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -353,6 +402,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="graphical-solutions">
 <h1>2.3.2 Graphical Solutions<a class="headerlink" href="#graphical-solutions" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://colab.research.google.com/drive/1BFDdfYJiD3Bq9oxTzonnlAmGsTrEIgJP?usp=sharing"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <p>Let us first consider a maximization problem:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -382,6 +432,82 @@ FIGURE 2.1
 <span class="math notranslate nohighlight">\( z_E = z(2, 0) = 3 \times 2 + 0 = 6 \)</span></p>
 <p>The optimal solution lies at extreme point D where <span class="math notranslate nohighlight">\(( x_1 = 6 )\)</span> and <span class="math notranslate nohighlight">\(( x_2 = 4 )\)</span>, and the optimal value of the objective function is denoted by <span class="math notranslate nohighlight">\(( z^* = 22 )\)</span>.</p>
 <p>Without evaluating <span class="math notranslate nohighlight">\(( z )\)</span> at every extreme point, we may more simply observe that the line specified by the objective function <span class="math notranslate nohighlight">\(( 3x_1 + x_2 )\)</span> has a slope of −3. At optimality, this line is tangent to the feasible space at one of the extreme points. In Figure 2.1, the dashed line represents the objective function at the optimal point D.</p>
+<p><strong>Code Implementation</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyomo.environ</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span> <span class="c1"># Imports all components from the Pyomo environment, like Var, Param, Objective, Constraint, etc.</span>
+
+<span class="c1"># Function to solve and display results of an optimization model</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">solve_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">example_name</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span> <span class="c1"># Prints a separator line for better output formatting.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; Solving </span><span class="si">{</span><span class="n">example_name</span><span class="si">}</span><span class="s2"> &quot;</span><span class="p">)</span> <span class="c1"># Prints the name of the example being solved.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span> <span class="c1"># Prints another separator line.</span>
+    <span class="n">solver</span> <span class="o">=</span> <span class="n">SolverFactory</span><span class="p">(</span><span class="s1">&#39;cbc&#39;</span><span class="p">)</span> <span class="c1"># Creates a solver object using the CBC solver.</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">model</span><span class="p">)</span> <span class="c1"># Solves the given Pyomo model using the CBC solver.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Optimal Solution:&quot;</span><span class="p">)</span> <span class="c1"># Prints a header for the optimal solution.</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">component_objects</span><span class="p">(</span><span class="n">Var</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span> <span class="c1"># Iterates through all active variables in the model.</span>
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span> <span class="c1"># Iterates through any indices of the variable (if it&#39;s indexed).</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># Prints the variable name and its optimal value.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Objective Value:&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">obj</span><span class="p">())</span> <span class="c1"># Prints the optimal value of the objective function.</span>
+
+<span class="c1"># Function to build the abstract Pyomo model for Example 2.2.1</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_abstract_model_221</span><span class="p">():</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">AbstractModel</span><span class="p">()</span> <span class="c1"># Creates an AbstractModel object, which is a Pyomo model that is defined without specific data values.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">xA</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span> <span class="c1"># Defines a decision variable `xA` representing the number of Model A routers produced, constrained to be non-negative.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">xB</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span> <span class="c1"># Defines a decision variable `xB` representing the number of Model B routers produced, constrained to be non-negative.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff_A</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span> <span class="c1"># Defines a parameter `obj_coeff_A` for the objective function coefficient of `xA`.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff_B</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span> <span class="c1"># Defines a parameter `obj_coeff_B` for the objective function coefficient of `xB`.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">materials_coeff_A</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span> <span class="c1"># Defines a parameter `materials_coeff_A` for the materials constraint coefficient of `xA`.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">materials_coeff_B</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span> <span class="c1"># Defines a parameter `materials_coeff_B` for the materials constraint coefficient of `xB`.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">materials_rhs</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span> <span class="c1"># Defines a parameter `materials_rhs` for the right-hand side of the materials constraint.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">labor_coeff_A</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span> <span class="c1"># Defines a parameter `labor_coeff_A` for the labor constraint coefficient of `xA`.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">labor_coeff_B</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span> <span class="c1"># Defines a parameter `labor_coeff_B` for the labor constraint coefficient of `xB`.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">labor_rhs</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span> <span class="c1"># Defines a parameter `labor_rhs` for the right-hand side of the labor constraint.</span>
+
+    <span class="c1"># Defines the objective function rule</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">obj_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff_A</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">xA</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff_B</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">xB</span> <span class="c1"># Specifies the objective function to maximize profit.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">obj_rule</span><span class="p">,</span> <span class="n">sense</span><span class="o">=</span><span class="n">maximize</span><span class="p">)</span> <span class="c1"># Creates the objective function object with the defined rule and maximization sense.</span>
+
+    <span class="c1"># Defines the materials constraint rule</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">materials_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">materials_coeff_A</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">xA</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">materials_coeff_B</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">xB</span> <span class="o">&lt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">materials_rhs</span> <span class="c1"># Specifies the materials constraint.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">materials</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">materials_rule</span><span class="p">)</span> <span class="c1"># Creates the materials constraint object with the defined rule.</span>
+
+    <span class="c1"># Defines the labor constraint rule</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">labor_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">labor_coeff_A</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">xA</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">labor_coeff_B</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">xB</span> <span class="o">&lt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">labor_rhs</span> <span class="c1"># Specifies the labor constraint.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">labor</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">labor_rule</span><span class="p">)</span> <span class="c1"># Creates the labor constraint object with the defined rule.</span>
+    <span class="k">return</span> <span class="n">model</span> <span class="c1"># Returns the built abstract model.</span>
+
+<span class="c1"># Data for Example 2.2.1</span>
+<span class="n">data_221</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kc">None</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;obj_coeff_A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">22</span><span class="p">},</span> <span class="s1">&#39;obj_coeff_B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">28</span><span class="p">},</span> <span class="c1"># Objective function coefficients for xA and xB</span>
+        <span class="s1">&#39;materials_coeff_A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">8</span><span class="p">},</span> <span class="s1">&#39;materials_coeff_B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span> <span class="s1">&#39;materials_rhs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">3400</span><span class="p">},</span> <span class="c1"># Materials constraint coefficients and RHS</span>
+        <span class="s1">&#39;labor_coeff_A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="s1">&#39;labor_coeff_B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="s1">&#39;labor_rhs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">960</span><span class="p">}</span> <span class="c1"># Labor constraint coefficients and RHS</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">model_221</span> <span class="o">=</span> <span class="n">build_abstract_model_221</span><span class="p">()</span><span class="o">.</span><span class="n">create_instance</span><span class="p">(</span><span class="n">data_221</span><span class="p">)</span> <span class="c1"># Creates a concrete model instance by loading data into the abstract model.</span>
+<span class="n">solve_model</span><span class="p">(</span><span class="n">model_221</span><span class="p">,</span> <span class="s2">&quot;Example 2.2.1&quot;</span><span class="p">)</span> <span class="c1"># Solves the model instance and prints the results.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========================================
+ Solving Example 2.2.1 
+========================================
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal Solution:
+  xA = 150.0
+  xB = 220.0
+
+Objective Value: 9460.0
+</pre></div>
+</div>
+</div>
+</div>
 <p>Next, we use the same graphical technique to solve a minimization problem:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -402,6 +528,94 @@ FIGURE 2.2
 <p>Unbounded feasible region
 <br /></p>
 <p>The minimal solution must occur at one of the extreme points A, B, or C. The objective function <span class="math notranslate nohighlight">\(( x_1 + x_2 )\)</span>, with a slope of −1, is tangent to the feasible region at extreme point B. Therefore, the optimal solution occurs at <span class="math notranslate nohighlight">\(( x_1 = 1 )\)</span> and <span class="math notranslate nohighlight">\(( x_2 = 3 )\)</span>, and the optimal objective function value at that point is <span class="math notranslate nohighlight">\(( z^* = 4 )\)</span>.</p>
+<p><strong>Code Implementatopn</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyomo.environ</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span> <span class="c1"># importing Pyomo environment</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">solve_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">example_name</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; Solving </span><span class="si">{</span><span class="n">example_name</span><span class="si">}</span><span class="s2"> &quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+    <span class="n">solver</span> <span class="o">=</span> <span class="n">SolverFactory</span><span class="p">(</span><span class="s1">&#39;cbc&#39;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Optimal Solution:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">component_objects</span><span class="p">(</span><span class="n">Var</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Objective Value:&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">obj</span><span class="p">())</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">build_abstract_model_222</span><span class="p">():</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">AbstractModel</span><span class="p">()</span>
+
+    <span class="c1"># Decision variables</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>  <span class="c1"># T1 payloads launched</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>  <span class="c1"># T2 payloads launched</span>
+
+    <span class="c1"># Parameters for objective coefficients and constraints</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff</span> <span class="o">=</span> <span class="n">Param</span><span class="p">([</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">],</span> <span class="n">within</span><span class="o">=</span><span class="n">Any</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">policy_constraints</span> <span class="o">=</span> <span class="n">Param</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">within</span><span class="o">=</span><span class="n">Any</span><span class="p">)</span>  <span class="c1"># Maximum values for x1 and x2</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">successful_deployments_coeffs</span> <span class="o">=</span> <span class="n">Param</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">within</span><span class="o">=</span><span class="n">Any</span><span class="p">)</span>  <span class="c1"># Coefficients for successful deployments</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">preparation_time_coeffs</span> <span class="o">=</span> <span class="n">Param</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">within</span><span class="o">=</span><span class="n">Any</span><span class="p">)</span>  <span class="c1"># Coefficients for preparation time constraint</span>
+
+    <span class="c1"># Objective function</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">obj_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">obj_rule</span><span class="p">,</span> <span class="n">sense</span><span class="o">=</span><span class="n">maximize</span><span class="p">)</span>
+
+    <span class="c1"># Constraints</span>
+    <span class="c1"># Policy constraints</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">policy_constraint1_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">&lt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">policy_constraints</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">policy_constraint1</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">policy_constraint1_rule</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">policy_constraint2_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">&lt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">policy_constraints</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">policy_constraint2</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">policy_constraint2_rule</span><span class="p">)</span>
+
+    <span class="c1"># Successful deployments constraint</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">successful_deployments_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">successful_deployments_coeffs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">successful_deployments_coeffs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">&gt;=</span> <span class="mi">60</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">successful_deployments</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">successful_deployments_rule</span><span class="p">)</span>
+
+    <span class="c1"># Preparation time constraint</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">preparation_time_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">preparation_time_coeffs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">preparation_time_coeffs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">&lt;=</span> <span class="mi">156</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">preparation_time</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">preparation_time_rule</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">model</span>
+
+<span class="n">data_222</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kc">None</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;obj_coeff&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x1&#39;</span><span class="p">:</span> <span class="mf">0.225</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">},</span>  <span class="c1"># Objective function coefficients</span>
+        <span class="s1">&#39;policy_constraints&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">88</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">126</span><span class="p">},</span>  <span class="c1"># Maximum values for x1 and x2</span>
+        <span class="s1">&#39;successful_deployments_coeffs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mf">0.85</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">},</span>  <span class="c1"># Coefficients for successful deployments</span>
+        <span class="s1">&#39;preparation_time_coeffs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>  <span class="c1"># Coefficients for preparation time constraint</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># Instantiate the model</span>
+<span class="n">model_222</span> <span class="o">=</span> <span class="n">build_abstract_model_222</span><span class="p">()</span>
+<span class="n">instance_222</span> <span class="o">=</span> <span class="n">model_222</span><span class="o">.</span><span class="n">create_instance</span><span class="p">(</span><span class="n">data_222</span><span class="p">)</span>
+<span class="n">solve_model</span><span class="p">(</span><span class="n">instance_222</span><span class="p">,</span> <span class="s2">&quot;Example 2.2.2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========================================
+ Solving Example 2.2.2 
+========================================
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal Solution:
+  x1 = 15.0
+  x2 = 126.0
+
+Objective Value: 28.575000000000003
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
