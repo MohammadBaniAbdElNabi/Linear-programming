@@ -435,84 +435,180 @@ FIGURE 2.1
 <p><strong>Code Implementation</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyomo.environ</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span> <span class="c1"># Imports all components from the Pyomo environment, like Var, Param, Objective, Constraint, etc.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>  
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">combinations</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">widgets</span>
 
-<span class="c1"># Function to solve and display results of an optimization model</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">solve_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">example_name</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span> <span class="c1"># Prints a separator line for better output formatting.</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; Solving </span><span class="si">{</span><span class="n">example_name</span><span class="si">}</span><span class="s2"> &quot;</span><span class="p">)</span> <span class="c1"># Prints the name of the example being solved.</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span> <span class="c1"># Prints another separator line.</span>
-    <span class="n">solver</span> <span class="o">=</span> <span class="n">SolverFactory</span><span class="p">(</span><span class="s1">&#39;cbc&#39;</span><span class="p">)</span> <span class="c1"># Creates a solver object using the CBC solver.</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">model</span><span class="p">)</span> <span class="c1"># Solves the given Pyomo model using the CBC solver.</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Optimal Solution:&quot;</span><span class="p">)</span> <span class="c1"># Prints a header for the optimal solution.</span>
-    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">component_objects</span><span class="p">(</span><span class="n">Var</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span> <span class="c1"># Iterates through all active variables in the model.</span>
-        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span> <span class="c1"># Iterates through any indices of the variable (if it&#39;s indexed).</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># Prints the variable name and its optimal value.</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Objective Value:&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">obj</span><span class="p">())</span> <span class="c1"># Prints the optimal value of the objective function.</span>
+<span class="c1"># Import the &#39;display&#39; function from IPython.display to show UI elements in the output.</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">find_intersection</span><span class="p">(</span><span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Finds the intersection point of two lines represented in the form (a, b, c) where ax + by = c.</span>
 
-<span class="c1"># Function to build the abstract Pyomo model for Example 2.2.1</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">build_abstract_model_221</span><span class="p">():</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">AbstractModel</span><span class="p">()</span> <span class="c1"># Creates an AbstractModel object, which is a Pyomo model that is defined without specific data values.</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">xA</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span> <span class="c1"># Defines a decision variable `xA` representing the number of Model A routers produced, constrained to be non-negative.</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">xB</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span> <span class="c1"># Defines a decision variable `xB` representing the number of Model B routers produced, constrained to be non-negative.</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff_A</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span> <span class="c1"># Defines a parameter `obj_coeff_A` for the objective function coefficient of `xA`.</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff_B</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span> <span class="c1"># Defines a parameter `obj_coeff_B` for the objective function coefficient of `xB`.</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">materials_coeff_A</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span> <span class="c1"># Defines a parameter `materials_coeff_A` for the materials constraint coefficient of `xA`.</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">materials_coeff_B</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span> <span class="c1"># Defines a parameter `materials_coeff_B` for the materials constraint coefficient of `xB`.</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">materials_rhs</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span> <span class="c1"># Defines a parameter `materials_rhs` for the right-hand side of the materials constraint.</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">labor_coeff_A</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span> <span class="c1"># Defines a parameter `labor_coeff_A` for the labor constraint coefficient of `xA`.</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">labor_coeff_B</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span> <span class="c1"># Defines a parameter `labor_coeff_B` for the labor constraint coefficient of `xB`.</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">labor_rhs</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span> <span class="c1"># Defines a parameter `labor_rhs` for the right-hand side of the labor constraint.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        line1: Tuple (a, b, c) representing the first line.</span>
+<span class="sd">        line2: Tuple (a, b, c) representing the second line.</span>
 
-    <span class="c1"># Defines the objective function rule</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">obj_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff_A</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">xA</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff_B</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">xB</span> <span class="c1"># Specifies the objective function to maximize profit.</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">obj_rule</span><span class="p">,</span> <span class="n">sense</span><span class="o">=</span><span class="n">maximize</span><span class="p">)</span> <span class="c1"># Creates the objective function object with the defined rule and maximization sense.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A NumPy array representing the intersection point (x, y), or None if the lines are parallel.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">line1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">line1</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">line2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">line2</span><span class="p">[</span><span class="mi">1</span><span class="p">]]])</span>  <span class="c1"># Create a matrix of coefficients</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">line1</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line2</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span>  <span class="c1"># Create a vector of constants</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># Parallel lines, no intersection</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># Solve the system of equations to find the intersection</span>
 
-    <span class="c1"># Defines the materials constraint rule</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">materials_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">materials_coeff_A</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">xA</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">materials_coeff_B</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">xB</span> <span class="o">&lt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">materials_rhs</span> <span class="c1"># Specifies the materials constraint.</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">materials</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">materials_rule</span><span class="p">)</span> <span class="c1"># Creates the materials constraint object with the defined rule.</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">is_feasible</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">constraints</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Checks if a point (x, y) is feasible (satisfies all constraints).</span>
 
-    <span class="c1"># Defines the labor constraint rule</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">labor_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">labor_coeff_A</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">xA</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">labor_coeff_B</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">xB</span> <span class="o">&lt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">labor_rhs</span> <span class="c1"># Specifies the labor constraint.</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">labor</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">labor_rule</span><span class="p">)</span> <span class="c1"># Creates the labor constraint object with the defined rule.</span>
-    <span class="k">return</span> <span class="n">model</span> <span class="c1"># Returns the built abstract model.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        point: Tuple (x, y) representing the point.</span>
+<span class="sd">        constraints: A list of tuples, each representing a constraint in the form (a, b, c, sign).</span>
 
-<span class="c1"># Data for Example 2.2.1</span>
-<span class="n">data_221</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="kc">None</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;obj_coeff_A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">22</span><span class="p">},</span> <span class="s1">&#39;obj_coeff_B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">28</span><span class="p">},</span> <span class="c1"># Objective function coefficients for xA and xB</span>
-        <span class="s1">&#39;materials_coeff_A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">8</span><span class="p">},</span> <span class="s1">&#39;materials_coeff_B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span> <span class="s1">&#39;materials_rhs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">3400</span><span class="p">},</span> <span class="c1"># Materials constraint coefficients and RHS</span>
-        <span class="s1">&#39;labor_coeff_A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="s1">&#39;labor_coeff_B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="s1">&#39;labor_rhs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="mi">960</span><span class="p">}</span> <span class="c1"># Labor constraint coefficients and RHS</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="n">model_221</span> <span class="o">=</span> <span class="n">build_abstract_model_221</span><span class="p">()</span><span class="o">.</span><span class="n">create_instance</span><span class="p">(</span><span class="n">data_221</span><span class="p">)</span> <span class="c1"># Creates a concrete model instance by loading data into the abstract model.</span>
-<span class="n">solve_model</span><span class="p">(</span><span class="n">model_221</span><span class="p">,</span> <span class="s2">&quot;Example 2.2.1&quot;</span><span class="p">)</span> <span class="c1"># Solves the model instance and prints the results.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        True if the point is feasible, False otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">point</span>
+    <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">sign</span> <span class="ow">in</span> <span class="n">constraints</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sign</span> <span class="o">==</span> <span class="s1">&#39;&lt;&#39;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="n">c</span><span class="p">):</span>  <span class="c1"># Check if the point violates a &#39;&lt;=&#39; constraint</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">sign</span> <span class="o">==</span> <span class="s1">&#39;&gt;&#39;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="n">c</span><span class="p">):</span>  <span class="c1"># Check if the point violates a &#39;&gt;=&#39; constraint</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="kc">True</span>  <span class="c1"># Point satisfies all constraints</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">find_optimal_points</span><span class="p">(</span><span class="n">obj_type</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">constraints</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Finds all feasible points and the optimal point.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        obj_type: String, either &quot;maximize&quot; or &quot;minimize&quot;, indicating the objective.</span>
+<span class="sd">        a: Coefficient of x in the objective function.</span>
+<span class="sd">        b: Coefficient of y in the objective function.</span>
+<span class="sd">        constraints: A list of tuples, each representing a constraint.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A tuple containing:</span>
+<span class="sd">            - A NumPy array of feasible points.</span>
+<span class="sd">            - The optimal point as a NumPy array.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">feasible_points</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">)</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="n">constraints</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>  <span class="c1"># Iterate through all pairs of constraints</span>
+        <span class="n">intersection</span> <span class="o">=</span> <span class="n">find_intersection</span><span class="p">(</span><span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">)</span>  <span class="c1"># Find their intersection</span>
+        <span class="k">if</span> <span class="n">intersection</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">is_feasible</span><span class="p">(</span><span class="n">intersection</span><span class="p">,</span> <span class="n">constraints</span><span class="p">):</span>  <span class="c1"># Check if feasible</span>
+            <span class="n">feasible_points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">intersection</span><span class="p">)</span>
+
+    <span class="n">feasible_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">feasible_points</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">feasible_points</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No feasible region found&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([]),</span> <span class="kc">None</span>
+
+    <span class="n">obj_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">feasible_points</span><span class="p">]</span>  <span class="c1"># Calculate objective function values</span>
+    <span class="n">optimal_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">obj_values</span><span class="p">)</span> <span class="k">if</span> <span class="n">obj_type</span> <span class="o">==</span> <span class="s2">&quot;maximize&quot;</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">obj_values</span><span class="p">)</span>  <span class="c1"># Find optimal index</span>
+    <span class="n">optimal_point</span> <span class="o">=</span> <span class="n">feasible_points</span><span class="p">[</span><span class="n">optimal_index</span><span class="p">]</span>  <span class="c1"># Get the optimal point</span>
+    <span class="k">return</span> <span class="n">feasible_points</span><span class="p">,</span> <span class="n">optimal_point</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_feasible_region</span><span class="p">(</span><span class="n">constraints</span><span class="p">,</span> <span class="n">x_range</span><span class="p">,</span> <span class="n">y_range</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plots the feasible region defined by the constraints.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        constraints: A list of tuples, each representing a constraint.</span>
+<span class="sd">        x_range: A NumPy array of x-values for the plot.</span>
+<span class="sd">        y_range: A NumPy array of y-values for the plot.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x_range</span><span class="p">,</span> <span class="n">y_range</span><span class="p">)</span>  <span class="c1"># Create a grid of points</span>
+    <span class="n">feasible_region</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>  <span class="c1"># Initialize feasible region as all True</span>
+
+    <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">sign</span> <span class="ow">in</span> <span class="n">constraints</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sign</span> <span class="o">==</span> <span class="s1">&#39;&lt;&#39;</span><span class="p">:</span>
+            <span class="n">feasible_region</span> <span class="o">&amp;=</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="n">c</span><span class="p">)</span>  <span class="c1"># Update feasible region based on &#39;&lt;=&#39; constraints</span>
+        <span class="k">elif</span> <span class="n">sign</span> <span class="o">==</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">:</span>
+            <span class="n">feasible_region</span> <span class="o">&amp;=</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="n">c</span><span class="p">)</span>  <span class="c1"># Update feasible region based on &#39;&gt;=&#39; constraints</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">feasible_region</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+               <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;lower&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Greys&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>  <span class="c1"># Plot the feasible region</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_constraints</span><span class="p">(</span><span class="n">constraints</span><span class="p">,</span> <span class="n">x_range</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plots the lines representing the constraints.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        constraints: A list of tuples, each representing a constraint.</span>
+<span class="sd">        x_range: A NumPy array of x-values for the plot.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">sign</span> <span class="ow">in</span> <span class="n">constraints</span><span class="p">:</span>
+        <span class="n">y_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>  <span class="c1"># Generate y-values for the line</span>
+        <span class="k">if</span> <span class="n">a</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">x_vals</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span> <span class="o">-</span> <span class="n">b</span> <span class="o">*</span> <span class="n">y_vals</span><span class="p">)</span> <span class="o">/</span> <span class="n">a</span>  <span class="c1"># Calculate corresponding x-values</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">x_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">y_vals</span><span class="p">,</span> <span class="n">c</span> <span class="o">/</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># Handle vertical lines (a = 0)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">x + </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">y </span><span class="si">{</span><span class="n">sign</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>  <span class="c1"># Plot the line</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">graphical_method</span><span class="p">(</span><span class="n">obj_type</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">constraints</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Solves a linear programming problem graphically and displays the solution.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        obj_type: String, either &quot;maximize&quot; or &quot;minimize&quot;, indicating the objective.</span>
+<span class="sd">        a: Coefficient of x in the objective function.</span>
+<span class="sd">        b: Coefficient of y in the objective function.</span>
+<span class="sd">        constraints: A list of tuples, each representing a constraint.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>  <span class="c1"># Define the range of x-values for the plot</span>
+    <span class="n">y_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>  <span class="c1"># Define the range of y-values for the plot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>  <span class="c1"># Create a figure for the plot</span>
+    <span class="n">plot_feasible_region</span><span class="p">(</span><span class="n">constraints</span><span class="p">,</span> <span class="n">x_range</span><span class="p">,</span> <span class="n">y_range</span><span class="p">)</span>  <span class="c1"># Plot the feasible region</span>
+    <span class="n">plot_constraints</span><span class="p">(</span><span class="n">constraints</span><span class="p">,</span> <span class="n">x_range</span><span class="p">)</span>  <span class="c1"># Plot the constraint lines</span>
+
+    <span class="n">feasible_points</span><span class="p">,</span> <span class="n">optimal_point</span> <span class="o">=</span> <span class="n">find_optimal_points</span><span class="p">(</span><span class="n">obj_type</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span>  <span class="c1"># Find feasible and optimal points</span>
+
+    <span class="k">if</span> <span class="n">feasible_points</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">feasible_x</span><span class="p">,</span> <span class="n">feasible_y</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">feasible_points</span><span class="p">)</span>  <span class="c1"># Extract x and y coordinates of feasible points</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">feasible_x</span><span class="p">,</span> <span class="n">feasible_y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Feasible Points&#39;</span><span class="p">)</span>  <span class="c1"># Plot feasible points</span>
+
+    <span class="k">if</span> <span class="n">optimal_point</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="o">*</span><span class="n">optimal_point</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Optimal Point&#39;</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>  <span class="c1"># Plot optimal point</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>  <span class="c1"># Set x-axis limits</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># Set y-axis limits</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>  <span class="c1"># Label x-axis</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$y$&#39;</span><span class="p">)</span>  <span class="c1"># Label y-axis</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>  <span class="c1"># Place legend in upper right corner</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">obj_type</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span><span class="si">}</span><span class="s2"> Objective Function&quot;</span><span class="p">)</span>  <span class="c1"># Set plot title</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Show grid</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  <span class="c1"># Display the plot</span>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">solve_example</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Defines and solves an example linear programming problem.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Example problem definition: objective function, coefficients, and constraints</span>
+    <span class="n">example</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;maximize&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;&lt;&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;&lt;&#39;</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">)])</span>
+    <span class="p">]</span>
+
+    <span class="c1"># Solve the example problem using the graphical method</span>
+    <span class="k">for</span> <span class="n">obj_type</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">constraints</span> <span class="ow">in</span> <span class="n">example</span><span class="p">:</span>
+        <span class="n">graphical_method</span><span class="p">(</span><span class="n">obj_type</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span>
+
+
+<span class="n">solve_example</span><span class="p">()</span> <span class="c1"># Call the solve_example function to run the code</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========================================
- Solving Example 2.2.1 
-========================================
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal Solution:
-  xA = 150.0
-  xB = 220.0
-
-Objective Value: 9460.0
-</pre></div>
-</div>
+<img alt="../../_images/15090a134b6269587cd3c9781e5e602ff09be6e636b25f074b87f562fee195cf.png" src="../../_images/15090a134b6269587cd3c9781e5e602ff09be6e636b25f074b87f562fee195cf.png" />
 </div>
 </div>
 <p>Next, we use the same graphical technique to solve a minimization problem:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
-\text{maximize}  \quad &amp; z = x_1 + x_2 \\
+\text{minimize}  \quad &amp; z = x_1 + x_2 \\
 \text{subject to} \quad &amp; x_1 + x_2 \geq 6 \\
  &amp; x_1 \geq 4 \\ 
  &amp; x_2 \geq 3 \\
@@ -531,89 +627,104 @@ FIGURE 2.2
 <p><strong>Code Implementatopn</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyomo.environ</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span> <span class="c1"># importing Pyomo environment</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>  
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">combinations</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">widgets</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">solve_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">example_name</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; Solving </span><span class="si">{</span><span class="n">example_name</span><span class="si">}</span><span class="s2"> &quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
-    <span class="n">solver</span> <span class="o">=</span> <span class="n">SolverFactory</span><span class="p">(</span><span class="s1">&#39;cbc&#39;</span><span class="p">)</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Optimal Solution:&quot;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">component_objects</span><span class="p">(</span><span class="n">Var</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Objective Value:&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">obj</span><span class="p">())</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">find_intersection</span><span class="p">(</span><span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">):</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">line1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">line1</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">line2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">line2</span><span class="p">[</span><span class="mi">1</span><span class="p">]]])</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">line1</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line2</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># Parallel lines, no intersection</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">build_abstract_model_222</span><span class="p">():</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">AbstractModel</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">is_feasible</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">constraints</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">point</span>
+    <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">sign</span> <span class="ow">in</span> <span class="n">constraints</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sign</span> <span class="o">==</span> <span class="s1">&#39;&lt;&#39;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="n">c</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">sign</span> <span class="o">==</span> <span class="s1">&#39;&gt;&#39;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="n">c</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="kc">True</span>
 
-    <span class="c1"># Decision variables</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>  <span class="c1"># T1 payloads launched</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>  <span class="c1"># T2 payloads launched</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">find_optimal_points</span><span class="p">(</span><span class="n">obj_type</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">constraints</span><span class="p">):</span>
+    <span class="n">feasible_points</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">)</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="n">constraints</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="n">intersection</span> <span class="o">=</span> <span class="n">find_intersection</span><span class="p">(</span><span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">intersection</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">is_feasible</span><span class="p">(</span><span class="n">intersection</span><span class="p">,</span> <span class="n">constraints</span><span class="p">):</span>
+            <span class="n">feasible_points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">intersection</span><span class="p">)</span>
 
-    <span class="c1"># Parameters for objective coefficients and constraints</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff</span> <span class="o">=</span> <span class="n">Param</span><span class="p">([</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">],</span> <span class="n">within</span><span class="o">=</span><span class="n">Any</span><span class="p">)</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">policy_constraints</span> <span class="o">=</span> <span class="n">Param</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">within</span><span class="o">=</span><span class="n">Any</span><span class="p">)</span>  <span class="c1"># Maximum values for x1 and x2</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">successful_deployments_coeffs</span> <span class="o">=</span> <span class="n">Param</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">within</span><span class="o">=</span><span class="n">Any</span><span class="p">)</span>  <span class="c1"># Coefficients for successful deployments</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">preparation_time_coeffs</span> <span class="o">=</span> <span class="n">Param</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">within</span><span class="o">=</span><span class="n">Any</span><span class="p">)</span>  <span class="c1"># Coefficients for preparation time constraint</span>
+    <span class="n">feasible_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">feasible_points</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">feasible_points</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No feasible region found&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([]),</span> <span class="kc">None</span>
 
-    <span class="c1"># Objective function</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">obj_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">obj_coeff</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">obj_rule</span><span class="p">,</span> <span class="n">sense</span><span class="o">=</span><span class="n">maximize</span><span class="p">)</span>
+    <span class="n">obj_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">feasible_points</span><span class="p">]</span>
+    <span class="n">optimal_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">obj_values</span><span class="p">)</span> <span class="k">if</span> <span class="n">obj_type</span> <span class="o">==</span> <span class="s2">&quot;maximize&quot;</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">obj_values</span><span class="p">)</span>
+    <span class="n">optimal_point</span> <span class="o">=</span> <span class="n">feasible_points</span><span class="p">[</span><span class="n">optimal_index</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">feasible_points</span><span class="p">,</span> <span class="n">optimal_point</span>
 
-    <span class="c1"># Constraints</span>
-    <span class="c1"># Policy constraints</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">policy_constraint1_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">&lt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">policy_constraints</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">policy_constraint1</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">policy_constraint1_rule</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_feasible_region</span><span class="p">(</span><span class="n">constraints</span><span class="p">,</span> <span class="n">x_range</span><span class="p">,</span> <span class="n">y_range</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x_range</span><span class="p">,</span> <span class="n">y_range</span><span class="p">)</span>
+    <span class="n">feasible_region</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">policy_constraint2_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">&lt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">policy_constraints</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">policy_constraint2</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">policy_constraint2_rule</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">sign</span> <span class="ow">in</span> <span class="n">constraints</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sign</span> <span class="o">==</span> <span class="s1">&#39;&lt;&#39;</span><span class="p">:</span>
+            <span class="n">feasible_region</span> <span class="o">&amp;=</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="n">c</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">sign</span> <span class="o">==</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">:</span>
+            <span class="n">feasible_region</span> <span class="o">&amp;=</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="n">c</span><span class="p">)</span>
 
-    <span class="c1"># Successful deployments constraint</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">successful_deployments_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">successful_deployments_coeffs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">successful_deployments_coeffs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">&gt;=</span> <span class="mi">60</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">successful_deployments</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">successful_deployments_rule</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">feasible_region</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span> <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;lower&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Greys&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 
-    <span class="c1"># Preparation time constraint</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">preparation_time_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">preparation_time_coeffs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x1</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">preparation_time_coeffs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">x2</span> <span class="o">&lt;=</span> <span class="mi">156</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">preparation_time</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">preparation_time_rule</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_constraints</span><span class="p">(</span><span class="n">constraints</span><span class="p">,</span> <span class="n">x_range</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">sign</span> <span class="ow">in</span> <span class="n">constraints</span><span class="p">:</span>
+        <span class="n">y_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">a</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">x_vals</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span> <span class="o">-</span> <span class="n">b</span> <span class="o">*</span> <span class="n">y_vals</span><span class="p">)</span> <span class="o">/</span> <span class="n">a</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">x_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">y_vals</span><span class="p">,</span> <span class="n">c</span> <span class="o">/</span> <span class="n">b</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">x + </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">y </span><span class="si">{</span><span class="n">sign</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">model</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">graphical_method</span><span class="p">(</span><span class="n">obj_type</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">constraints</span><span class="p">):</span>
+    <span class="n">x_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+    <span class="n">y_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+    <span class="n">plot_feasible_region</span><span class="p">(</span><span class="n">constraints</span><span class="p">,</span> <span class="n">x_range</span><span class="p">,</span> <span class="n">y_range</span><span class="p">)</span>
+    <span class="n">plot_constraints</span><span class="p">(</span><span class="n">constraints</span><span class="p">,</span> <span class="n">x_range</span><span class="p">)</span>
 
-<span class="n">data_222</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="kc">None</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;obj_coeff&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x1&#39;</span><span class="p">:</span> <span class="mf">0.225</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">},</span>  <span class="c1"># Objective function coefficients</span>
-        <span class="s1">&#39;policy_constraints&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">88</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">126</span><span class="p">},</span>  <span class="c1"># Maximum values for x1 and x2</span>
-        <span class="s1">&#39;successful_deployments_coeffs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mf">0.85</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">},</span>  <span class="c1"># Coefficients for successful deployments</span>
-        <span class="s1">&#39;preparation_time_coeffs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>  <span class="c1"># Coefficients for preparation time constraint</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+    <span class="n">feasible_points</span><span class="p">,</span> <span class="n">optimal_point</span> <span class="o">=</span> <span class="n">find_optimal_points</span><span class="p">(</span><span class="n">obj_type</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span>
 
-<span class="c1"># Instantiate the model</span>
-<span class="n">model_222</span> <span class="o">=</span> <span class="n">build_abstract_model_222</span><span class="p">()</span>
-<span class="n">instance_222</span> <span class="o">=</span> <span class="n">model_222</span><span class="o">.</span><span class="n">create_instance</span><span class="p">(</span><span class="n">data_222</span><span class="p">)</span>
-<span class="n">solve_model</span><span class="p">(</span><span class="n">instance_222</span><span class="p">,</span> <span class="s2">&quot;Example 2.2.2&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">feasible_points</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">feasible_x</span><span class="p">,</span> <span class="n">feasible_y</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">feasible_points</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">feasible_x</span><span class="p">,</span> <span class="n">feasible_y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Feasible Points&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">optimal_point</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="o">*</span><span class="n">optimal_point</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Optimal Point&#39;</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$y$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">obj_type</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span><span class="si">}</span><span class="s2"> Objective Function&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">solve_example</span><span class="p">():</span>
+    <span class="n">example</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;maximize&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;&lt;&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;&lt;&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;&lt;&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">)])</span>
+    <span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">obj_type</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">constraints</span> <span class="ow">in</span> <span class="n">example</span><span class="p">:</span>
+        <span class="n">graphical_method</span><span class="p">(</span><span class="n">obj_type</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span>
+
+<span class="n">solve_example</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========================================
- Solving Example 2.2.2 
-========================================
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal Solution:
-  x1 = 15.0
-  x2 = 126.0
-
-Objective Value: 28.575000000000003
-</pre></div>
-</div>
+<img alt="../../_images/ec30c85e4fde04c68fc11905fa8f962af2baf96f236731154de84e1ccc1656ab.png" src="../../_images/ec30c85e4fde04c68fc11905fa8f962af2baf96f236731154de84e1ccc1656ab.png" />
 </div>
 </div>
 </section>

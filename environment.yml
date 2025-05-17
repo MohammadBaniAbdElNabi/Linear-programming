@@ -4,6 +4,10 @@ channels:
 dependencies:
   - python=3.10
   - pyomo
+  - numpy
+  - matplotlib
+  - ipywidgets
+  - jupyter-book
   - pip
   - pip:
       - notebook

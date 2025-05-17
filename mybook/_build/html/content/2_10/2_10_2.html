@@ -1,0 +1,480 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>&lt;no title&gt; &#8212; Linear Programming Chapter</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/2_10/2_10_2';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Linear Programming Chapter</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Linear Programming
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_2/2_2.html">2.2 The Art and Skill of Problem Formulation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_1.html">2.3 Graphical Solution of Linear Programming Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_2.html">2.3.2 Graphical Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_3.html">2.3.3 Multiple Optimal Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_4.html">2.3.4 No Optimal Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_5.html">2.3.5 No Feasible Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_6.html">2.3.6 General Solution Method</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_4/2_4_1.html">2.4 Preparation for the Simplex Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_4/2_4_2.html">2.4.2 Solutions of Linear Systems</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_5/2_5.html">2.5 The Simplex Method</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_6/2_6_1.html">2.6 Initial Solutions for General Constraints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_6/2_6_2.html">2.6.2 The Two Phase Method</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/2_10/2_10_2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p><strong>2.10.2 Interior Methods</strong></p>
+<p>The complexity of linear programming problems was for many years one of the most important open questions in theoretical computer science. Efforts were made to prove that Dantzig’s Simplex method would always stop sooner than n (<span class="math notranslate nohighlight">\(\frac{n}{m}\)</span>) iterations, but instead, problems were devised which drive the Simplex method through the combinatorial explosion of basic solutions. On the other hand, the linear programming problem did not seem to be NP-hard either. <br>
+The question was first answered in 1979 when the Russian mathematician Leonid B. Khachiyan published an algorithm for solving linear programming problems in polynomial time. Initial confusion over the importance of Khachiyan’s discovery arose for two reasons. First, his results appeared in a very short article in a Russian journal and went unnoticed for months because of its obscurity as well as the fact that the report was written in the Russian language. After some time, Eugene Lawler at the University of California at Berkeley brought the article to the attention of the computer science community. The explanation that Khachiyan himself presented was so abbreviated that mathematicians had little inkling of its content. Finally, through Lawler’s efforts, Khachiyan’s work was expanded upon (and the details of the proof reconstructed) by Gacs and Lovasz (1981), who not only filled in the gaps in the proof but improved on the efficiency of the algorithm. Only then was the new idea available to the general mathematics community for consideration and discussion. Almost nothing was known about Khachiyan himself, and it was generally assumed, even by Gacs and Lovasz, that he had never published any previous works. However, as it turns out, (Aspvall and Stone 1980) cite four publications by Khachiyan prior to his famous one in 1979. <br>
+The second misunderstanding arose because Khachiyan’s algorithm was designed for linear programming problems in which c, A, and b are integers. Careless reporters publicized incorrectly that Khachiyan had developed a polynomial-time algorithm for integer programming problems (such as the traveling salesman problem). Because this part of the story was untrue, there was skepticism concerning just what Khachiyan really had done. Major newspapers around the world contributed to the notoriety (but sadly not to the clarification) of this remarkable discovery. <br>
+Because linear programming problems had been suspected of having borderline complexity—neither being NP-hard nor having a polynomial algorithm—Khachiyan’s demonstration of a polynomial-time algorithm was somewhat surprising and of immense importance. Even George Dantzig, who developed the (worst-case exponential-time) Simplex algorithm, graciously offered the comment that, “A lot of people, including myself, 68 Operations Researchspent a lot of time looking for a polynomial-time algorithm for linear programming. I feel stupid that I didn’t see it” (Kolata 1979). <br>
+Khachiyan’s method operates by defining a sequence of ellipsoids (ellipses in a multidimensional space), each smaller than the previous ellipsoid, and each containing the feasible region. The method generates a sequence of points <span class="math notranslate nohighlight">\(x_0, x_1, x_2, \dots ,\)</span> which form the centers of the ellipsoids. At each iteration, if the center <span class="math notranslate nohighlight">\(x_k\)</span> of the ellipsoid is infeasible, a hyperplane parallel to a violated constraint and passing through <span class="math notranslate nohighlight">\(x_k\)</span> is used to cut the ellipsoid in half. One half is completely infeasible, but the other half contains the feasible region (if it exists), so a smaller ellipsoid is constructed that surrounds this half. Eventually, some <span class="math notranslate nohighlight">\(x_k\)</span> will lie in the feasible region. <br>
+From a practical standpoint, Khachiyan’s ellipsoid method lacked the many years of fine-tuning that had been directed toward improving the efficiency of the Simplex method. Therefore, although it was a polynomial-time algorithm, in practice the Simplex method was the preferred method because typically it performed quite well, and software implementations were readily available. It should be noted, however, that whereas the computation time for the Simplex method is most strongly dependent on the number of constraints <span class="math notranslate nohighlight">\(m\)</span>, Khachiyan’s method is relatively insensitive to <span class="math notranslate nohighlight">\(m\)</span> and more strongly dependent on the number of decision variables <span class="math notranslate nohighlight">\(n\)</span>. Thus, it was supposed at the time that Khachiyan’s ellipsoid method might eventually be superior, in practice, to the Simplex method for problems with numerous constraints. In any case, just five years later in 1984, yet another new method appeared. <br>
+Narendra Karmarkar, a young mathematician at AT&amp;T Bell Laboratories, announced an algorithm for solving linear programming problems that was even more efficient than Khachiyan’s method. Karmarkar’s method is called an interior point method since it operates from within the polyhedron of feasible points of the linear programming problem. The algorithm uses a series of projective transformations in which the polyhedron is first made smoother (normalized), then an arbitrary point is selected which is re-mapped to the center, and a sphere is inscribed in the polyhedron. Then a new point is selected, near the edge of the sphere and in the direction of the optimal solution. The space is then transformed or warped again so that this new point is in the center. The process is repeated until the selected point is the optimal solution to the linear programming problem. Karmarkar’s method of projective transformations demonstrates a polynomial-time complexity bound for linear programming that was better than any previously known bound. <br>
+Karmarkar’s original announcement claimed that his method was many times faster than the Simplex method. But since AT&amp;T Bell Laboratories’ proprietary interests precluded disclosure of the details of its implementation, it was not at first possible to test Karmarkar’s claims. In fact, for several years, the scientific community remained somewhat annoyed because no one outside Bell Laboratories was in a position to duplicate Karmarkar’s computational experiments—and hence the traditional scientific peer review process could not take place. <br>
+Whereas Karmarkar had claimed computation times 50 times faster than Simplex based codes, outside researchers were implementing Karmarkar’s method and observing computation times 50 times worse. Eventually, however, over the next 10 years, it became evident that by using special data structures, efficient methods for handling sparse matrices, and clever Cholesky factorization techniques, the performance of Karmarkar’s method could become quite competitive with Simplex implementations. <br>
+An important side effect of the controversy over the validity of Karmarkar’s claims is that it sparked a great deal of interest in examining and refining Simplex implementations. Consequently, there are now many very efficient implementations of both approaches. <br>
+An overview (Lustig et al. 1994) indicated that small problems, in which the sum of the number of decision variables plus the number of constraints is less than 2000, can generally be solved faster with the Simplex method. For medium sized problems, in which that sum is less than 10,000, Simplex and interior methods compete evenly. And there are several extremely large linear programming problems that have now been solved by interior point methodswhich have never been solved by any Simplex code. An increasing number of commercial software products contain both interior point methods and Simplex methods that can be used together or separately in solving large or difficult problems. Each of these approaches has its advantages, and hybrid software that combines these complementary methods constitutes a powerful computational tool for solving linear programming problems. <br>
+As the methods suggested originally by Karmarkar became more widely understood, numerous researchers made their own various contributions to the practical implementation of interior point algorithms. A very thorough summary of theoretical and implementational developments, as well as computational experimentation, may be found in a feature article by (Lustig et al. 1994). Bixby (1994) presents an enlightening description of commercial interior point methods, options, and performance on benchmark problem instances. Saigal (1995) is a comprehensive reference that includes a large section on interior point methods. Mitra et al. (1988) report experimental studies with hybrid interior/Simplex methods. Thus, the theoretical merits of Karmarkar’s new approach, which had never been doubted, have finally been balanced by considerable practical computational experience. As an illustration of this, recall that interior point methods must remain in the interior of the feasible region. Yet computational experience shows that choosing a step length that gets very close to (and nearly outside of) the boundary of the region is actually most efficient. So-called barrier parameters are used to control the interior search in the feasible region. <br>
+The interior and barrier methods were inspired by (and incorporate) many of the more general methods of nonlinear programming. It should be noted that interior point methods did not originate with Karmarkar; in fact, the approach had been used since the 1950s for nonlinear programming problems. However, Karmarkar can be credited with demonstrating that interior point methods could also be practical for solving linear programming problems. Therefore, a student who wishes to fully understand these methods might well begin by reading the introductory notions presented in Chapter 5 on Nonlinear Optimization, and then be prepared to embark on a serious study of the mathematics and numerical analysis underlying general optimization procedures.</p>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "MohammadBaniAbdElNabi/Linear-programming",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/2_10"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ghaith Rabadi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
