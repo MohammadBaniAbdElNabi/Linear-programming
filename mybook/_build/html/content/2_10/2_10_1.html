@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; Linear Programming Chapter</title>
+    <title>2.10.1 Extensions to General Simplex Methods &#8212; Linear Programming Chapter</title>
   
   
   
@@ -202,6 +202,28 @@
 <li class="toctree-l1"><a class="reference internal" href="../2_6/2_6_1.html">2.6 Initial Solutions for General Constraints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../2_6/2_6_2.html">2.6.2 The Two Phase Method</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_7/2_7.html">2.7 Information in the Tableau</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_7/2_7_1.html">2.7.1 Multiple Optimal Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_7/2_7_2.html">2.7.2 Unbounded Solution (No Optimal Solution)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_7/2_7_3.html">2.7.3 Degenerate Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_7/2_7_4.html">2.7.4 Analyzing the Optimal Tableau: Shadow Prices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_8/2_8.html">2.8 Duality and Sensitivity Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_8/2_8_1.html">2.8.1 The Dual Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_8/2_8_2.html">2.8.2 Postoptimality and Sensitivity Analysis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.9</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_9/2_9.html">2.9 Revised Simplex and Computational Efficiency</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.10</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="2_10.html">2.10 Software for Linear Programming</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -326,9 +348,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -339,19 +359,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>2.10.1 Extensions to General Simplex Methods</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -361,7 +373,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p><strong>2.10.1 Extensions to General Simplex Methods</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="extensions-to-general-simplex-methods">
+<h1>2.10.1 Extensions to General Simplex Methods<a class="headerlink" href="#extensions-to-general-simplex-methods" title="Link to this heading">#</a></h1>
 <p>The majority of commercial software for linear programming is based on the Revised Simplex method, and most implementations employ the product form inverse. For efficiency and accuracy on a computer, a variety of additional features may also be incorporated. We merely mention a few of them here, and the interested reader can obtain a more thorough understanding using the references cited at the end of the chapter. <br>
 The method used for computing and maintaining tableau information has a strong bearing on the size of problem that can be successfully attempted. More complicated implementations require greater skill and effort but operate with greater speed so that larger problems can be solved. <br>
 The explicit inverse method is straightforward and can be efficient and useful for problems involving a few hundred rows. The product form inverse allows for problems in the range of 1000 or so rows. For problems with tens of thousands of rows, LU decomposition techniques have been developed, for use both in the iteration phases and during <strong>re-inversion</strong> of the basis. In simple terms, any basis matrix B can be rewritten as the product of two triangular matrices, L and U where L is lower triangular (with zeros above the main diagonal) and U is upper triangular (with zeros below the diagonal). This format enables very efficient inverse computation and solution of the system. <br>
@@ -374,6 +387,7 @@ Round-off error is a natural consequence of using finite precision computing dev
 In a problem of any practical size, the elimination of artificial variables from an initial solution can take a considerable amount of computation time. The term crashing refers generally to any kind of technique that gives the Simplex method a head start and eliminates some of the early iterations. <strong>Crashing</strong> sometimes consists of choosing a set of (nonartificial) non-basic variables to enter the basis and replace the artificial variables, even at the expense of temporarily degrading the objective function or making the solution infeasible (Cooper and Steinberg 1974). An even better way to give a boost to the Simplex method is to obtain, from the user or analyst, problem specific information about which variables are likely to be basic variables in a final solution. Many commercial systems (particularly those for larger powerful computers) provide a means for introducing such information along with other problem data. It may also be possible to restart Simplex iterations using solutions from previous (incomplete) attempts at optimization. <br>
 Many commercial systems contain algorithms for <strong>sensitivity analysis</strong> (also called <strong>ranging procedures</strong> or <strong>postoptimality analysis</strong>). These techniques are applied after the Simplex method has already produced an optimal solution. Sensitivity analysis allows the user to determine the effect that changes in various problem parameters would have on the optimal solution. Changes in the objective (cost/profit) coefficients and in the resource levels (right hand sides of constraints) are commonly dealt with; some systems consider the addition of decision variables to the original model, but most systems do not handle changes in the constraint coefficients or the addition of new constraints.
 The relationship between sensitivity analysis and the dual to a linear programming model was described in <strong>Section 2.8</strong>. It is not uncommon for commercial software to include subroutines embodying a method known as the <em>dual Simplex</em>* method. During sensitivity analysis, if problem parameters are changed, the current (optimal) solution may become infeasible. However, the problem is then <strong>dual feasible</strong>, and can be reoptimized using the dual Simplex algorithm.</p>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -411,21 +425,6 @@ The relationship between sensitivity analysis and the dual to a linear programmi
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>

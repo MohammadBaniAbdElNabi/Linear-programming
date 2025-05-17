@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; Linear Programming Chapter</title>
+    <title>2.10 Software for Linear Programming &#8212; Linear Programming Chapter</title>
   
   
   
@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'content/2_10/2_10';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="../2_9/2_9.html" />
+    <link rel="prev" title="2.9 Revised Simplex and Computational Efficiency" href="../2_9/2_9.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -199,6 +199,28 @@
 <li class="toctree-l1"><a class="reference internal" href="../2_6/2_6_1.html">2.6 Initial Solutions for General Constraints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../2_6/2_6_2.html">2.6.2 The Two Phase Method</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_7/2_7.html">2.7 Information in the Tableau</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_7/2_7_1.html">2.7.1 Multiple Optimal Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_7/2_7_2.html">2.7.2 Unbounded Solution (No Optimal Solution)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_7/2_7_3.html">2.7.3 Degenerate Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_7/2_7_4.html">2.7.4 Analyzing the Optimal Tableau: Shadow Prices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_8/2_8.html">2.8 Duality and Sensitivity Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_8/2_8_1.html">2.8.1 The Dual Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_8/2_8_2.html">2.8.2 Postoptimality and Sensitivity Analysis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.9</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_9/2_9.html">2.9 Revised Simplex and Computational Efficiency</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.10</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2.10 Software for Linear Programming</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -323,9 +345,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -336,19 +356,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>2.10 Software for Linear Programming</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -358,8 +370,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p><strong>2.10 Software for Linear Programming</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="software-for-linear-programming">
+<h1>2.10 Software for Linear Programming<a class="headerlink" href="#software-for-linear-programming" title="Link to this heading">#</a></h1>
 <p>Now that we are familiar with linear programming models and a fundamental method for solving these problems, we will turn our attention to some practical considerations necessary for solving large linear programming problems on a computer. Because there Linear Programming 65 is quite a selection of commercially available software for linear programming, anyone in a position to choose a software system for personal use (and certainly anyone contemplating developing their own software) should be aware of the various features to be mentioned in this section. In particular, we will briefly describe some important extensions often found appended to the usual Simplex techniques, and some actual commercial systems that are available. We also include a discussion of interior methods that now play an increasingly important role in the practical solution of linear programming problems.</p>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -397,7 +411,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">2.9 Revised Simplex and Computational Efficiency</p>
       </div>
     </a>
 </div>
@@ -406,21 +420,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>

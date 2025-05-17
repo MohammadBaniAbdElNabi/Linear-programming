@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; Linear Programming Chapter</title>
+    <title>2.9 Revised Simplex and Computational Efficiency &#8212; Linear Programming Chapter</title>
   
   
   
@@ -60,8 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'content/2_9/2_9';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="../2_10/2_10.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="../2_8/2_8_1.html" />
+    <link rel="next" title="2.10 Software for Linear Programming" href="../2_10/2_10.html" />
+    <link rel="prev" title="2.8.2 Postoptimality and Sensitivity Analysis" href="../2_8/2_8_2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -200,6 +200,28 @@
 <li class="toctree-l1"><a class="reference internal" href="../2_6/2_6_1.html">2.6 Initial Solutions for General Constraints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../2_6/2_6_2.html">2.6.2 The Two Phase Method</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_7/2_7.html">2.7 Information in the Tableau</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_7/2_7_1.html">2.7.1 Multiple Optimal Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_7/2_7_2.html">2.7.2 Unbounded Solution (No Optimal Solution)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_7/2_7_3.html">2.7.3 Degenerate Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_7/2_7_4.html">2.7.4 Analyzing the Optimal Tableau: Shadow Prices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_8/2_8.html">2.8 Duality and Sensitivity Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_8/2_8_1.html">2.8.1 The Dual Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_8/2_8_2.html">2.8.2 Postoptimality and Sensitivity Analysis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.9</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2.9 Revised Simplex and Computational Efficiency</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.10</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_10/2_10.html">2.10 Software for Linear Programming</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -324,9 +346,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -337,19 +357,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>2.9 Revised Simplex and Computational Efficiency</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -359,7 +371,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p><strong>2.9 Revised Simplex and Computational Efficiency</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="revised-simplex-and-computational-efficiency">
+<h1>2.9 Revised Simplex and Computational Efficiency<a class="headerlink" href="#revised-simplex-and-computational-efficiency" title="Link to this heading">#</a></h1>
 <p>The amount of computation required to solve linear programming problems with the Simplex method is indeed arduous; in fact, all but the most trivial problems must be solved with the aid of a computer. Several decades of experience with computer implementations of the Simplex method have led researchers and practitioners to develop various improvements and enhancements to the original Simplex method. The result is a refined version of the standard Simplex, called the <strong>Revised Simplex method</strong>. This method makes much more efficient use of a computer’s most valuable resources: CPU computation time and memory space. <br>
 Recall that the standard Simplex method performs calculations, at each iteration, to update the entire tableau. Actually, the only data needed at each iteration are the objective function row (to determine the entering variable), the pivot column corresponding to the non-basic entering variable, and the right-hand-side values of the current basic variables (to determine the variable to leave the current basis). Thus, the standard Simplex computes and stores many values that are not needed during the present iteration and that may never be needed. The Revised Simplex method performs the same iterations as the standard Simplex, but the details of its computations have specific advantages for computer implementations. <br>
 The standard Simplex method generates each new tableau iteratively, based on the previous tableau. However, the Revised Simplex method takes advantage of the fact that all of the information in any tableau can in fact be obtained directly from the original problem equations, if the inverse of the matrix of basic columns for that tableau is known. And that inverse can be obtained directly from the original equations if the current basic variables for that tableau are known. Note that the Revised Simplex performs the usual selection of an entering and leaving variable at each iteration, but it carries out only those computations necessary to register that selection and to record the current solution configuration. <br>
@@ -372,6 +385,7 @@ Revised Simplex storage requirements are minimal because it is necessary to stor
 Perhaps the most attractive advantage offered by the Revised Simplex method is increased numerical accuracy. As discussed in <strong>Chapter 1</strong>, an algorithm is called numerically unstable if small errors (through round-off in intermediate computations, for example) can lead to very large errors in the final solution. Both the standard and Revised Simplex methods are numerically unstable, but Revised Simplex avoids some of the potential for instability. There is less accumulated round-off error because calculations are performed on a column only when it is to enter the basis, not at every iteration. Furthermore, computations are applied to original problem data, not to data that have already undergone (possibly unnecessary) computation. <br>
 Typical large linear programming problems have constraint matrices that are very sparse, with a large proportion (often in the range of 95%) of zero values. Revised Simplex performs fewer multiplications involving non-zero elements, since Revised Simplex operates on original (sparse) data, whereas standard Simplex operates repeatedly on the entire tableau and quickly creates a dense matrix out of a sparse one. Thus, by taking advantage of sparsity, the Revised Simplex can reduce the amount of computation and therefore maintain numerical accuracy. <br>
 The advantages described earlier have been observed so consistently that almost all commercial software for linear programming is based on the Revised Simplex method (with product form inverse) for both phases of the two phase method.</p>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -404,12 +418,12 @@ The advantages described earlier have been observed so consistently that almost 
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../2_8/2_8_1.html"
+       href="../2_8/2_8_2.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">2.8.2 Postoptimality and Sensitivity Analysis</p>
       </div>
     </a>
     <a class="right-next"
@@ -417,7 +431,7 @@ The advantages described earlier have been observed so consistently that almost 
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">2.10 Software for Linear Programming</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -427,21 +441,6 @@ The advantages described earlier have been observed so consistently that almost 
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>

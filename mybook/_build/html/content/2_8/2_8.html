@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; Linear Programming Chapter</title>
+    <title>2.8 Duality and Sensitivity Analysis &#8212; Linear Programming Chapter</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'content/2_8/2_8';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="2_8_1.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="../2_7/2_7_4.html" />
+    <link rel="next" title="2.8.1 The Dual Problem" href="2_8_1.html" />
+    <link rel="prev" title="2.7.4 Analyzing the Optimal Tableau: Shadow Prices" href="../2_7/2_7_4.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -202,6 +202,28 @@
 <li class="toctree-l1"><a class="reference internal" href="../2_6/2_6_1.html">2.6 Initial Solutions for General Constraints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../2_6/2_6_2.html">2.6.2 The Two Phase Method</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.7</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_7/2_7.html">2.7 Information in the Tableau</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_7/2_7_1.html">2.7.1 Multiple Optimal Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_7/2_7_2.html">2.7.2 Unbounded Solution (No Optimal Solution)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_7/2_7_3.html">2.7.3 Degenerate Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_7/2_7_4.html">2.7.4 Analyzing the Optimal Tableau: Shadow Prices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.8</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2.8 Duality and Sensitivity Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_8_1.html">2.8.1 The Dual Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_8_2.html">2.8.2 Postoptimality and Sensitivity Analysis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.9</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_9/2_9.html">2.9 Revised Simplex and Computational Efficiency</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.10</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_10/2_10.html">2.10 Software for Linear Programming</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -326,9 +348,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -339,19 +359,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>2.8 Duality and Sensitivity Analysis</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -361,13 +373,15 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p><strong>2.8 Duality and Sensitivity Analysis</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="duality-and-sensitivity-analysis">
+<h1>2.8 Duality and Sensitivity Analysis<a class="headerlink" href="#duality-and-sensitivity-analysis" title="Link to this heading">#</a></h1>
 <p>When making an economic interpretation of the objective function of a linear programming problem, an alternative and useful point of view is obtained by computing the collective contributions of all the resources. If we multiply the original availability of each resource (shown in the original tableau) by its marginal worth (taken from the final tableau), and form the sum, we obtain precisely the optimal objective function value. In our example at the beginning of Section 2.5, we have marginal worth values of 0, 1, and 4, and resource availabilities of 150, 250, and 500; therefore, the optimal objective function value can be expressed as</p>
 <p>$<span class="math notranslate nohighlight">\(z^* = 0(150) + 1(250) + 4(500) = 2250\)</span>$</p>
 <p>This apparently equivalent way of viewing the original (or <strong>primal</strong>) linear programming problem is a manifestation of what is called the <strong>dual problem</strong>. The study of duality provides the theoretical foundation for practical analysis of optimal solutions obtained with the Simplex method. This topic is especially important because the full and effective use of many linear programming software implementations requires a familiarity with the concepts of duality.</p>
 <p><strong>Sensitivity analysis</strong> is the study of how a solution to a problem changes when there are slight changes in the problem parameters, without solving the whole problem again from scratch. It is, therefore, an analysis of how sensitive a solution is to small perturbations in the problem data. Objective function coefficients, constraint coefficients, and resource capacities are problem data that may be difficult or costly to obtain. These values may be introduced into the linear programming model as rough estimates or imperfect observations, and they might be values that change over time, as costs fluctuate or resources availabilities vary.</p>
 <p>If all problem data were certain and constant over time, there would be no need for sensitivity analysis. Each new problem would be based on exact data, and the solution would be a perfect one. In practice, such is rarely the case. Thus, the problem formulation that is solved initially may not be exactly the right problem, that is, the one that is valid at the time resources are actually procured, costs are incurred, or profits are made.</p>
 <p>If it could be determined, through the process of sensitivity analysis, which of the problem parameters are the most critical to the optimality of the original problem solution, then analysts could take greatest care in supplying and refining specifically those parameters to which the solution is most sensitive. Sensitivity analysis tools are of great value to management because they can help to provide a thorough understanding of a problem solution, the range of problem parameters over which a solution is valid, and how the solution can be changed by making changes in costs, profits, or resource availability. Duality theory provides the foundation underlying these tools.</p>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -405,7 +419,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">2.7.4 Analyzing the Optimal Tableau: Shadow Prices</p>
       </div>
     </a>
     <a class="right-next"
@@ -413,7 +427,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">2.8.1 The Dual Problem</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -423,21 +437,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>
