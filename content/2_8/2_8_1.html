@@ -1,0 +1,627 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>&lt;no title&gt; &#8212; Linear Programming Chapter</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/2_8/2_8_1';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="../2_9/2_9.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="2_8.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Linear Programming Chapter</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Linear Programming
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_2/2_2.html">2.2 The Art and Skill of Problem Formulation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_1.html">2.3 Graphical Solution of Linear Programming Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_2.html">2.3.2 Graphical Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_3.html">2.3.3 Multiple Optimal Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_4.html">2.3.4 No Optimal Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_5.html">2.3.5 No Feasible Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_6.html">2.3.6 General Solution Method</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_4/2_4_1.html">2.4 Preparation for the Simplex Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_4/2_4_2.html">2.4.2 Solutions of Linear Systems</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_5/2_5.html">2.5 The Simplex Method</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_6/2_6_1.html">2.6 Initial Solutions for General Constraints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_6/2_6_2.html">2.6.2 The Two Phase Method</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/2_8/2_8_1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p><strong>2.8.1 The Dual Problem</strong></p>
+<p>A linear programming problem and its dual are related in the sense that both problems are based on the same problem data, and an optimal solution to either one of the problems prescribes the optimal solution to the other. These companion problems might even be thought of as two different views of the same problem, but with different economic or engineering interpretations, and possibly with different computational implications.</p>
+<p>Consider any linear programming formulation that is in the form of a maximization problem with constraints of the less than or equal type or equality constraints. (A constraint in which the inequality is a ≥ type can be multiplied by −1 to reverse the direction of the inequality sign, resulting possibly in a negative right-hand-side value.) We will call this the primal problem. If all constraints are inequalities and the decision variables are
+non-negative, the primal problem can be written as:</p>
+<ul/>
+<ul/>
+<ul/>
+<ul/>
+<p><strong>maximize</strong>  <span class="math notranslate nohighlight">\(c₁x₁ + c₂x₂ + ... + cₙxₙ\)</span></p>
+</ul>
+</ul>
+</ul>
+</ul>
+<ul/>
+<ul/>
+<ul/>
+<ul/>
+<p><strong>subject to</strong>  <span class="math notranslate nohighlight">\(a₁₁x₁ + a₁₂x₂ + ... + a₁ₙxₙ ≤ b₁ \)</span></p>
+<p><span class="math notranslate nohighlight">\(a₂₁x₁ + a₂₂x₂ + ... + a₂ₙxₙ ≤ b₂ \)</span></p>
+<p style="text-indent: 15px;">&darr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&darr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&darr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&darr;</p>
+<p><span class="math notranslate nohighlight">\(aₘ₁x₁ + aₘ₂x₂ + ... + aₘₙxₙ ≤ bₘ\)</span></p>
+</ul>
+</ul>
+</ul>
+</ul>
+<p>where the variables <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(\dots\)</span> , <span class="math notranslate nohighlight">\(x_n\)</span> are non-negative.
+In general, the corresponding dual problem is constructed as follows:</p>
+<p>• The dual problem is a minimization problem. <br>
+• For every variable <span class="math notranslate nohighlight">\(x_i\)</span> in the primal problem, there is a constraint in the dual problem. <br>
+ If <span class="math notranslate nohighlight">\(x_i ≥ 0\)</span> in the primal, the constraint is a ≥ inequality in the dual. <br>
+ If <span class="math notranslate nohighlight">\(x_i\)</span> is unrestricted in sign, the <span class="math notranslate nohighlight">\(i^{th}\)</span> constraint is an equality in the dual. <br>
+• For every constraint in the primal problem, there is a variable <span class="math notranslate nohighlight">\(y_i\)</span> in the dual. <br>
+ If the constraint is ≤, then <span class="math notranslate nohighlight">\(y_i \geq 0\)</span> in the dual problem. <br>
+ If the constraint is an equality, then yᵢ is unrestricted in sign in the dual. <br>
+• The right hand sides in the primal are the objective function coefficients in the dual. <br>
+• The objective function coefficients in the primal are the right hand sides in the dual. <br>
+• The coefficient matrix in the primal is transposed to form the coefficient matrix for
+ the dual. <br></p>
+<p>The dual problem corresponding to the earlier primal problem is a problem with <span class="math notranslate nohighlight">\(m\)</span> variables and <span class="math notranslate nohighlight">\(n\)</span> constraints and can be written as:</p>
+<ul/>
+<ul/>
+<ul/>
+<ul/>
+<p><strong>minimize</strong>  <span class="math notranslate nohighlight">\(b₁y₁ + b₂y₂ + ... + bₘyₘ\)</span></p>
+</ul>
+</ul>
+</ul>
+</ul>
+<ul/>
+<ul/>
+<ul/>
+<ul/>
+<p><strong>subject to</strong>  <span class="math notranslate nohighlight">\(a₁₁y₁ + a₂₁y₂ + ... + aₘ₁yₘ ≥ c₁ \)</span></p>
+<p><span class="math notranslate nohighlight">\(a₁₂y₁ + a₂₂y₂ + ... + aₘ₂yₘ ≥ c₂ \)</span></p>
+<p style="text-indent: 15px;">&darr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&darr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&darr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&darr;</p>
+<p><span class="math notranslate nohighlight">\(a₁ₙy₁ + a₂ₙy₂ + ... + aₘₙyₘ ≥ cₙ\)</span></p>
+</ul>
+</ul>
+</ul>
+</ul>
+<p>and the variables <span class="math notranslate nohighlight">\(y_1\)</span>, <span class="math notranslate nohighlight">\(\dots\)</span> , <span class="math notranslate nohighlight">\(y_m\)</span> are non-negative. <br>
+Clearly, the dual of the dual problem is the original primal problem, and in many contexts, it is not necessary to stipulate which one of the companion problems is the primal one
+and which is the dual one; each is the dual of the other.</p>
+<ul />
+<p><strong>Example 2.8.1</strong></p>
+<p>Consider the primal problem:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\text{maximize} \quad &amp; 3x₁ + 2x₂ - 6x₃ \\
+\text{subject to} \quad &amp; 4x₁ + 8x₂ − x₃ ≤ 5 \\
+&amp; 7x₁ - 2x₂ + 2x₃ \geq 4 \\
+&amp; x₁, x₂, x₃ ≥ 0 
+\end{align*}
+\end{split}\]</div>
+<p>The second constraint can be rewritten as <span class="math notranslate nohighlight">\(−7x_1 + 2x_2 − 2x_3 ≤ −4\)</span>. The dual problem is
+then</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\text{minimize} \quad &amp; 5y₁ − 4y₂ \\
+\text{subject to} \quad &amp; 4y₁ − 7y₂ ≥ 3 \\
+&amp; 8y₁ + 2y₂ ≥ 2 \\
+&amp; −y₁ − 2y₂ ≥ -6 \\
+&amp; y₁, y₂ ≥ 0 
+\end{align*}
+\end{split}\]</div>
+<p><strong>Example 2.8.2</strong></p>
+<p>The following primal problem has constraints that include both types of inequalities
+and an equality constraint:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\text{maximize} \quad &amp; 4x₁ - 3x₂ \\
+\text{subject to} \quad &amp; 2x₁ − 4x₂ ≤ 5 \\
+&amp; 5x₁ − 6x₂ \geq 9 \\
+&amp; 3x₁ + 8x₂ = 2 \\
+&amp; x₁ + 2x₂ \leq 1 \\
+&amp; \text{and }x₁ ≥ 0 \\ 
+&amp;\text{ and } x₂\text{ unrestricted in sign} 
+\end{align*}
+\end{split}\]</div>
+<p>The dual of this problem is formed by rewriting the second constraint as <span class="math notranslate nohighlight">\(−5x_1 + 6x_2 ≤ −9\)</span>,and then following the guidelines presented earlier to obtain:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\text{minimize} \quad &amp; 5y₁ - 9y₂ + 2y₃ + y_4 \\
+\text{subject to} \quad &amp; 2y₁ − 5y₂ + 3y₃ + y_4 ≥ 4 \\
+&amp; −4y₁ + 6y₂ + 8y₃ + 2y_4 = -3 \\
+&amp; \text{and } y₁, y₂, y_4 ≥ 0 \\
+&amp; \text{and } y₃ \text{ unrestricted in sign}
+\end{align*}
+\end{split}\]</div>
+<p>(Recall that the Simplex method requires that all variables be non-negative. When an unrestricted variable arises in a formulation, that variable can be replaced by the difference of two new non-negative variables, as suggested and illustrated in Section 2.4.1.) <br>
+There is a very apparent structural similarity between a primal and dual pair of problems, but how are their solutions related? In the course of solving a (primal) maximization problem, the Simplex method generates a series of feasible solutions with successively larger objective function values (cx). Solving the corresponding (dual) minimization problem may be thought of as a process of generating a series of feasible solutions with successively <em>smaller</em> objective function values (yb). Assuming that an optimal solution does exist, the primal problem will converge to its maximum objective function value from below, and the dual problem will converge to its minimum objective function value from above. The primal objective function evaluated at x never exceeds the dual objective function evaluated at y; and at optimality, the two problems actually have the same objective function value. This can be summarized in the following <strong>duality property</strong>:</p>
+<p><strong>Duality property</strong>: If <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are feasible solutions to the primal and dual problems, respectively, then <span class="math notranslate nohighlight">\(cx ≤ yb\)</span> throughout the optimization process; and finally, at optimality, <span class="math notranslate nohighlight">\(cx^* = y^*b\)</span>.</p>
+<p>It follows from this property that, if feasible objective function values are found for a primal and dual pair of problems, and if these values are equal to each other, then both of the solutions are optimal solutions.</p>
+<p>The phenomenon of primal and dual problems sharing the same objective function
+values is not mere coincidence. In fact, the shadow prices, which appear in the top row of the optimal tableau of the primal problem, are precisely the optimal values of the dual variables. Similarly, if the dual problem were solved using the Simplex method, the shadow prices in that optimal tableau would be the optimal values of the primal variables.</p>
+<p>In the illustrative problem from Section 2.5, the dual objective of minimizing
+<span class="math notranslate nohighlight">\(150y₁ + 250y₂ + 500y₃\)</span> is met when the dual variables (shadow prices) have the values <span class="math notranslate nohighlight">\(y₁ = 0, y₂ = 1, y₃ = 4\)</span>. Thus, from the dual point of view,</p>
+<p>$<span class="math notranslate nohighlight">\(z^* = 150(0) + 250(1) + 500(4) = 2250\)</span>$</p>
+<p>which is equal to the primal objective value</p>
+<p>$<span class="math notranslate nohighlight">\(z^* = 8x₁ + 5x₂ = 8(125) + 5(250) = 2250\)</span>$</p>
+<p>for optimal <span class="math notranslate nohighlight">\(x\)</span> values of <span class="math notranslate nohighlight">\(x₁ = 125\)</span> and <span class="math notranslate nohighlight">\(x₂ = 250\)</span>. <br>
+One further characterization relating primal and dual linear programming problems is known as <strong>complementary slackness</strong>. Because each decision variable in a primal problem is associated with a constraint in the dual problem, each such variable is also associated with a slack or surplus variable in the dual. In any solution, if the primal variable is basic (with value <span class="math notranslate nohighlight">\(≥ 0\)</span>, hence having slack), then the associated dual variable is non-basic (with value <span class="math notranslate nohighlight">\(= 0\)</span>, hence having no slack). And if the primal variable is non-basic (with value <span class="math notranslate nohighlight">\(= 0\)</span>, hence no slack), then the associated dual variable is basic (with value <span class="math notranslate nohighlight">\(= 0\)</span>, hence having slack).</p>
+<p>This can be observed even in a problem as simple as the one illustrating the Simplex method in Section 2.5. In the final tableau, the primal basic variables <span class="math notranslate nohighlight">\(x₁, s₁\)</span>, and <span class="math notranslate nohighlight">\(x₂\)</span> have positive values, while in the top row we see zero values for their three associated dual variables. The non-basic primal variables <span class="math notranslate nohighlight">\(s₂\)</span> and <span class="math notranslate nohighlight">\(s₃\)</span> have zero values, while their associated dual variables are basic and have non-zero values.</p>
+<p>This property is described as follows.</p>
+<ul/>
+<p><strong>Complementary Slackness Property</strong>: If in an optimal solution to a linear programming problem, an inequality constraint is not binding, then the dual variable corresponding to that constraint has a value of zero in any optimal solution to the dual problem.</p>
+</ul>
+<p>This is merely a formalization of the intuitive notion that the shadow price of a resource associated with a non-binding constraint is zero. That is, there is a zero marginal worth for a resource that is not being fully utilized. <br>
+The properties described earlier were based on an assumption that optimal solutions to both primal and dual problems exist, but, of course, not all linear programming problems have optimal feasible solutions; infeasible problems and problems with unbounded solutions were discussed earlier in this chapter. For corresponding primal and dual problems, exactly one of the following mutually exclusive cases always occurs:</p>
+<ol class="arabic simple">
+<li><p>Both primal and dual problems are feasible, and both have optimal (and equal) solutions.</p></li>
+<li><p>Both primal and dual problems are infeasible (have no feasible solution).</p></li>
+<li><p>The primal problem is feasible but unbounded, and the dual problem is infeasible.</p></li>
+<li><p>The dual problem is feasible but unbounded, and the primal problem is infeasible.</p></li>
+</ol>
+<p>Because the pertinent parameters and goals of any linear programming problem can be expressed in either a primal or dual form, and because solving either the primal or dual problem yields enough information to easily construct a solution to the other, we might reasonably wonder which problem, primal or dual, should we solve when using the Simplex method.</p>
+<p>From the standpoint of computational efficiency, we might wish to choose to solve the problem with the fewer number of constraints. As is discussed further in Section 2.10.3,the computation time required for the Simplex method is strongly dependent on the number of constraints, and almost independent of the number of variables. Therefore, in the absence of other identifiable structural characteristics of a problem that might make it amenable to the use of specialized solution methods, we could expect to be able to solve most quickly the problem having the smaller number of constraints. This choice becomes more compelling when the linear programming problem has thousands of constraints, and is of much less importance for more moderate-sized problems of a few hundred or less constraints.</p>
+<p>An understanding of duality properties and the relation between primal and dual
+problems gives an analyst some flexibility in formulating, solving, and interpreting a solution to a linear programming problem. Moreover, duality provides the mathematical basis for analyzing an optimal solution’s sensitivity to small changes in problem data. We now turn our attention to the types of analysis that can be made once an optimal solution to a linear programming problem has been obtained.</p>
+</ul>
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "MohammadBaniAbdElNabi/Linear-programming",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/2_8"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="2_8.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../2_9/2_9.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ghaith Rabadi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

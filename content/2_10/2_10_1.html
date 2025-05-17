@@ -1,0 +1,479 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>&lt;no title&gt; &#8212; Linear Programming Chapter</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/2_10/2_10_1';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Linear Programming Chapter</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Linear Programming
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_2/2_2.html">2.2 The Art and Skill of Problem Formulation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_1.html">2.3 Graphical Solution of Linear Programming Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_2.html">2.3.2 Graphical Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_3.html">2.3.3 Multiple Optimal Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_4.html">2.3.4 No Optimal Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_5.html">2.3.5 No Feasible Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_3/2_3_6.html">2.3.6 General Solution Method</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_4/2_4_1.html">2.4 Preparation for the Simplex Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_4/2_4_2.html">2.4.2 Solutions of Linear Systems</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_5/2_5.html">2.5 The Simplex Method</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_6/2_6_1.html">2.6 Initial Solutions for General Constraints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_6/2_6_2.html">2.6.2 The Two Phase Method</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/2_10/2_10_1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p><strong>2.10.1 Extensions to General Simplex Methods</strong></p>
+<p>The majority of commercial software for linear programming is based on the Revised Simplex method, and most implementations employ the product form inverse. For efficiency and accuracy on a computer, a variety of additional features may also be incorporated. We merely mention a few of them here, and the interested reader can obtain a more thorough understanding using the references cited at the end of the chapter. <br>
+The method used for computing and maintaining tableau information has a strong bearing on the size of problem that can be successfully attempted. More complicated implementations require greater skill and effort but operate with greater speed so that larger problems can be solved. <br>
+The explicit inverse method is straightforward and can be efficient and useful for problems involving a few hundred rows. The product form inverse allows for problems in the range of 1000 or so rows. For problems with tens of thousands of rows, LU decomposition techniques have been developed, for use both in the iteration phases and during <strong>re-inversion</strong> of the basis. In simple terms, any basis matrix B can be rewritten as the product of two triangular matrices, L and U where L is lower triangular (with zeros above the main diagonal) and U is upper triangular (with zeros below the diagonal). This format enables very efficient inverse computation and solution of the system. <br>
+In a linear program with many variables, it is very time consuming to examine every non-basic variable at each iteration to determine the one to enter the basis. Many linear programming implementations do not go to the effort to select the non-basic variable corresponding to the <em>most negative</em> top row coefficient, but rather one corresponding to any negative coefficient (i.e., any variable that will improve the objective function). Although this strategy may increase the total number of iterations, it is actually a time-saving and very rational approach because the negative top row coefficients only specify a per-unit improvement in <span class="math notranslate nohighlight">\(z\)</span>, and not an absolute overall improvement. Thus any good entering variable can be quickly selected for the next basis. <br>
+In many linear programming models, there are <strong>upper bound constraints</strong> (<span class="math notranslate nohighlight">\(xj ≤ uj\)</span>) for some or all of the variables. Constraints such as these, as well as <strong>generalized upper bounds</strong> (<span class="math notranslate nohighlight">\(∑xj ≤ uj\)</span>), can be dealt with using a method, introduced by Dantzig and Van Slyke (1967), that handles these constraints implicitly without enlarging the basis. (Recall that for each explicit constraint, there must be a basic variable; therefore, any additional constraints generally contribute to the amount of work and storage required by the Revised Simplex method.) Handling upper bound constraints implicitly does take time, but practice has shown that this is an advantageous trade-off that serves to keep the problem size from increasing. <br>
+Very large linear programming models often result in a constraint matrix A in which the non-zero elements appear in patterns or blocks. When a problem exhibits such a high degree 66 Operations Research of structure, it may be possible to apply a <strong>decomposition</strong> technique (Dantzig and Wolfe 1960). The original model is partitioned, and the subproblems are then solved individually. <br>
+Not only do non-zero elements of A often appear in patterns, but more generally, we find the matrix A to be very <strong>sparse</strong>. A sparse matrix is one with a very large proportion of zero elements. A rule of thumb is that large linear programming models typically have only about 10% non-zero elements; some practitioners claim that 1%–5% is a more realistic range. This sparsity is not a surprising phenomenon when we consider that in any large organization, certain sets of products, people, or processes tend to operate in groups, and are therefore subject to <em>local</em> constraints. When such a problem is formulated, a sparse matrix results because each variable is involved in a relatively small number of the constraints. <br>
+In order to make better use of available memory, sparse matrices should be stored in some type of a compressed format, using methods such as those described by (Murtagh 1981). For example, each non-zero element could be stored along with an encoded form of its row and column indices. The term <em>super sparse</em> has been used to describe matrices that are not only sparse but in which many of the non-zero elements are the same. (e.g., in many applications, the vast majority of non-zero coefficients have a value of one.) In that case, each distinct value need be stored only once, and elements are found via a table of addresses into a table of distinct element values. Sparse matrix handling techniques have been shown to be worthwhile even if the coefficient matrix A is stored on a peripheral memory device. Because transfer time is slow relative to computation time, it is prudent to maintain such large data structures in as compact a form as possible. <br>
+Round-off error is a natural consequence of using finite precision computing devices. As was pointed out in <strong>Chapter 1</strong>, this inability to store computed results exactly is particularly pronounced when we perform arithmetic operations on numeric values of very different magnitudes, where we are often unable to record that portion of a result contributed by the smaller value. In an attempt to remove the source of some of these numerical inaccuracies, most commercial linear programming systems apply some kind of scaling before beginning the Simplex method. Rows and columns of the matrix A may be multiplied by constants in order to make the largest element of each row and column the same (Murtagh 1981). To improve the condition of a matrix (and, therefore, obtain greater accuracy of its inverse), all the elements of A should be kept within a reasonable range, say within a factor of <span class="math notranslate nohighlight">\(10^6\)</span> or <span class="math notranslate nohighlight">\(10^8\)</span> of each other (Orchard-Hays 1968). More elaborate and specific mechanisms for scaling have been devised. In general, a healthy awareness of the limitations of computer arithmetic and numerical computation is essential in understanding and interpreting computed results. <br>
+In a problem of any practical size, the elimination of artificial variables from an initial solution can take a considerable amount of computation time. The term crashing refers generally to any kind of technique that gives the Simplex method a head start and eliminates some of the early iterations. <strong>Crashing</strong> sometimes consists of choosing a set of (nonartificial) non-basic variables to enter the basis and replace the artificial variables, even at the expense of temporarily degrading the objective function or making the solution infeasible (Cooper and Steinberg 1974). An even better way to give a boost to the Simplex method is to obtain, from the user or analyst, problem specific information about which variables are likely to be basic variables in a final solution. Many commercial systems (particularly those for larger powerful computers) provide a means for introducing such information along with other problem data. It may also be possible to restart Simplex iterations using solutions from previous (incomplete) attempts at optimization. <br>
+Many commercial systems contain algorithms for <strong>sensitivity analysis</strong> (also called <strong>ranging procedures</strong> or <strong>postoptimality analysis</strong>). These techniques are applied after the Simplex method has already produced an optimal solution. Sensitivity analysis allows the user to determine the effect that changes in various problem parameters would have on the optimal solution. Changes in the objective (cost/profit) coefficients and in the resource levels (right hand sides of constraints) are commonly dealt with; some systems consider the addition of decision variables to the original model, but most systems do not handle changes in the constraint coefficients or the addition of new constraints.
+The relationship between sensitivity analysis and the dual to a linear programming model was described in <strong>Section 2.8</strong>. It is not uncommon for commercial software to include subroutines embodying a method known as the <em>dual Simplex</em>* method. During sensitivity analysis, if problem parameters are changed, the current (optimal) solution may become infeasible. However, the problem is then <strong>dual feasible</strong>, and can be reoptimized using the dual Simplex algorithm.</p>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "MohammadBaniAbdElNabi/Linear-programming",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/2_10"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ghaith Rabadi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
