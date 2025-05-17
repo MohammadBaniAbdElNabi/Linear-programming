@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; Linear Programming Chapter</title>
+    <title>2.7.2 Unbounded Solution (No Optimal Solution) &#8212; Linear Programming Chapter</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'content/2_7/2_7_2';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="2_7_3.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="2_7_1.html" />
+    <link rel="next" title="2.7.3 Degenerate Solutions" href="2_7_3.html" />
+    <link rel="prev" title="2.7.1 Multiple Optimal Solutions" href="2_7_1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -202,6 +202,28 @@
 <li class="toctree-l1"><a class="reference internal" href="../2_6/2_6_1.html">2.6 Initial Solutions for General Constraints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../2_6/2_6_2.html">2.6.2 The Two Phase Method</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.7</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="2_7.html">2.7 Information in the Tableau</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_7_1.html">2.7.1 Multiple Optimal Solutions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2.7.2 Unbounded Solution (No Optimal Solution)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_7_3.html">2.7.3 Degenerate Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_7_4.html">2.7.4 Analyzing the Optimal Tableau: Shadow Prices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_8/2_8.html">2.8 Duality and Sensitivity Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_8/2_8_1.html">2.8.1 The Dual Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_8/2_8_2.html">2.8.2 Postoptimality and Sensitivity Analysis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.9</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_9/2_9.html">2.9 Revised Simplex and Computational Efficiency</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.10</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_10/2_10.html">2.10 Software for Linear Programming</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -326,9 +348,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -339,19 +359,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>2.7.2 Unbounded Solution (No Optimal Solution)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -361,7 +373,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p><strong>2.7.2 Unbounded Solution (No Optimal Solution)</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="unbounded-solution-no-optimal-solution">
+<h1>2.7.2 Unbounded Solution (No Optimal Solution)<a class="headerlink" href="#unbounded-solution-no-optimal-solution" title="Link to this heading">#</a></h1>
 <p>When the feasible region of a linear programming problem is unbounded, then it is also possible that the objective function value can be increased without bound. Evidence of both of these situations can be found in the Simplex tableau during Step 3 of the Simplex algorithm.</p>
 <p>If in any tableau the constraint coefficients corresponding to a non-basic variable are all either negative or zero, then that non-basic variable can be increased arbitrarily without violating any constraint. Thus, the feasible region is unbounded in the direction of that variable.</p>
 <p>Furthermore, if that variable is eligible to enter the basis (i.e., if it has a negative element in the objective function row), then we know that increasing this variable’s value will increase the objective function. And because this variable can be increased indefinitely, so can the objective function value. Thus, the Simplex algorithm terminates and we can recognize that the problem has an unbounded solution.</p>
@@ -425,6 +438,7 @@ solutions:</p>
 <p>Unbounded solution.</p>
 <p>Our Simplex algorithm, as it is stated, would, in fact, choose <span class="math notranslate nohighlight">\(x_2\)</span> (with the most negative coefficient) as the entering variable, and we would move from point A to point B in Figure 2.8, and then subsequently to point C. At that point, we would be faced again with the inevitable: <span class="math notranslate nohighlight">\(x_1\)</span> can be feasibly increased arbitrarily, producing an arbitrarily large value of <span class="math notranslate nohighlight">\(z\)</span>.</p>
 <p>As noted earlier, a linear programming formulation with an unbounded objective function value undoubtedly represents an invalid model of a real system, since we have no real expectation of achieving unlimited productivity or profitability. Recognizing such a situation, we must reformulate the problem with more careful attention to realistic constraints on the decision variables.</p>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -462,7 +476,7 @@ solutions:</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">2.7.1 Multiple Optimal Solutions</p>
       </div>
     </a>
     <a class="right-next"
@@ -470,7 +484,7 @@ solutions:</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">2.7.3 Degenerate Solutions</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -480,21 +494,6 @@ solutions:</p>
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>

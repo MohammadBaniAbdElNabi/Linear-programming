@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; Linear Programming Chapter</title>
+    <title>2.7.3 Degenerate Solutions &#8212; Linear Programming Chapter</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'content/2_7/2_7_3';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="2_7_4.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="2_7_2.html" />
+    <link rel="next" title="2.7.4 Analyzing the Optimal Tableau: Shadow Prices" href="2_7_4.html" />
+    <link rel="prev" title="2.7.2 Unbounded Solution (No Optimal Solution)" href="2_7_2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -202,6 +202,28 @@
 <li class="toctree-l1"><a class="reference internal" href="../2_6/2_6_1.html">2.6 Initial Solutions for General Constraints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../2_6/2_6_2.html">2.6.2 The Two Phase Method</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.7</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="2_7.html">2.7 Information in the Tableau</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_7_1.html">2.7.1 Multiple Optimal Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_7_2.html">2.7.2 Unbounded Solution (No Optimal Solution)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2.7.3 Degenerate Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_7_4.html">2.7.4 Analyzing the Optimal Tableau: Shadow Prices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.8</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_8/2_8.html">2.8 Duality and Sensitivity Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_8/2_8_1.html">2.8.1 The Dual Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_8/2_8_2.html">2.8.2 Postoptimality and Sensitivity Analysis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.9</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_9/2_9.html">2.9 Revised Simplex and Computational Efficiency</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.10</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_10/2_10.html">2.10 Software for Linear Programming</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -326,9 +348,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -339,19 +359,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>2.7.3 Degenerate Solutions</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -361,7 +373,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p><strong>2.7.3 Degenerate Solutions</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="degenerate-solutions">
+<h1>2.7.3 Degenerate Solutions<a class="headerlink" href="#degenerate-solutions" title="Link to this heading">#</a></h1>
 <p>A solution to a linear programming problem is said to be degenerate if one or more of the basic variables has a value of zero. Evidence of the existence of a degenerate solution is found during Step 4 of the Simplex algorithm when there is a tie for the minimum ratio θ, that is, a tie for the leaving variable. In this case, the tie may be broken arbitrarily and one variable is chosen to leave the basis. However, both variables participating in the tie will, in fact, become zero, although one of them remains basic.</p>
 <p>The presence of a degenerate solution indicates that the linear programming formulation contains at least one redundant constraint. This situation arises in the following problem whose graphical solution is shown in Figure 2.9.</p>
 <br />
@@ -505,6 +518,7 @@ document.write(`
 <p>When we now select <span class="math notranslate nohighlight">\(x_2\)</span> to enter the basis, we have a choice between <span class="math notranslate nohighlight">\(s_2\)</span> and <span class="math notranslate nohighlight">\(s_4\)</span> to leave. If we pick <span class="math notranslate nohighlight">\(s_2\)</span>, we will discover that the new tableau has a negative cost for <span class="math notranslate nohighlight">\(s_2\)</span>, and basic variables <span class="math notranslate nohighlight">\(x_2\)</span> and <span class="math notranslate nohighlight">\(s_4\)</span> are both zero. Since we can now choose <span class="math notranslate nohighlight">\(x_2\)</span> to leave, we could get right back to the tableau where we started. This cycling can continue indefinitely.</p>
 <p>Note that, for a two variable problem, degeneracy can occur only when there are redundant constraints. However, in three-variable problems, we could construct four or five constraints such that they all intersect at a common point, and none of them are redundant.(For example, imagine a roof with many sides that all meet at a common peak.) If the problem contains extreme points of this form, and if the Simplex algorithm happens to land on that corner (both rather unlikely in practice), then the algorithm could cycle indefinitely.</p>
 <p>Problem degeneracy exposes the only theoretical weakness of the Simplex method: it is possible that the algorithm will cycle indefinitely and fail to converge to an optimal solution. Once a degenerate solution to a problem arises, it is possible that successive iterations of the Simplex method will yield no improvement in the objective function. This phenomenon may be a temporary one, occurring for only one or a few iterations, or it may continue indefinitely, generating the same sequence of non-improving solutions. If it is temporary, then we have merely lost valuable computation time, but we will eventually obtain the desired optimal solution. The more serious possibility, infinite cycling and, therefore, failure of the algorithm, is fortunately not a serious practical problem. Although problems have been constructed that demonstrate this hazard, such cycling in actual problems is so rare that computational modifications to defend against Simplex cycling are not considered to be worthwhile. Therefore, although many ractical problems have degenerate solutions, the Simplex algorithm typically cycles only temporarily and reaches the optimal solution without significant degradation in computational efficiency.</p>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -542,7 +556,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">2.7.2 Unbounded Solution (No Optimal Solution)</p>
       </div>
     </a>
     <a class="right-next"
@@ -550,7 +564,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">2.7.4 Analyzing the Optimal Tableau: Shadow Prices</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -560,21 +574,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>
