@@ -44,4 +44,14 @@ parts:
 - caption: Section 2.10
   chapters:
   - file: content/2_10/2_10.md
-  - file: content/2_10/2_8_10
+  - file: content/2_10/2_10_1
+  - file: content/2_10/2_10_2
+  - file: content/2_10/2_10_3
+- caption: Section 2.11
+  chapters:
+  - file: content/2_11/2_11_1
+  - file: content/2_11/2_11_2
+  - file: content/2_11/2_11_3
+- caption: Section 2.12
+  chapters:
+  - file: content/2_12/2_12.md
