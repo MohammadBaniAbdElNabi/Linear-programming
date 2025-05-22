@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.10.2 Interior Methods &#8212; Linear Programming Chapter</title>
+    <title>2.11 Illustrative Applications &#8212; Linear Programming Chapter</title>
   
   
   
@@ -57,13 +57,11 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'content/2_10/2_10_2';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/2_11/2_11_1';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="2.10.3 Software for Solving Linear Programming" href="2_10_3.html" />
-    <link rel="prev" title="2.10.1 Extensions to General Simplex Methods" href="2_10_1.html" />
+    <link rel="next" title="2.11.2 Aircraft and Munitions Procurement (Might 1987)" href="2_11_2.html" />
+    <link rel="prev" title="2.10.3 Software for Solving Linear Programming" href="../2_10/2_10_3.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -221,17 +219,17 @@
 <li class="toctree-l1"><a class="reference internal" href="../2_9/2_9.html">2.9 Revised Simplex and Computational Efficiency</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.10</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="2_10.html">2.10 Software for Linear Programming</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2_10_1.html">2.10.1 Extensions to General Simplex Methods</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">2.10.2 Interior Methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2_10_3.html">2.10.3 Software for Solving Linear Programming</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_10/2_10.html">2.10 Software for Linear Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_10/2_10_1.html">2.10.1 Extensions to General Simplex Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_10/2_10_2.html">2.10.2 Interior Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_10/2_10_3.html">2.10.3 Software for Solving Linear Programming</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.11</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../2_11/2_11_1.html">2.11 Illustrative Applications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../2_11/2_11_2.html">2.11.2 Aircraft and Munitions Procurement (Might 1987)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../2_11/2_11_3.html">2.11.3 Grape Processing: Materials Planning and Production (Schuster and Allen 1998)</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2.11 Illustrative Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_11_2.html">2.11.2 Aircraft and Munitions Procurement (Might 1987)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_11_3.html">2.11.3 Grape Processing: Materials Planning and Production (Schuster and Allen 1998)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.12</span></p>
 <ul class="nav bd-sidenav">
@@ -290,7 +288,7 @@
       
       
       
-      <li><a href="../../_sources/content/2_10/2_10_2.md" target="_blank"
+      <li><a href="../../_sources/content/2_11/2_11_1.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -361,7 +359,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -372,11 +372,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>2.10.2 Interior Methods</h1>
+    <h1>2.11 Illustrative Applications</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forest-pest-control-program-rumpf-et-al-1985">2.11.1 Forest Pest Control Program (Rumpf et al. 1985)</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -386,21 +394,17 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="interior-methods">
-<h1>2.10.2 Interior Methods<a class="headerlink" href="#interior-methods" title="Link to this heading">#</a></h1>
-<p>The complexity of linear programming problems was for many years one of the most important open questions in theoretical computer science. Efforts were made to prove that Dantzig’s Simplex method would always stop sooner than <span class="math notranslate nohighlight">\(\left(\begin{array}{l}n \\ m\end{array}\right)\)</span> iterations, but instead, problems were devised which drive the Simplex method through the combinatorial explosion of basic solutions. On the other hand, the linear programming problem did not seem to be NP-hard either. <br>
-The question was first answered in 1979 when the Russian mathematician Leonid B. Khachiyan published an algorithm for solving linear programming problems in polynomial time. Initial confusion over the importance of Khachiyan’s discovery arose for two reasons. First, his results appeared in a very short article in a Russian journal and went unnoticed for months because of its obscurity as well as the fact that the report was written in the Russian language. After some time, Eugene Lawler at the University of California at Berkeley brought the article to the attention of the computer science community. The explanation that Khachiyan himself presented was so abbreviated that mathematicians had little inkling of its content. Finally, through Lawler’s efforts, Khachiyan’s work was expanded upon (and the details of the proof reconstructed) by Gacs and Lovasz (1981), who not only filled in the gaps in the proof but improved on the efficiency of the algorithm. Only then was the new idea available to the general mathematics community for consideration and discussion. Almost nothing was known about Khachiyan himself, and it was generally assumed, even by Gacs and Lovasz, that he had never published any previous works. However, as it turns out, (Aspvall and Stone 1980) cite four publications by Khachiyan prior to his famous one in 1979. <br>
-The second misunderstanding arose because Khachiyan’s algorithm was designed for linear programming problems in which c, A, and b are integers. Careless reporters publicized incorrectly that Khachiyan had developed a polynomial-time algorithm for integer programming problems (such as the traveling salesman problem). Because this part of the story was untrue, there was skepticism concerning just what Khachiyan really had done. Major newspapers around the world contributed to the notoriety (but sadly not to the clarification) of this remarkable discovery. <br>
-Because linear programming problems had been suspected of having borderline complexity—neither being NP-hard nor having a polynomial algorithm—Khachiyan’s demonstration of a polynomial-time algorithm was somewhat surprising and of immense importance. Even George Dantzig, who developed the (worst-case exponential-time) Simplex algorithm, graciously offered the comment that, “A lot of people, including myself, 68 Operations Researchspent a lot of time looking for a polynomial-time algorithm for linear programming. I feel stupid that I didn’t see it” (Kolata 1979). <br>
-Khachiyan’s method operates by defining a sequence of ellipsoids (ellipses in a multidimensional space), each smaller than the previous ellipsoid, and each containing the feasible region. The method generates a sequence of points <span class="math notranslate nohighlight">\(x_0, x_1, x_2, \dots ,\)</span> which form the centers of the ellipsoids. At each iteration, if the center <span class="math notranslate nohighlight">\(x_k\)</span> of the ellipsoid is infeasible, a hyperplane parallel to a violated constraint and passing through <span class="math notranslate nohighlight">\(x_k\)</span> is used to cut the ellipsoid in half. One half is completely infeasible, but the other half contains the feasible region (if it exists), so a smaller ellipsoid is constructed that surrounds this half. Eventually, some <span class="math notranslate nohighlight">\(x_k\)</span> will lie in the feasible region. <br>
-From a practical standpoint, Khachiyan’s <strong>ellipsoid method</strong> lacked the many years of fine-tuning that had been directed toward improving the efficiency of the Simplex method. Therefore, although it was a polynomial-time algorithm, in practice the Simplex method was the preferred method because typically it performed quite well, and software implementations were readily available. It should be noted, however, that whereas the computation time for the Simplex method is most strongly dependent on the number of constraints <span class="math notranslate nohighlight">\(m\)</span>, Khachiyan’s method is relatively insensitive to <span class="math notranslate nohighlight">\(m\)</span> and more strongly dependent on the number of decision variables <span class="math notranslate nohighlight">\(n\)</span>. Thus, it was supposed at the time that Khachiyan’s ellipsoid method might eventually be superior, in practice, to the Simplex method for problems with numerous constraints. In any case, just five years later in 1984, yet another new method appeared. <br>
-Narendra Karmarkar, a young mathematician at AT&amp;T Bell Laboratories, announced an algorithm for solving linear programming problems that was even more efficient than Khachiyan’s method. Karmarkar’s method is called an interior point method since it operates from within the polyhedron of feasible points of the linear programming problem. The algorithm uses a series of projective transformations in which the polyhedron is first made smoother (normalized), then an arbitrary point is selected which is re-mapped to the center, and a sphere is inscribed in the polyhedron. Then a new point is selected, near the edge of the sphere and in the direction of the optimal solution. The space is then transformed or warped again so that this new point is in the center. The process is repeated until the selected point is the optimal solution to the linear programming problem. Karmarkar’s method of projective transformations demonstrates a polynomial-time complexity bound for linear programming that was better than any previously known bound. <br>
-Karmarkar’s original announcement claimed that his method was many times faster than the Simplex method. But since AT&amp;T Bell Laboratories’ proprietary interests precluded disclosure of the details of its implementation, it was not at first possible to test Karmarkar’s claims. In fact, for several years, the scientific community remained somewhat annoyed because no one outside Bell Laboratories was in a position to duplicate Karmarkar’s computational experiments—and hence the traditional scientific peer review process could not take place. <br>
-Whereas Karmarkar had claimed computation times 50 times faster than Simplex based codes, outside researchers were implementing Karmarkar’s method and observing computation times 50 times worse. Eventually, however, over the next 10 years, it became evident that by using special data structures, efficient methods for handling sparse matrices, and clever Cholesky factorization techniques, the performance of Karmarkar’s method could become quite competitive with Simplex implementations. <br>
-An important side effect of the controversy over the validity of Karmarkar’s claims is that it sparked a great deal of interest in examining and refining Simplex implementations. Consequently, there are now many very efficient implementations of both approaches. <br>
-An overview (Lustig et al. 1994) indicated that small problems, in which the sum of the number of decision variables plus the number of constraints is less than 2000, can generally be solved faster with the Simplex method. For medium sized problems, in which that sum is less than 10,000, Simplex and interior methods compete evenly. And there are several extremely large linear programming problems that have now been solved by interior point methodswhich have never been solved by any Simplex code. An increasing number of commercial software products contain both interior point methods and Simplex methods that can be used together or separately in solving large or difficult problems. Each of these approaches has its advantages, and hybrid software that combines these complementary methods constitutes a powerful computational tool for solving linear programming problems. <br>
-As the methods suggested originally by Karmarkar became more widely understood, numerous researchers made their own various contributions to the practical implementation of interior point algorithms. A very thorough summary of theoretical and implementational developments, as well as computational experimentation, may be found in a feature article by (Lustig et al. 1994). Bixby (1994) presents an enlightening description of commercial interior point methods, options, and performance on benchmark problem instances. Saigal (1995) is a comprehensive reference that includes a large section on interior point methods. Mitra et al. (1988) report experimental studies with hybrid interior/Simplex methods. Thus, the theoretical merits of Karmarkar’s new approach, which had never been doubted, have finally been balanced by considerable practical computational experience. As an illustration of this, recall that interior point methods must remain in the interior of the feasible region. Yet computational experience shows that choosing a step length that gets very close to (and nearly outside of) the boundary of the region is actually most efficient. So-called barrier parameters are used to control the interior search in the feasible region. <br>
-The interior and barrier methods were inspired by (and incorporate) many of the more general methods of nonlinear programming. It should be noted that interior point methods did not originate with Karmarkar; in fact, the approach had been used since the 1950s for nonlinear programming problems. However, Karmarkar can be credited with demonstrating that interior point methods could also be practical for solving linear programming problems. Therefore, a student who wishes to fully understand these methods might well begin by reading the introductory notions presented in <em>Chapter 5</em> on Nonlinear Optimization, and then be prepared to embark on a serious study of the mathematics and numerical analysis underlying general optimization procedures.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="illustrative-applications">
+<h1>2.11 Illustrative Applications<a class="headerlink" href="#illustrative-applications" title="Link to this heading">#</a></h1>
+<section id="forest-pest-control-program-rumpf-et-al-1985">
+<h2>2.11.1 Forest Pest Control Program (Rumpf et al. 1985)<a class="headerlink" href="#forest-pest-control-program-rumpf-et-al-1985" title="Link to this heading">#</a></h2>
+<p>The Maine Forest Service operates a program of aerial pesticide spraying to mitigate the destruction of spruce-fir forests by the spruce budworm. Yearly spraying of the 5  million acre infestation takes place in early summer during a specific stage of insect development, and must be done in dry weather under moderate wind conditions. Spraying is done by aircraft teams consisting of a spray aircraft, a guide plane with a pilot and navigator, and a monitor plane with a pilot and observer. The entire program includes analysis of insect damage and danger assessment of treatment requirements, and cost of chemicals, but one third of the total cost of the program is for aircraft and crews. The Forest Service has therefore wisely investigated the use of quantitative methods to maximize the efficiency of aircraft assignments and to reduce aircraft needs. <br>
+The aircraft operate out of eight airfields, and preliminary models were developed to partition the infested area into over 300 regions (spray blocks) about each airfield, and to then assign spray blocks to airfields and aircraft to airfields. <br>
+This initially seemed like a natural problem to be formulated as a network problem or integer programming model (see <em>Chapters 3</em> and <em>4</em>); but some of the realistic elements of this problem could not be incorporated into the network models, and the integer programming formulation turned out to be prohibitively large. Finally, a linear programming formulation was developed that models the problem realistically and that can be solved quite efficiently. <br>
+The decision variables are the times allocated to each aircraft team flying out of each airfield to spray each block. The objective function includes only those variables associated with allowable combinations of blocks, aircraft, and airfields; that is, blocks within operating range of the airfield, aircraft capable of spraying the type of pesticide prescribed for a certain block, and the specified type of aircraft team (planes and crew) stationed at the given airfield. The aim is to minimize total spraying cost. <br>
+Constraints are imposed to guarantee sufficient time to completely spray each block (and this depends on the geometrical shape of the block, the speed of the aircraft, the pesticide capacity of the plane, and the availability of chemicals at the airfield). A second category of constraints accounts for the time windows during which weather conditions and budworm development are appropriate for effective aerial spray. <br>
+The use of this model has saved time and reduced the cost of the aerial spraying program. It has also provided a framework from which to analyze major modifications to the program, such as loss of an airfield or the availability of a new long-range aircraft, and, in response to environmental concerns, to re-evaluate the actual need for spraying certain areas.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -416,7 +420,7 @@ The interior and barrier methods were inspired by (and incorporate) many of the 
         },
         kernelOptions: {
             name: "python3",
-            path: "./content/2_10"
+            path: "./content/2_11"
         },
         predefinedOutput: true
     }
@@ -434,20 +438,20 @@ The interior and barrier methods were inspired by (and incorporate) many of the 
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="2_10_1.html"
+       href="../2_10/2_10_3.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">2.10.1 Extensions to General Simplex Methods</p>
+        <p class="prev-next-title">2.10.3 Software for Solving Linear Programming</p>
       </div>
     </a>
     <a class="right-next"
-       href="2_10_3.html"
+       href="2_11_2.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">2.10.3 Software for Solving Linear Programming</p>
+        <p class="prev-next-title">2.11.2 Aircraft and Munitions Procurement (Might 1987)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -457,6 +461,21 @@ The interior and barrier methods were inspired by (and incorporate) many of the 
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forest-pest-control-program-rumpf-et-al-1985">2.11.1 Forest Pest Control Program (Rumpf et al. 1985)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
