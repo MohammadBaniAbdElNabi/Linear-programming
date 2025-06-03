@@ -55,3 +55,6 @@ parts:
 - caption: Section 2.12
   chapters:
   - file: content/2_12/2_12.md
+- caption: Exercises
+  chapters:
+  - file: content/Exercises/Exercises_1

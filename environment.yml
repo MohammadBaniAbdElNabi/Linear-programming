@@ -8,6 +8,7 @@ dependencies:
   - matplotlib
   - ipywidgets
   - jupyter-book
+  - scipy
   - pip
   - pip:
       - notebook
