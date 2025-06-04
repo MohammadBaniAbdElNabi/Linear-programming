@@ -395,6 +395,9 @@ document.write(`
 <p>A linear programming problem and its dual are related in the sense that both problems are based on the same problem data, and an optimal solution to either one of the problems prescribes the optimal solution to the other. These companion problems might even be thought of as two different views of the same problem, but with different economic or engineering interpretations, and possibly with different computational implications.</p>
 <p>Consider any linear programming formulation that is in the form of a maximization problem with constraints of the less than or equal type or equality constraints. (A constraint in which the inequality is a ≥ type can be multiplied by −1 to reverse the direction of the inequality sign, resulting possibly in a negative right-hand-side value.) We will call this the primal problem. If all constraints are inequalities and the decision variables are
 non-negative, the primal problem can be written as:</p>
+<ul />
+<ul />
+<ul />
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{l}
@@ -407,6 +410,9 @@ non-negative, the primal problem can be written as:</p>
 \quad a_{m1}x_1 + a_{m2}x_2 + \dots + a_{mn}x_n \leq b_m
 \end{array}
 \end{split}\]</div>
+</ul>
+</ul>
+</ul>
 <p>where the variables <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(\dots\)</span> , <span class="math notranslate nohighlight">\(x_n\)</span> are non-negative.
 In general, the corresponding dual problem is constructed as follows:</p>
 <p>• The dual problem is a minimization problem. <br>
@@ -421,6 +427,9 @@ In general, the corresponding dual problem is constructed as follows:</p>
 • The coefficient matrix in the primal is transposed to form the coefficient matrix for
  the dual. <br></p>
 <p>The dual problem corresponding to the earlier primal problem is a problem with <span class="math notranslate nohighlight">\(m\)</span> variables and <span class="math notranslate nohighlight">\(n\)</span> constraints and can be written as:</p>
+<ul />
+<ul />
+<ul />
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{l}
@@ -433,6 +442,9 @@ In general, the corresponding dual problem is constructed as follows:</p>
 \quad a_{1n}y_1 + a_{2n}y_2 + \dots + a_{mn}y_m \geq c_n
 \end{array}
 \end{split}\]</div>
+</ul>
+</ul>
+</ul>
 <p>and the variables <span class="math notranslate nohighlight">\(y_1\)</span>, <span class="math notranslate nohighlight">\(\dots\)</span> , <span class="math notranslate nohighlight">\(y_m\)</span> are non-negative. <br>
 Clearly, the dual of the dual problem is the original primal problem, and in many contexts, it is not necessary to stipulate which one of the companion problems is the primal one
 and which is the dual one; each is the dual of the other.</p>
@@ -494,9 +506,11 @@ There is a very apparent structural similarity between a primal and dual pair of
 values is not mere coincidence. In fact, the shadow prices, which appear in the top row of the optimal tableau of the primal problem, are precisely the optimal values of the dual variables. Similarly, if the dual problem were solved using the Simplex method, the shadow prices in that optimal tableau would be the optimal values of the primal variables.</p>
 <p>In the illustrative problem from Section 2.5, the dual objective of minimizing
 <span class="math notranslate nohighlight">\(150y₁ + 250y₂ + 500y₃\)</span> is met when the dual variables (shadow prices) have the values <span class="math notranslate nohighlight">\(y₁ = 0, y₂ = 1, y₃ = 4\)</span>. Thus, from the dual point of view,</p>
-<p>$<span class="math notranslate nohighlight">\( z^* = 150(0) + 250(1) + 500(4) = 2250 \)</span>$</p>
+<div class="math notranslate nohighlight">
+\[ z^* = 150(0) + 250(1) + 500(4) = 2250 \]</div>
 <p>which is equal to the primal objective value</p>
-<p>$<span class="math notranslate nohighlight">\( z^* = 8x₁ + 5x₂ = 8(125) + 5(250) = 2250 \)</span>$</p>
+<div class="math notranslate nohighlight">
+\[ z^* = 8x₁ + 5x₂ = 8(125) + 5(250) = 2250 \]</div>
 <p>for optimal <span class="math notranslate nohighlight">\(x\)</span> values of <span class="math notranslate nohighlight">\(x₁ = 125\)</span> and <span class="math notranslate nohighlight">\(x₂ = 250\)</span>. <br>
 One further characterization relating primal and dual linear programming problems is known as <strong>complementary slackness</strong>. Because each decision variable in a primal problem is associated with a constraint in the dual problem, each such variable is also associated with a slack or surplus variable in the dual. In any solution, if the primal variable is basic (with value <span class="math notranslate nohighlight">\(≥ 0\)</span>, hence having slack), then the associated dual variable is non-basic (with value <span class="math notranslate nohighlight">\(= 0\)</span>, hence having no slack). And if the primal variable is non-basic (with value <span class="math notranslate nohighlight">\(= 0\)</span>, hence no slack), then the associated dual variable is basic (with value <span class="math notranslate nohighlight">\(= 0\)</span>, hence having slack).</p>
 <p>This can be observed even in a problem as simple as the one illustrating the Simplex method in Section 2.5. In the final tableau, the primal basic variables <span class="math notranslate nohighlight">\(x₁, s₁\)</span>, and <span class="math notranslate nohighlight">\(x₂\)</span> have positive values, while in the top row we see zero values for their three associated dual variables. The non-basic primal variables <span class="math notranslate nohighlight">\(s₂\)</span> and <span class="math notranslate nohighlight">\(s₃\)</span> have zero values, while their associated dual variables are basic and have non-zero values.</p>
