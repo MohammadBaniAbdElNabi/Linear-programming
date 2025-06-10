@@ -1921,12 +1921,12 @@ Point (3.00, 0.00) → z = 15.00
                 <span class="n">lhs_final_str</span> <span class="o">=</span> <span class="n">term_str</span>
                 <span class="n">first_term_in_lhs</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">coeff</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># term_str will already start with &#39;-&#39;</span>
+                <span class="k">if</span> <span class="n">coeff</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> 
                     <span class="n">lhs_final_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; </span><span class="si">{</span><span class="n">term_str</span><span class="si">}</span><span class="s2">&quot;</span>
-                <span class="k">else</span><span class="p">:</span> <span class="c1"># Positive coefficient, needs a &#39; + &#39;</span>
+                <span class="k">else</span><span class="p">:</span> 
                     <span class="n">lhs_final_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; + </span><span class="si">{</span><span class="n">term_str</span><span class="si">}</span><span class="s2">&quot;</span>
         
-        <span class="k">if</span> <span class="n">first_term_in_lhs</span><span class="p">:</span> <span class="c1"># Means all coeffs were 0 for this constraint</span>
+        <span class="k">if</span> <span class="n">first_term_in_lhs</span><span class="p">:</span> 
             <span class="n">lhs_final_str</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
             
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">lhs_final_str</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">standard_lp_output</span><span class="p">[</span><span class="s1">&#39;rhs_vector&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -2033,7 +2033,6 @@ Where:
         <span class="n">current_rhs</span> <span class="o">=</span> <span class="n">constr</span><span class="p">[</span><span class="s2">&quot;rhs&quot;</span><span class="p">]</span>
 
         <span class="c1"># Ensure current_coeffs_orig_vars matches num_original_vars, padding if necessary.</span>
-        <span class="c1"># This assumes that coeffs in constraints_input are for the &#39;num_original_vars&#39; variables.</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_coeffs_orig_vars</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">num_original_vars</span><span class="p">:</span>
             <span class="n">current_coeffs_orig_vars</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">num_original_vars</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_coeffs_orig_vars</span><span class="p">)))</span>
         <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_coeffs_orig_vars</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">num_original_vars</span><span class="p">:</span>
@@ -2208,7 +2207,7 @@ Where:
 
 
 <span class="c1"># Variables for the converter: x1, x2_p, x2_n, x3 (4 variables)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- Example 2 (after pre-processing) ---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- Example 2 ---&quot;</span><span class="p">)</span>
 <span class="n">objective_type_ex2</span> <span class="o">=</span> <span class="s2">&quot;maximize&quot;</span>
 <span class="c1"># Coefficients for x1, x2_p, x2_n, x3</span>
 <span class="n">objective_coeffs_ex2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> 
@@ -2240,7 +2239,7 @@ Where:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Example 2 (after pre-processing) ---
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Example 2 ---
 Maximize z = 5x1 + 6x2p - 6x2n + 3x3
 
 Subject to:
