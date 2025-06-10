@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.8.1 The Dual Problem &#8212; Linear Programming Chapter</title>
+    <title>References and Suggested Readings &#8212; Linear Programming Chapter</title>
   
   
   
@@ -57,13 +57,10 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'content/2_8/2_8_1';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/References/References';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="2.8.2 Postoptimality and Sensitivity Analysis" href="2_8_2.html" />
-    <link rel="prev" title="2.8 Duality and Sensitivity Analysis" href="2_8.html" />
+    <link rel="prev" title="Exercises (2.16 - 2.47)" href="../Exercises/Exercises_2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -211,10 +208,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../2_7/2_7_4.html">2.7.4 Analyzing the Optimal Tableau: Shadow Prices</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.8</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="2_8.html">2.8 Duality and Sensitivity Analysis</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">2.8.1 The Dual Problem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2_8_2.html">2.8.2 Postoptimality and Sensitivity Analysis</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_8/2_8.html">2.8 Duality and Sensitivity Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_8/2_8_1.html">2.8.1 The Dual Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_8/2_8_2.html">2.8.2 Postoptimality and Sensitivity Analysis</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.9</span></p>
 <ul class="nav bd-sidenav">
@@ -243,8 +240,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../Exercises/Exercises_2.html">Exercises (2.16 - 2.47)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">References and Suggested Readings</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../References/References.html">References and Suggested Readings</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">References and Suggested Readings</a></li>
 </ul>
 
     </div>
@@ -299,7 +296,7 @@
       
       
       
-      <li><a href="../../_sources/content/2_8/2_8_1.md" target="_blank"
+      <li><a href="../../_sources/content/References/References.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -381,7 +378,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>2.8.1 The Dual Problem</h1>
+    <h1>References and Suggested Readings</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -395,147 +392,82 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="the-dual-problem">
-<h1>2.8.1 The Dual Problem<a class="headerlink" href="#the-dual-problem" title="Link to this heading">#</a></h1>
-<p>A linear programming problem and its dual are related in the sense that both problems are based on the same problem data, and an optimal solution to either one of the problems prescribes the optimal solution to the other. These companion problems might even be thought of as two different views of the same problem, but with different economic or engineering interpretations, and possibly with different computational implications.</p>
-<p>Consider any linear programming formulation that is in the form of a maximization problem with constraints of the less than or equal type or equality constraints. (A constraint in which the inequality is a ≥ type can be multiplied by −1 to reverse the direction of the inequality sign, resulting possibly in a negative right-hand-side value.) We will call this the primal problem. If all constraints are inequalities and the decision variables are
-non-negative, the primal problem can be written as:</p>
-<ul />
-<ul />
-<ul />
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{array}{l}
-\text{maximize} \quad c_1x_1 + c_2x_2 + \dots + c_nx_n \\
-\\
-\text{subject to} \\
-\quad a_{11}x_1 + a_{12}x_2 + \dots + a_{1n}x_n \leq b_1 \\
-\quad a_{21}x_1 + a_{22}x_2 + \dots + a_{2n}x_n \leq b_2 \\
-\quad \vdots \qquad \qquad \qquad \vdots \\
-\quad a_{m1}x_1 + a_{m2}x_2 + \dots + a_{mn}x_n \leq b_m
-\end{array}
-\end{split}\]</div>
-</ul>
-</ul>
-</ul>
-<p>where the variables <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(\dots\)</span> , <span class="math notranslate nohighlight">\(x_n\)</span> are non-negative.
-In general, the corresponding dual problem is constructed as follows:</p>
-<p>• The dual problem is a minimization problem. <br>
-• For every variable <span class="math notranslate nohighlight">\(x_i\)</span> in the primal problem, there is a constraint in the dual problem. <br>
- If <span class="math notranslate nohighlight">\(x_i ≥ 0\)</span> in the primal, the constraint is a ≥ inequality in the dual. <br>
- If <span class="math notranslate nohighlight">\(x_i\)</span> is unrestricted in sign, the <span class="math notranslate nohighlight">\(i^{th}\)</span> constraint is an equality in the dual. <br>
-• For every constraint in the primal problem, there is a variable <span class="math notranslate nohighlight">\(y_i\)</span> in the dual. <br>
- If the constraint is ≤, then <span class="math notranslate nohighlight">\(y_i \geq 0\)</span> in the dual problem. <br>
- If the constraint is an equality, then yᵢ is unrestricted in sign in the dual. <br>
-• The right hand sides in the primal are the objective function coefficients in the dual. <br>
-• The objective function coefficients in the primal are the right hand sides in the dual. <br>
-• The coefficient matrix in the primal is transposed to form the coefficient matrix for
- the dual. <br></p>
-<p>The dual problem corresponding to the earlier primal problem is a problem with <span class="math notranslate nohighlight">\(m\)</span> variables and <span class="math notranslate nohighlight">\(n\)</span> constraints and can be written as:</p>
-<ul />
-<ul />
-<ul />
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{array}{l}
-\text{minimize} \quad b_1y_1 + b_2y_2 + \dots + b_my_m \\
-\\
-\text{subject to} \\
-\quad a_{11}y_1 + a_{21}y_2 + \dots + a_{m1}y_m \geq c_1 \\
-\quad a_{12}y_1 + a_{22}y_2 + \dots + a_{m2}y_m \geq c_2 \\
-\quad \vdots \qquad \qquad \qquad \vdots \\
-\quad a_{1n}y_1 + a_{2n}y_2 + \dots + a_{mn}y_m \geq c_n
-\end{array}
-\end{split}\]</div>
-</ul>
-</ul>
-</ul>
-<p>and the variables <span class="math notranslate nohighlight">\(y_1\)</span>, <span class="math notranslate nohighlight">\(\dots\)</span> , <span class="math notranslate nohighlight">\(y_m\)</span> are non-negative. <br>
-Clearly, the dual of the dual problem is the original primal problem, and in many contexts, it is not necessary to stipulate which one of the companion problems is the primal one
-and which is the dual one; each is the dual of the other.</p>
-<ul />
-<p><strong>Example 2.8.1</strong></p>
-<p>Consider the primal problem:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align*}
-\text{maximize} \quad &amp; 3x₁ + 2x₂ - 6x₃ \\
-\text{subject to} \quad &amp; 4x₁ + 8x₂ − x₃ ≤ 5 \\
-&amp; 7x₁ - 2x₂ + 2x₃ \geq 4 \\
-&amp; x₁, x₂, x₃ ≥ 0 
-\end{align*}
-\end{split}\]</div>
-<p>The second constraint can be rewritten as <span class="math notranslate nohighlight">\(−7x_1 + 2x_2 − 2x_3 ≤ −4\)</span>. The dual problem is
-then</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align*}
-\text{minimize} \quad &amp; 5y₁ − 4y₂ \\
-\text{subject to} \quad &amp; 4y₁ − 7y₂ ≥ 3 \\
-&amp; 8y₁ + 2y₂ ≥ 2 \\
-&amp; −y₁ − 2y₂ ≥ -6 \\
-&amp; y₁, y₂ ≥ 0 
-\end{align*}
-\end{split}\]</div>
-<p><strong>Example 2.8.2</strong></p>
-<p>The following primal problem has constraints that include both types of inequalities
-and an equality constraint:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align*}
-\text{maximize} \quad &amp; 4x₁ - 3x₂ \\
-\text{subject to} \quad &amp; 2x₁ − 4x₂ ≤ 5 \\
-&amp; 5x₁ − 6x₂ \geq 9 \\
-&amp; 3x₁ + 8x₂ = 2 \\
-&amp; x₁ + 2x₂ \leq 1 \\
-&amp; \text{and }x₁ ≥ 0 \\ 
-&amp;\text{ and } x₂\text{ unrestricted in sign} 
-\end{align*}
-\end{split}\]</div>
-<p>The dual of this problem is formed by rewriting the second constraint as <span class="math notranslate nohighlight">\(−5x_1 + 6x_2 ≤ −9\)</span>,and then following the guidelines presented earlier to obtain:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align*}
-\text{minimize} \quad &amp; 5y₁ - 9y₂ + 2y₃ + y_4 \\
-\text{subject to} \quad &amp; 2y₁ − 5y₂ + 3y₃ + y_4 ≥ 4 \\
-&amp; −4y₁ + 6y₂ + 8y₃ + 2y_4 = -3 \\
-&amp; \text{and } y₁, y₂, y_4 ≥ 0 \\
-&amp; \text{and } y₃ \text{ unrestricted in sign}
-\end{align*}
-\end{split}\]</div>
-<p>(Recall that the Simplex method requires that all variables be non-negative. When an unrestricted variable arises in a formulation, that variable can be replaced by the difference of two new non-negative variables, as suggested and illustrated in Section 2.4.1.) <br>
-There is a very apparent structural similarity between a primal and dual pair of problems, but how are their solutions related? In the course of solving a (primal) maximization problem, the Simplex method generates a series of feasible solutions with successively larger objective function values (cx). Solving the corresponding (dual) minimization problem may be thought of as a process of generating a series of feasible solutions with successively <em>smaller</em> objective function values (yb). Assuming that an optimal solution does exist, the primal problem will converge to its maximum objective function value from below, and the dual problem will converge to its minimum objective function value from above. The primal objective function evaluated at x never exceeds the dual objective function evaluated at y; and at optimality, the two problems actually have the same objective function value. This can be summarized in the following <strong>duality property</strong>:</p>
-<p><strong>Duality property</strong>: If <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are feasible solutions to the primal and dual problems, respectively, then <span class="math notranslate nohighlight">\(cx ≤ yb\)</span> throughout the optimization process; and finally, at optimality, <span class="math notranslate nohighlight">\(cx^* = y^*b\)</span>.</p>
-<p>It follows from this property that, if feasible objective function values are found for a primal and dual pair of problems, and if these values are equal to each other, then both of the solutions are optimal solutions.</p>
-<p>The phenomenon of primal and dual problems sharing the same objective function
-values is not mere coincidence. In fact, the shadow prices, which appear in the top row of the optimal tableau of the primal problem, are precisely the optimal values of the dual variables. Similarly, if the dual problem were solved using the Simplex method, the shadow prices in that optimal tableau would be the optimal values of the primal variables.</p>
-<p>In the illustrative problem from Section 2.5, the dual objective of minimizing
-<span class="math notranslate nohighlight">\(150y₁ + 250y₂ + 500y₃\)</span> is met when the dual variables (shadow prices) have the values <span class="math notranslate nohighlight">\(y₁ = 0, y₂ = 1, y₃ = 4\)</span>. Thus, from the dual point of view,</p>
-<div class="math notranslate nohighlight">
-\[ z^* = 150(0) + 250(1) + 500(4) = 2250 \]</div>
-<p>which is equal to the primal objective value</p>
-<div class="math notranslate nohighlight">
-\[ z^* = 8x₁ + 5x₂ = 8(125) + 5(250) = 2250 \]</div>
-<p>for optimal <span class="math notranslate nohighlight">\(x\)</span> values of <span class="math notranslate nohighlight">\(x₁ = 125\)</span> and <span class="math notranslate nohighlight">\(x₂ = 250\)</span>. <br>
-One further characterization relating primal and dual linear programming problems is known as <strong>complementary slackness</strong>. Because each decision variable in a primal problem is associated with a constraint in the dual problem, each such variable is also associated with a slack or surplus variable in the dual. In any solution, if the primal variable is basic (with value <span class="math notranslate nohighlight">\(≥ 0\)</span>, hence having slack), then the associated dual variable is non-basic (with value <span class="math notranslate nohighlight">\(= 0\)</span>, hence having no slack). And if the primal variable is non-basic (with value <span class="math notranslate nohighlight">\(= 0\)</span>, hence no slack), then the associated dual variable is basic (with value <span class="math notranslate nohighlight">\(= 0\)</span>, hence having slack).</p>
-<p>This can be observed even in a problem as simple as the one illustrating the Simplex method in Section 2.5. In the final tableau, the primal basic variables <span class="math notranslate nohighlight">\(x₁, s₁\)</span>, and <span class="math notranslate nohighlight">\(x₂\)</span> have positive values, while in the top row we see zero values for their three associated dual variables. The non-basic primal variables <span class="math notranslate nohighlight">\(s₂\)</span> and <span class="math notranslate nohighlight">\(s₃\)</span> have zero values, while their associated dual variables are basic and have non-zero values.</p>
-<p>This property is described as follows.</p>
-<ul/>
-<p><strong>Complementary Slackness Property</strong>: If in an optimal solution to a linear programming problem, an inequality constraint is not binding, then the dual variable corresponding to that constraint has a value of zero in any optimal solution to the dual problem.</p>
-</ul>
-<p>This is merely a formalization of the intuitive notion that the shadow price of a resource associated with a non-binding constraint is zero. That is, there is a zero marginal worth for a resource that is not being fully utilized. <br>
-The properties described earlier were based on an assumption that optimal solutions to both primal and dual problems exist, but, of course, not all linear programming problems have optimal feasible solutions; infeasible problems and problems with unbounded solutions were discussed earlier in this chapter. For corresponding primal and dual problems, exactly one of the following mutually exclusive cases always occurs:</p>
-<ol class="arabic simple">
-<li><p>Both primal and dual problems are feasible, and both have optimal (and equal) solutions.</p></li>
-<li><p>Both primal and dual problems are infeasible (have no feasible solution).</p></li>
-<li><p>The primal problem is feasible but unbounded, and the dual problem is infeasible.</p></li>
-<li><p>The dual problem is feasible but unbounded, and the primal problem is infeasible.</p></li>
-</ol>
-<p>Because the pertinent parameters and goals of any linear programming problem can be expressed in either a primal or dual form, and because solving either the primal or dual problem yields enough information to easily construct a solution to the other, we might reasonably wonder which problem, primal or dual, should we solve when using the Simplex method.</p>
-<p>From the standpoint of computational efficiency, we might wish to choose to solve the problem with the fewer number of constraints. As is discussed further in Section 2.10.3,the computation time required for the Simplex method is strongly dependent on the number of constraints, and almost independent of the number of variables. Therefore, in the absence of other identifiable structural characteristics of a problem that might make it amenable to the use of specialized solution methods, we could expect to be able to solve most quickly the problem having the smaller number of constraints. This choice becomes more compelling when the linear programming problem has thousands of constraints, and is of much less importance for more moderate-sized problems of a few hundred or less constraints.</p>
-<p>An understanding of duality properties and the relation between primal and dual
-problems gives an analyst some flexibility in formulating, solving, and interpreting a solution to a linear programming problem. Moreover, duality provides the mathematical basis for analyzing an optimal solution’s sensitivity to small changes in problem data. We now turn our attention to the types of analysis that can be made once an optimal solution to a linear programming problem has been obtained.</p>
-</ul></section>
+  <section class="tex2jax_ignore mathjax_ignore" id="references-and-suggested-readings">
+<h1>References and Suggested Readings<a class="headerlink" href="#references-and-suggested-readings" title="Link to this heading">#</a></h1>
+<p>Albers, D. J., and C. Reid. 1986. An interview with George B. Dantzig: The father of linear programming. The College Mathematics Journal 17 (4): 293–314. <br>
+Arbel, A. 1993. Exploring Interior-Point Linear Programming Algorithms and Software. Cambridge, MA: MIT Press. <br>
+Aronofsky, J. S., and A. C. Williams. 1962. The use of linear programming and mathematical models in underground oil production. Management Science 8: 394–402. <br>
+Aspvall, B., and R. E. Stone. 1980. Khachiyan’s linear programming algorithm. Journal of Algorithms1: 1–13. <br>
+Bartels, R. H. 1971. A stabilization of the simplex method. Numerische Mathematik 16: 414–434. <br>
+Benichou, M., J. M. Gauthier, G. Hentges, and G. Ribiere. 1977. The efficient solution of large-scale linear programming problems—Some algorithms techniques and computational results. Mathematical Programming 13: 280–322. <br>
+Bixby, R. E. 1994. Progress in linear programming. ORSA Journal of Computing 6 (1): 15–22. <br>
+Bland, R. G., D. Goldfarb, and M. J. Todd. 1981. The ellipsoid method: A survey. Operations Research26 (9): 1039–1091. <br>
+Borgwardt, K. H. 1980. The Simplex Method: A Probabilistic Analysis. New York: Springer-Verlag. <br>
+Calvert, J. E., and W. L. Voxman. 1989. Linear Programming. Orlando, FL: Harcourt Brace Jovanovich. <br>
+Charnes, A., and W. W. Cooper. 1961. Management Models and Industrial Applications of Linear Programming, Vol. I and II. New York: John Wiley &amp; Sons. <br>
+Charnes, A., W. W. Cooper, and A. Henderson. 1953. An Introduction to Linear Programming. New York: John Wiley &amp; Sons. <br>
+Cooper, L., and D. Steinberg. 1974. Methods and Applications of Linear Programming. Philadelphia, PA: W.B. Saunders. <br>
+Dantzig, G. B. 1963. Linear Programming and Extensions. Princeton, NJ: Princeton University Press. <br>
+Dantzig, G. B., and M. N. Thapa. 1996. Linear Programming. New York: Springer-Verlag. <br>
+Dantzig, G. B., and R. M. Van Slyke. 1967. Generalized upper bounding techniques for linear programming. Journal of Computer and System Sciences 1 (3): 213–226. <br>
+Dantzig, G. B., and P. Wolfe. 1960. Decomposition principle for linear programs. Operations Research 8: 101–111. <br>
+Dantzig, G., A. Orden, and P. Wolfe. 1955. The generalized Simplex Method for minimizing a linear form under linear inequality restraints. Pacific Journal of Mathematics 5 (2): 183–195. <br>
+Emmett, A. 1985. Karmarkar’s algorithm: A threat to simplex? IEEE Spectrum 22: 54–55. <br>
+Fieldhouse, M. 1986. Commercial Linear Programming Codes on Microcomputers. In J. D. Coelho, and L.V. Tavares (Eds.), OR Models on Microcomputers. New York: North-Holland, Elsevier. <br>
+Fourer, R. 2015. Software survey: Linear programming. OR/MS Today 42 (3): 52–63. <br>
+Fourer, R. 2017. Software survey: Linear programming. OR/MS Today 44 (3): 48–59. <br>
+Gacs, P., and L. Lovasz. 1981. Khachiyan’s algorithm for linear programming. Mathematical Programming Study 14: 61–68. <br>
+Gal, T. 1992. Putting the LP survey into perspective. OR/MS Today 19 (6): 93. <br>
+Gass, S., H. Greenberg, K. Hoffman, and R. W. Langley (Eds.). 1986. Impacts of Microcomputers on Operations Research. New York: North-Holland. <br>
+Gass, S. I. 1985. Linear Programming, 5th ed. New York: McGraw-Hill. <br>
+Gill, P. E., and W. Murray. 1973. A numerically stable form of the simplex method. Linear Algebra and its Applications 7: 99–138. <br>
+Gill, P. E., W. Murray, M. A. Saunders, and M. H. Wright. 1981. A Numerical Investigation of Ellipsoid Algorithms for Large-scale Linear Programming, in Large-Scale Linear Programming, Vol. 1. Laxenburg, Austria: IIASA. <br>
+Gill, P. E., W. Murray, and M. H. Wright. 1981. Practical Optimization. New York: Academic Press. <br>
+Hadley, G. 1962. Linear Programming. Reading, MA: Addison-Wesley. <br>
+Harvey, C. M. 1979. Operations Research: An Introduction to Linear Optimization. New York: North-Holland. <br>
+Higle, J. L., and S. W. Wallace. 2003. Sensitivity analysis and uncertainty in linear programming. Interfaces 33 (4): 53–60. <br>
+Hillier, F. S., and G. J. Lieberman. 2010. Introduction to Operations Research, 9th ed. Boston, MA: McGraw-Hill. <br>
+Hooker, J. N. 1986. Karmarkar’s linear programming algorithm. Interfaces 16 (4): 75–90. <br>
+IBM Mathematical Programming System Extended/370 (MPSX/370) Logic Manual #LY19-1024-0 and Primer #GH19-1091-1. <br>
+IBM Mathematical Programming System/360 Version 2. Linear and Separable Programming, User’s Manual #H20-0476-2. <br>
+Karmarkar, N. 1984. A new polynomial-time algorithm for linear programming. Combinatorica 4 (4): 373–395. <br>
+Katta, G. M. 1976. Linear and Combinatorial Programming. New York: John Wiley &amp; Sons. <br>
+Khachiyan, L. G. 1979. A polynomial algorithm in linear programming. Soviet Mathematics Doklady 20 (1): 191–194. <br>
+Kolata, G. B. 1979. Mathematicians amazed by Russian’s discovery. Science 206: 545–546. <br>
+Loomba, N. P. 1976. Linear Programming: A Managerial Perspective. New York: Macmillan. <br>
+Luenberger, D., and Y. Ye. 2015. Linear and Nonlinear Programming, 4th ed. New York: Springer. <br>
+Lustig, I. J., R. E. Marsten, and D. F. Shanno. 1994. Interior point methods for linear programming: Computational state of the art. ORSA Journal on Computing 6 (1): 1–14. <br>
+McCall, E. H. 1982. Performance results of the simplex algorithm for a set of real-world linear programming models. Communications of the ACM 25 (3): 20–212. <br>
+Might, R. J. 1987. Decision support for aircraft munitions procurement. Interfaces 17 (5): 55–63. <br>
+Miller, C. E. 1963. The Simplex Method for Local Separable Programming, in Recent Advances in
+Mathematical Programming. New York: McGraw-Hill. <br>
+Mitra, G., M. Tamiz, and J. Yadegar. 1988. Investigation of an interior search method within a simplex framework. Communications of the ACM 31 (12): 1474–1482. <br>
+Müller-Merbach, H. 1970. On Round-Off Errors in Linear Programming. New York: Springer-Verlag. <br>
+Murtagh, B. A. 1981. Advanced Linear Programming: Computation and Practice. New York: McGraw-Hill. <br>
+Murtagh, B. A., and M. A. Saunders. 1987. MINOS 5.1 User’s Guide: Technical Report SOL. In Systems Optimization Laboratory. Stanford, CA: Stanford University. <br>
+Murty, K. G. 1989. Linear Complementarity, Linear and Nonlinear Programming. Berlin, Germany: Heldermann Verlag. <br>
+Nash, S. G., and A. Sofer. 1996. Linear and Nonlinear Programming. New York: McGraw-Hill. <br>
+Nering, E., and A. Tucker. 1992. Linear Programming and Related Problems. Boston, MA: Academic Press. <br>
+Orchard-Hays, W. 1968. Advanced Linear Programming Computing Techniques. New York: McGraw-Hill. <br>
+Ravindran, A., D. T. Phillips, and J. J. Solberg. 1987. Operations Research: Principles and Practice. New York: John Wiley &amp; Sons. <br>
+Rumpf, D. L., E. Melachrinoudis, and T. Rumpf. 1985. Improving efficiency in a forest pest control spray program. Interfaces 15 (5): 1–11. <br>
+Saigal, R. 1995. Linear Programming: A Modern Integrated Analysis. Boston, MA: Kluwer Academic. <br>
+Saunders, M. A. 1976. A Fast, Stable Implementation of the Simplex Method using Bartels-Golub Updating, in Sparse Matrix Computations. New York: Academic Press. <br>
+Schrage, L. 1991. LINDO: An Optimization Modeling System, 4th ed., Text and Software. Danvers, MA: Boyd and Fraser. <br>
+Schrage, L. 1986. Integer and Quadratic Programming with LINDO. Palo Alto, CA: The Scientific Press. <br>
+Schrijver, A. 1986. Theory of Linear and Integer Programming. New York: John Wiley &amp; Sons. <br>
+Schuster, E. W., and S. J. Allen. 1998. Raw material management at Welch’s, Inc. Interfaces 28 (5): 13–24. <br>
+Shanno, D. F. 1985. Computing Karmarkar Projections Quickly. University of California, Davis Graduate School of Administration. <br>
+Sharda, R. 1992. Linear programming software for personal computers: 1992 Survey. OR/MS Today 19 (3): 44–60. <br>
+Sharda, R. 1995. Linear programming solver software for personal computers: 1995 report. OR/MS Today 22 (5): 49–57. <br>
+Simmons, D. M. 1972. Linear Programming for Operations Research. San Francisco, CA: Holden-Day. <br>
+Taha, H. A. 2011. Operations Research: An Introduction, 9th ed. Upper Saddle River, NJ: Pearson. <br>
+Vanderbei, R. J. 2013. Linear Programming: Foundations and Extensions, 4th ed. New York: Springer. <br>
+Wilson, D. G. 1992. A brief introduction to the IBM optimization subroutine library. IBM Systems Journal 31 (1): 9–10. <br>
+Wolfe, P. 1980. A bibliography for the ellipsoid algorithm. Yorktown Heights, NY: IBM Research Center. <br>
+XMP Software. 1991. User’s Manual for the OB1 Linear Programming System. Incline Village, NV. <br>
+Ye, Y. 1997. Interior-Point Algorithms: Theory and Analysis. New York: John Wiley &amp; Sons. <br></p>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -550,7 +482,7 @@ problems gives an analyst some flexibility in formulating, solving, and interpre
         },
         kernelOptions: {
             name: "python3",
-            path: "./content/2_8"
+            path: "./content/References"
         },
         predefinedOutput: true
     }
@@ -568,22 +500,13 @@ problems gives an analyst some flexibility in formulating, solving, and interpre
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="2_8.html"
+       href="../Exercises/Exercises_2.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">2.8 Duality and Sensitivity Analysis</p>
+        <p class="prev-next-title">Exercises (2.16 - 2.47)</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="2_8_2.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">2.8.2 Postoptimality and Sensitivity Analysis</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>

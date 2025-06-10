@@ -58,3 +58,7 @@ parts:
 - caption: Exercises
   chapters:
   - file: content/Exercises/Exercises_1
+  - file: content/Exercises/Exercises_2
+- caption: References and Suggested Readings
+  chapters:
+  - file: content/References/References.md
