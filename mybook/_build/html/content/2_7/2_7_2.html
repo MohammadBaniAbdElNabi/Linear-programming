@@ -178,6 +178,7 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.2</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../2_2/2_2.html">2.2 The Art and Skill of Problem Formulation</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.3</span></p>
 <ul class="nav bd-sidenav">
@@ -406,26 +407,25 @@ solutions:</p>
 \[\begin{split}
 \begin{align*}
 \text{maximize} \quad &amp; z = 5x_1 + 6x_2 \\
-\text{subject to} \quad &amp; x_1 - x_2 \leq 2 \\  
+\text{subject to} \quad &amp; -x_1 + x_2 \leq 2 \\  
 &amp; x_2 \leq 10 \\
-&amp; x_1 \geq 0 \\
-&amp; x_2 \geq 0 
+&amp; x_1, x_2 \geq 0 
 \end{align*}
 \end{split}\]</div>
-<p>Figure 2.8 shows the feasible region. The initial tableau is given by:</p>
+<p><strong>Figure 2.8</strong> shows the feasible region. The initial tableau is given by:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
-<th class="head"><p>z</p></th>
-<th class="head"><p>x₁</p></th>
-<th class="head"><p>x₂</p></th>
-<th class="head"><p>s₁</p></th>
-<th class="head"><p>s₂</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(z\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x₁\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x₂\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s₁\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s₂\)</span></p></th>
 <th class="head"><p>Solution</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>z</p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(z\)</span></p></td>
 <td><p>1</p></td>
 <td><p>-5</p></td>
 <td><p>-6</p></td>
@@ -433,7 +433,7 @@ solutions:</p>
 <td><p>0</p></td>
 <td><p>0</p></td>
 </tr>
-<tr class="row-odd"><td><p>s₁</p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(s₁\)</span></p></td>
 <td><p>0</p></td>
 <td><p>-1</p></td>
 <td><p>1</p></td>
@@ -441,7 +441,7 @@ solutions:</p>
 <td><p>0</p></td>
 <td><p>2</p></td>
 </tr>
-<tr class="row-even"><td><p>s₂</p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(s₂\)</span></p></td>
 <td><p>0</p></td>
 <td><p>0</p></td>
 <td><p>1</p></td>
@@ -458,7 +458,7 @@ solutions:</p>
 <br />
 <p><strong>FIGURE 2.8</strong></p>
 <p>Unbounded solution.</p>
-<p>Our Simplex algorithm, as it is stated, would, in fact, choose <span class="math notranslate nohighlight">\(x_2\)</span> (with the most negative coefficient) as the entering variable, and we would move from point A to point B in Figure 2.8, and then subsequently to point C. At that point, we would be faced again with the inevitable: <span class="math notranslate nohighlight">\(x_1\)</span> can be feasibly increased arbitrarily, producing an arbitrarily large value of <span class="math notranslate nohighlight">\(z\)</span>.</p>
+<p>Our Simplex algorithm, as it is stated, would, in fact, choose <span class="math notranslate nohighlight">\(x_2\)</span> (with the <em>most</em> negative coefficient) as the entering variable, and we would move from point A to point B in <strong>Figure 2.8</strong>, and then subsequently to point C. At that point, we would be faced again with the inevitable: <span class="math notranslate nohighlight">\(x_1\)</span> can be feasibly increased arbitrarily, producing an arbitrarily large value of <span class="math notranslate nohighlight">\(z\)</span>.</p>
 <p>As noted earlier, a linear programming formulation with an unbounded objective function value undoubtedly represents an invalid model of a real system, since we have no real expectation of achieving unlimited productivity or profitability. Recognizing such a situation, we must reformulate the problem with more careful attention to realistic constraints on the decision variables.</p>
 </section>
 

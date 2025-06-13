@@ -178,6 +178,7 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.2</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../2_2/2_2.html">2.2 The Art and Skill of Problem Formulation</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.3</span></p>
 <ul class="nav bd-sidenav">
@@ -398,19 +399,18 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="the-two-phase-method">
 <h1>2.6.2 The Two Phase Method<a class="headerlink" href="#the-two-phase-method" title="Link to this heading">#</a></h1>
 <p>Suppose we have a linear programming problem in standard form with artificial variables in the initial basic solution. Before expending the computational effort to solve the whole enlarged problem, it would be useful to know whether a feasible solution to the original problem exists. That is, we would like to know whether there is a solution, within the enlarged feasible region, in which the artificial variables are zero.</p>
-<p>In order to make this determination, we first use the Simplex method to solve the problem of minimizing the sum of the artificial variables. If this sum can be minimized to zero, then there exists a solution not involving the artificial variables, and thus the original problem is feasible. Furthermore, in this case, we can use the final solution obtained from this computation as a starting solution for the original problem, and dispense with the artificial variables. On the other hand, if the optimized sum of the artificial variables is greater than zero, then at least one of the artificial variables remains basic, and we, therefore, know that the original problem constraint set cannot be satisfied. The two phases of this method can be summarized as follows.</p>
+<p>In order to make this determination, we first use the Simplex method to solve the problem of <em>minimizing</em> the sum of the artificial variables. If this sum can be minimized to <em>zero</em>, then there exists a solution not involving the artificial variables, and thus the original problem is feasible. Furthermore, in this case, we can use the final solution obtained from this computation as a starting solution for the original problem, and dispense with the artificial variables. On the other hand, if the optimized sum of the artificial variables is greater than zero, then at least one of the artificial variables remains basic, and we, therefore, know that the original problem constraint set cannot be satisfied. The two phases of this method can be summarized as follows.</p>
 <ul />
-<p><strong>Phase 1:</strong> Create a new objective function consisting of the sum of the artificial variables. Use the Simplex method to minimize this function, subject to the problem constraints. If this artificial objective function can be reduced to zero, then each of the (non-negative) artificial variables must be zero. In this case, all the original problem constraints are satisfied and we proceed to Phase 2. Otherwise, we know without further computation that the original problem is infeasible.</p>
-</ul>
-<ul />
-<p><strong>Phase 2:</strong> Use the basic feasible solution resulting from Phase 1 (ignoring the artificial variables which are no longer a part of any solution) as a starting solution for the original problem with the original objective function. Apply the ordinary Simplex method to obtain an optimal solution.</p>
+<p><em>Phase 1:</em> Create a new objective function consisting of the sum of the artificial variables. Use the Simplex method to minimize this function, subject to the problem constraints. If this artificial objective function can be reduced to zero, then each of the (non-negative) artificial variables must be zero. In this case, all the original problem constraints are satisfied and we proceed to Phase 2. Otherwise, we know without further computation that the original problem is infeasible.</p>
+<p><em>Phase 2:</em> Use the basic feasible solution resulting from Phase 1 (ignoring the artificial variables which are no longer a part of any solution) as a starting solution for the original problem with the original objective function. Apply the ordinary Simplex method to obtain an optimal solution.</p>
 </ul>
 <p>We will use the sample problem from <strong>Section 2.6.1</strong> to illustrate the <strong>two phase method</strong>. In Phase 1, we seek to</p>
 <div class="math notranslate nohighlight">
 \[
 \text{minimize} \quad z_R = R_1 + R_2
 \]</div>
-<p>which is equivalent to maximizing <span class="math notranslate nohighlight">\( z_R = -R_1 - R_2 \)</span>. (Note that we minimize this sum regardless of whether the original problem is a minimization or a maximization problem.) Therefore, the top row of the tableau represents the equation</p>
+<p>which is equivalent to maximizing <span class="math notranslate nohighlight">\( z_R = -R_1 - R_2 \)</span>. (Note that we minimize this sum regardless of whether the original problem is a minimization or a maximization problem.) <br>
+Therefore, the top row of the tableau represents the equation</p>
 <div class="math notranslate nohighlight">
 \[
 z_R + R_1 + R_2 = 0
@@ -455,7 +455,7 @@ z_R + R_1 + R_2 = 0
 </tbody>
 </table>
 </div>
-<p>Perform row operations to obtain a starting basis (i.e., with zero coefficient for <span class="math notranslate nohighlight">\( R_1 \)</span> and <span class="math notranslate nohighlight">\( R_2 \)</span> in the top row), and the tableau becomes:</p>
+<p>Perform row operations to obtain a starting basis (i.e., with zero coefficient for <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span> in the top row), and the tableau becomes:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
@@ -681,7 +681,7 @@ z_R + R_1 + R_2 = 0
 <p>Infeasible origin.
 <br />
 <br /></p>
-<p>It may be useful to look at a graphical solution of the problem we have just solved. Notice in Figure 2.7 that the feasible region consists only of points on the line <span class="math notranslate nohighlight">\(x_1 + x_2 = 3\)</span>, between the extreme points (0, 3) and (2/3, 7/3). The origin is not a feasible starting point, as was the case in several of our previous examples. Instead, we initially use an augmented feasible region (not visible in the graphical sketch) and a solution in which <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span> are positive. During Phase 1, <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span> become zero while the real variables <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> become positive. Phase 1 yielded the initial feasible solution (2/3, 7/3) which can be shown in the two dimensional drawing; and Phase 2 found the optimal solution at (0, 3).</p>
+<p>It may be useful to look at a graphical solution of the problem we have just solved. Notice in <strong>Figure 2.7</strong> that the feasible region consists only of points on the line <span class="math notranslate nohighlight">\(x_1 + x_2 = 3\)</span>, between the extreme points (0, 3) and (2/3, 7/3). The origin is not a feasible starting point, as was the case in several of our previous examples. Instead, we initially use an augmented feasible region (not visible in the graphical sketch) and a solution in which <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span> are positive. During Phase 1, <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span> become zero while the real variables <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> become positive. Phase 1 yielded the initial feasible solution (2/3, 7/3) which can be shown in the two dimensional drawing; and Phase 2 found the optimal solution at (0, 3).</p>
 </section>
 
     <script type="text/x-thebe-config">

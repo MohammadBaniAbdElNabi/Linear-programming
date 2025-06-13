@@ -178,6 +178,7 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.2</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../2_2/2_2.html">2.2 The Art and Skill of Problem Formulation</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.3</span></p>
 <ul class="nav bd-sidenav">
@@ -397,8 +398,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="the-dual-problem">
 <h1>2.8.1 The Dual Problem<a class="headerlink" href="#the-dual-problem" title="Link to this heading">#</a></h1>
-<p>A linear programming problem and its dual are related in the sense that both problems are based on the same problem data, and an optimal solution to either one of the problems prescribes the optimal solution to the other. These companion problems might even be thought of as two different views of the same problem, but with different economic or engineering interpretations, and possibly with different computational implications.</p>
-<p>Consider any linear programming formulation that is in the form of a maximization problem with constraints of the less than or equal type or equality constraints. (A constraint in which the inequality is a ≥ type can be multiplied by −1 to reverse the direction of the inequality sign, resulting possibly in a negative right-hand-side value.) We will call this the primal problem. If all constraints are inequalities and the decision variables are
+<p>A linear programming problem and its dual are related in the sense that both problems are based on the same problem data, and an optimal solution to either one of the problems prescribes the optimal solution to the other. These <em>companion</em> problems might even be thought of as two different views of the same problem, but with different economic or engineering interpretations, and possibly with different computational implications.</p>
+<p>Consider any linear programming formulation that is in the form of a maximization problem with constraints of the less than or equal type or equality constraints. (A constraint in which the inequality is a <span class="math notranslate nohighlight">\(≥\)</span> type can be multiplied by −1 to reverse the direction of the inequality sign, resulting possibly in a negative right-hand-side value.) We will call this the <strong>primal problem</strong>. If all constraints are inequalities and the decision variables are
 non-negative, the primal problem can be written as:</p>
 <ul />
 <ul />
@@ -420,17 +421,19 @@ non-negative, the primal problem can be written as:</p>
 </ul>
 <p>where the variables <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(\dots\)</span> , <span class="math notranslate nohighlight">\(x_n\)</span> are non-negative.
 In general, the corresponding dual problem is constructed as follows:</p>
+<ul />
 <p>• The dual problem is a minimization problem. <br>
 • For every variable <span class="math notranslate nohighlight">\(x_i\)</span> in the primal problem, there is a constraint in the dual problem. <br>
  If <span class="math notranslate nohighlight">\(x_i ≥ 0\)</span> in the primal, the constraint is a ≥ inequality in the dual. <br>
- If <span class="math notranslate nohighlight">\(x_i\)</span> is unrestricted in sign, the <span class="math notranslate nohighlight">\(i^{th}\)</span> constraint is an equality in the dual. <br>
+ If <span class="math notranslate nohighlight">\(x_i\)</span> is unrestricted in sign, the <span class="math notranslate nohighlight">\(i\)</span>-th constraint is an equality in the dual. <br>
 • For every constraint in the primal problem, there is a variable <span class="math notranslate nohighlight">\(y_i\)</span> in the dual. <br>
- If the constraint is ≤, then <span class="math notranslate nohighlight">\(y_i \geq 0\)</span> in the dual problem. <br>
- If the constraint is an equality, then yᵢ is unrestricted in sign in the dual. <br>
+ If the constraint is <span class="math notranslate nohighlight">\(≤\)</span>, then <span class="math notranslate nohighlight">\(y_i \geq 0\)</span> in the dual problem. <br>
+ If the constraint is an equality, then <span class="math notranslate nohighlight">\(yᵢ\)</span> is unrestricted in sign in the dual. <br>
 • The right hand sides in the primal are the objective function coefficients in the dual. <br>
 • The objective function coefficients in the primal are the right hand sides in the dual. <br>
 • The coefficient matrix in the primal is transposed to form the coefficient matrix for
  the dual. <br></p>
+</ul>
 <p>The dual problem corresponding to the earlier primal problem is a problem with <span class="math notranslate nohighlight">\(m\)</span> variables and <span class="math notranslate nohighlight">\(n\)</span> constraints and can be written as:</p>
 <ul />
 <ul />
@@ -451,8 +454,7 @@ In general, the corresponding dual problem is constructed as follows:</p>
 </ul>
 </ul>
 <p>and the variables <span class="math notranslate nohighlight">\(y_1\)</span>, <span class="math notranslate nohighlight">\(\dots\)</span> , <span class="math notranslate nohighlight">\(y_m\)</span> are non-negative. <br>
-Clearly, the dual of the dual problem is the original primal problem, and in many contexts, it is not necessary to stipulate which one of the companion problems is the primal one
-and which is the dual one; each is the dual of the other.</p>
+Clearly, the dual of the dual problem is the original primal problem, and in many contexts, it is not necessary to stipulate which one of the companion problems is <em>the primal one</em> and which is <em>the dual one</em>; each is the dual of the other.</p>
 <ul />
 <p><strong>Example 2.8.1</strong></p>
 <p>Consider the primal problem:</p>
@@ -462,11 +464,10 @@ and which is the dual one; each is the dual of the other.</p>
 \text{maximize} \quad &amp; 3x₁ + 2x₂ - 6x₃ \\
 \text{subject to} \quad &amp; 4x₁ + 8x₂ − x₃ ≤ 5 \\
 &amp; 7x₁ - 2x₂ + 2x₃ \geq 4 \\
-&amp; x₁, x₂, x₃ ≥ 0 
+&amp; \text{and } x₁, x₂, x₃ ≥ 0 
 \end{align*}
 \end{split}\]</div>
-<p>The second constraint can be rewritten as <span class="math notranslate nohighlight">\(−7x_1 + 2x_2 − 2x_3 ≤ −4\)</span>. The dual problem is
-then</p>
+<p>The second constraint can be rewritten as <span class="math notranslate nohighlight">\(−7x_1 + 2x_2 − 2x_3 ≤ −4\)</span>. The dual problem is then</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
@@ -474,12 +475,11 @@ then</p>
 \text{subject to} \quad &amp; 4y₁ − 7y₂ ≥ 3 \\
 &amp; 8y₁ + 2y₂ ≥ 2 \\
 &amp; −y₁ − 2y₂ ≥ -6 \\
-&amp; y₁, y₂ ≥ 0 
+&amp; \text{and } y₁, y₂ ≥ 0 
 \end{align*}
 \end{split}\]</div>
 <p><strong>Example 2.8.2</strong></p>
-<p>The following primal problem has constraints that include both types of inequalities
-and an equality constraint:</p>
+<p>The following primal problem has constraints that include both types of inequalities and an equality constraint:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
@@ -489,7 +489,7 @@ and an equality constraint:</p>
 &amp; 3x₁ + 8x₂ = 2 \\
 &amp; x₁ + 2x₂ \leq 1 \\
 &amp; \text{and }x₁ ≥ 0 \\ 
-&amp;\text{ and } x₂\text{ unrestricted in sign} 
+&amp; \text{ and } x₂ \text{ unrestricted in sign}
 \end{align*}
 \end{split}\]</div>
 <p>The dual of this problem is formed by rewriting the second constraint as <span class="math notranslate nohighlight">\(−5x_1 + 6x_2 ≤ −9\)</span>,and then following the guidelines presented earlier to obtain:</p>
@@ -503,14 +503,12 @@ and an equality constraint:</p>
 &amp; \text{and } y₃ \text{ unrestricted in sign}
 \end{align*}
 \end{split}\]</div>
-<p>(Recall that the Simplex method requires that all variables be non-negative. When an unrestricted variable arises in a formulation, that variable can be replaced by the difference of two new non-negative variables, as suggested and illustrated in Section 2.4.1.) <br>
-There is a very apparent structural similarity between a primal and dual pair of problems, but how are their solutions related? In the course of solving a (primal) maximization problem, the Simplex method generates a series of feasible solutions with successively larger objective function values (cx). Solving the corresponding (dual) minimization problem may be thought of as a process of generating a series of feasible solutions with successively <em>smaller</em> objective function values (yb). Assuming that an optimal solution does exist, the primal problem will converge to its maximum objective function value from below, and the dual problem will converge to its minimum objective function value from above. The primal objective function evaluated at x never exceeds the dual objective function evaluated at y; and at optimality, the two problems actually have the same objective function value. This can be summarized in the following <strong>duality property</strong>:</p>
+<p>(Recall that the Simplex method requires that all variables be non-negative. When an unrestricted variable arises in a formulation, that variable can be replaced by the difference of two new non-negative variables, as suggested and illustrated in <strong>Section 2.4.1</strong>.) <br>
+There is a very apparent structural similarity between a primal and dual pair of problems, but how are their solutions related? In the course of solving a (primal) maximization problem, the Simplex method generates a series of feasible solutions with successively larger objective function values (cx). Solving the corresponding (dual) minimization problem may be thought of as a process of generating a series of feasible solutions with successively <em>smaller</em> objective function values (yb). Assuming that an optimal solution does exist, the primal problem will converge to its maximum objective function value from below, and the dual problem will converge to its minimum objective function value from above. The primal objective function evaluated at  never exceeds the dual objective function evaluated at y; and at optimality, the two problems actually have the same objective function value. This can be summarized in the following <strong>duality property</strong>:</p>
 <p><strong>Duality property</strong>: If <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are feasible solutions to the primal and dual problems, respectively, then <span class="math notranslate nohighlight">\(cx ≤ yb\)</span> throughout the optimization process; and finally, at optimality, <span class="math notranslate nohighlight">\(cx^* = y^*b\)</span>.</p>
 <p>It follows from this property that, if feasible objective function values are found for a primal and dual pair of problems, and if these values are equal to each other, then both of the solutions are optimal solutions.</p>
-<p>The phenomenon of primal and dual problems sharing the same objective function
-values is not mere coincidence. In fact, the shadow prices, which appear in the top row of the optimal tableau of the primal problem, are precisely the optimal values of the dual variables. Similarly, if the dual problem were solved using the Simplex method, the shadow prices in that optimal tableau would be the optimal values of the primal variables.</p>
-<p>In the illustrative problem from Section 2.5, the dual objective of minimizing
-<span class="math notranslate nohighlight">\(150y₁ + 250y₂ + 500y₃\)</span> is met when the dual variables (shadow prices) have the values <span class="math notranslate nohighlight">\(y₁ = 0, y₂ = 1, y₃ = 4\)</span>. Thus, from the dual point of view,</p>
+<p>The phenomenon of primal and dual problems sharing the same objective function values is not mere coincidence. In fact, the <strong>shadow prices</strong>, which appear in the top row of the optimal tableau of the primal problem, are precisely the <strong>optimal values of the dual variables</strong>. Similarly, if the dual problem were solved using the Simplex method, the shadow prices in that optimal tableau would be the optimal values of the primal variables.</p>
+<p>In the illustrative problem from <strong>Section 2.5</strong>, the dual objective of minimizing <span class="math notranslate nohighlight">\(150y₁ + 250y₂ + 500y₃\)</span> is met when the dual variables (shadow prices) have the values <span class="math notranslate nohighlight">\(y₁ = 0, y₂ = 1, y₃ = 4\)</span>. Thus, from the dual point of view,</p>
 <div class="math notranslate nohighlight">
 \[ z^* = 150(0) + 250(1) + 500(4) = 2250 \]</div>
 <p>which is equal to the primal objective value</p>
@@ -518,7 +516,7 @@ values is not mere coincidence. In fact, the shadow prices, which appear in the 
 \[ z^* = 8x₁ + 5x₂ = 8(125) + 5(250) = 2250 \]</div>
 <p>for optimal <span class="math notranslate nohighlight">\(x\)</span> values of <span class="math notranslate nohighlight">\(x₁ = 125\)</span> and <span class="math notranslate nohighlight">\(x₂ = 250\)</span>. <br>
 One further characterization relating primal and dual linear programming problems is known as <strong>complementary slackness</strong>. Because each decision variable in a primal problem is associated with a constraint in the dual problem, each such variable is also associated with a slack or surplus variable in the dual. In any solution, if the primal variable is basic (with value <span class="math notranslate nohighlight">\(≥ 0\)</span>, hence having slack), then the associated dual variable is non-basic (with value <span class="math notranslate nohighlight">\(= 0\)</span>, hence having no slack). And if the primal variable is non-basic (with value <span class="math notranslate nohighlight">\(= 0\)</span>, hence no slack), then the associated dual variable is basic (with value <span class="math notranslate nohighlight">\(= 0\)</span>, hence having slack).</p>
-<p>This can be observed even in a problem as simple as the one illustrating the Simplex method in Section 2.5. In the final tableau, the primal basic variables <span class="math notranslate nohighlight">\(x₁, s₁\)</span>, and <span class="math notranslate nohighlight">\(x₂\)</span> have positive values, while in the top row we see zero values for their three associated dual variables. The non-basic primal variables <span class="math notranslate nohighlight">\(s₂\)</span> and <span class="math notranslate nohighlight">\(s₃\)</span> have zero values, while their associated dual variables are basic and have non-zero values.</p>
+<p>This can be observed even in a problem as simple as the one illustrating the Simplex method in <strong>Section 2.5</strong>. In the final tableau, the primal basic variables <span class="math notranslate nohighlight">\(x₁, s₁\)</span>, and <span class="math notranslate nohighlight">\(x₂\)</span> have positive values, while in the top row we see zero values for their three associated dual variables. The non-basic primal variables <span class="math notranslate nohighlight">\(s₂\)</span> and <span class="math notranslate nohighlight">\(s₃\)</span> have zero values, while their associated dual variables are basic and have non-zero values.</p>
 <p>This property is described as follows.</p>
 <ul/>
 <p><strong>Complementary Slackness Property</strong>: If in an optimal solution to a linear programming problem, an inequality constraint is not binding, then the dual variable corresponding to that constraint has a value of zero in any optimal solution to the dual problem.</p>
@@ -532,7 +530,7 @@ The properties described earlier were based on an assumption that optimal soluti
 <li><p>The dual problem is feasible but unbounded, and the primal problem is infeasible.</p></li>
 </ol>
 <p>Because the pertinent parameters and goals of any linear programming problem can be expressed in either a primal or dual form, and because solving either the primal or dual problem yields enough information to easily construct a solution to the other, we might reasonably wonder which problem, primal or dual, should we solve when using the Simplex method.</p>
-<p>From the standpoint of computational efficiency, we might wish to choose to solve the problem with the fewer number of constraints. As is discussed further in Section 2.10.3,the computation time required for the Simplex method is strongly dependent on the number of constraints, and almost independent of the number of variables. Therefore, in the absence of other identifiable structural characteristics of a problem that might make it amenable to the use of specialized solution methods, we could expect to be able to solve most quickly the problem having the smaller number of constraints. This choice becomes more compelling when the linear programming problem has thousands of constraints, and is of much less importance for more moderate-sized problems of a few hundred or less constraints.</p>
+<p>From the standpoint of computational efficiency, we might wish to choose to solve the problem with the <em>fewer number of constraints</em>. As is discussed further in <strong>Section 2.10.3</strong>,the computation time required for the Simplex method is strongly dependent on the number of constraints, and almost independent of the number of variables. Therefore, in the absence of other identifiable structural characteristics of a problem that might make it amenable to the use of specialized solution methods, we could expect to be able to solve most quickly the problem having the smaller number of constraints. This choice becomes more compelling when the linear programming problem has thousands of constraints, and is of much less importance for more moderate-sized problems of a few hundred or less constraints.</p>
 <p>An understanding of duality properties and the relation between primal and dual
 problems gives an analyst some flexibility in formulating, solving, and interpreting a solution to a linear programming problem. Moreover, duality provides the mathematical basis for analyzing an optimal solution’s sensitivity to small changes in problem data. We now turn our attention to the types of analysis that can be made once an optimal solution to a linear programming problem has been obtained.</p>
 </ul></section>

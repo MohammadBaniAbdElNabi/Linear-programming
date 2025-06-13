@@ -179,6 +179,7 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.2</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="content/2_2/2_2.html">2.2 The Art and Skill of Problem Formulation</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.3</span></p>
 <ul class="nav bd-sidenav">
@@ -410,23 +411,19 @@ document.write(`
 <h1>Linear Programming<a class="headerlink" href="#linear-programming" title="Link to this heading">#</a></h1>
 <section id="the-linear-programming-model">
 <h2>2.1 The Linear Programming Model<a class="headerlink" href="#the-linear-programming-model" title="Link to this heading">#</a></h2>
-<p><strong>Linear programming</strong> is a special class of mathematical programming models in which the <strong>objective function</strong> and the <strong>constraints</strong> can be expressed as <em>linear</em> functions of the decision variables. As with the more general mathematical programming models, the decision variables represent quantities that are, in some sense, controllable inputs to the system being modeled. An <strong>objective function</strong> represents some principal objective criterion or goal that measures the effectiveness of the system (such as maximizing profits or productivity, or minimizing cost or consumption). There is always some practical limitation on the availability of resources (time, materials, machines, energy, or manpower) for the system, and such <strong>constraints</strong> are expressed as linear inequalities or equations involving the decision variables. <em>Solving</em> a linear programming problem means determining actual values of the decision variables that optimize the objective function, subject to the limitations imposed by the constraints.
-The use of linear programming models for system optimization arises quite naturally in a wide variety of applications. Some models may not be strictly linear, but can be made linear by applying appropriate mathematical transformations. Still other applications are admittedly not at all linear, but can be effectively approximated by linear models. The ease with which linear programming problems can usually be solved makes this an attractive means of dealing with otherwise intractable nonlinear problems.
+<p>Linear programming is a special class of mathematical programming models in which the objective function and the constraints can be expressed as linear functions of the decision variables. As with the more general mathematical programming models, the decision variables represent quantities that are, in some sense, controllable inputs to the system being modeled. An objective function represents some principal objective criterion or goal that measures the effectiveness of the system (such as maximizing profits or productivity, or minimizing cost or consumption). There is always some practical limitation on the availability of resources (time, materials, machines, energy, or manpower) for the system, and such constraints are expressed as linear inequalities or equations involving the decision variables. Solving a linear programming problem means determining actual values of the decision variables that optimize the objective function, subject to the limitations imposed by the constraints. <br>
+The use of linear programming models for system optimization arises quite naturally in a wide variety of applications. Some models may not be strictly linear, but can be made linear by applying appropriate mathematical transformations. Still other applications are admittedly not at all linear, but can be effectively approximated by linear models. The ease with which linear programming problems can usually be solved makes this an attractive means of dealing with otherwise intractable nonlinear problems.<br>
 In the following section, we will see examples of the wide variety of applications that can be modeled with linear programming. In each case, the first task will be to identify the controllable decision variables xi, where <span class="math notranslate nohighlight">\(i\)</span> = 1, …, <span class="math notranslate nohighlight">\(n\)</span>. Then the objective criterion will be established: to either maximize or minimize some function of the form</p>
 <div class="math notranslate nohighlight">
 \[
 z = c_1 x_1 + c_2 x_2 +...+ c_n x_n = \sum_{i=1}^n (c_i x_i)
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(c_i\)</span> represents problem dependent constants. Finally, resource limitations and bounds
-on decision variables will be written as equations or inequalities relating a linear function
-of the decision variables to some problem dependent constant; for example,</p>
+<p>where <span class="math notranslate nohighlight">\(c_i\)</span> represents problem dependent constants. Finally, resource limitations and bounds on decision variables will be written as equations or inequalities relating a linear function of the decision variables to some problem dependent constant; for example,</p>
 <div class="math notranslate nohighlight">
 \[
 a_1 x_1 + a_2 x_2 +...+ a_n x_n \leq b
 \]</div>
-<p>Although the primary purpose of this chapter will be to present methods of solving linear
-programming problems, the first critical step in successful problem-solving lies in the cor-
-rect <strong>formulation</strong> of an application problem into the linear programming framework.</p>
+<p>Although the primary purpose of this chapter will be to present methods of solving linear programming problems, the first critical step in successful problem-solving lies in the correct formulation of an application problem into the linear programming framework.</p>
 </section>
 <div class="toctree-wrapper compound">
 </div>

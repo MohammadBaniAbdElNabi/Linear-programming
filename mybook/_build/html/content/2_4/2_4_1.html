@@ -178,6 +178,7 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.2</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../2_2/2_2.html">2.2 The Art and Skill of Problem Formulation</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.3</span></p>
 <ul class="nav bd-sidenav">
@@ -370,7 +371,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -386,6 +389,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-form-of-a-linear-programming-problem">2.4.1 Standard Form of a Linear Programming Problem</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -397,38 +408,21 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="preparation-for-the-simplex-method">
 <h1>2.4 Preparation for the Simplex Method<a class="headerlink" href="#preparation-for-the-simplex-method" title="Link to this heading">#</a></h1>
-<BR />
-2.4.1 Standard Form of a Linear Programming Problem
-<p>In preparation for the use of the Simplex method, it is necessary to express the linear programming problem in <em>standard form</em>. For a linear program with <em>n</em> variables and <em>m</em> constraints, we will use the following standard form:</p>
-<ul/>
-<ul/>
-<ul/>
-<ul/>
-<ul/>
-<p><strong>maximize</strong><br />
-<span class="math notranslate nohighlight">\(z = c_1x_1 + c_2x_2 + \cdots + c_nx_n\)</span></p>
-</ul>
-</ul>
-</ul>
-</ul>
-</ul>
-<ul/>
-<ul/>
-<ul/>
-<ul/>
-<ul/>
-<p><strong>subject to</strong><br />
-<span class="math notranslate nohighlight">\(a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1 \)</span></p>
-<p><span class="math notranslate nohighlight">\(a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2 \)</span></p>
-<p style="text-indent: 15px;">&darr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&darr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&darr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&darr;</p>
-<p><span class="math notranslate nohighlight">\(a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m\)</span></p>
-</ul>
-</ul>
-</ul>
-</ul>
-</ul>
-<BR />
-<p>where the variables (<span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(\ldots\)</span>, <span class="math notranslate nohighlight">\(x_n\)</span>) are non-negative, and the constants (<span class="math notranslate nohighlight">\(b_1\)</span>, <span class="math notranslate nohighlight">\(\ldots\)</span>, <span class="math notranslate nohighlight">\(b_m\)</span>) on the right-hand sides of the constraints are also non-negative. We can use matrix notation to represent the cost (or profit) vector (<span class="math notranslate nohighlight">\(c\)</span> = (<span class="math notranslate nohighlight">\(c_1\)</span>, <span class="math notranslate nohighlight">\(c_2\)</span>, <span class="math notranslate nohighlight">\(\ldots\)</span>, <span class="math notranslate nohighlight">\(c_n\)</span>)) the decision variable vector</p>
+<section id="standard-form-of-a-linear-programming-problem">
+<h2>2.4.1 Standard Form of a Linear Programming Problem<a class="headerlink" href="#standard-form-of-a-linear-programming-problem" title="Link to this heading">#</a></h2>
+<p>In preparation for the use of the Simplex method, it is necessary to express the linear programming problem in <strong>standard form</strong>. For a linear program with <em>n</em> variables and <em>m</em> constraints, we will use the following standard form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rll}
+\text{maximize} &amp; z = c_1x_1 + c_2x_2 + \dots + c_nx_n &amp; \\
+\text{subject to} &amp; a_{11}x_1 + a_{12}x_2 + \dots + a_{1n}x_n &amp; = b_1 \\
+&amp; a_{21}x_1 + a_{22}x_2 + \dots + a_{2n}x_n &amp; = b_2 \\
+&amp; \vdots &amp; \\
+&amp; a_{m1}x_1 + a_{m2}x_2 + \dots + a_{mn}x_n &amp; = b_m
+\end{array}
+\end{split}\]</div>
+<br />
+<p>where the variables <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(\ldots\)</span>, <span class="math notranslate nohighlight">\(x_n\)</span> are non-negative, and the constants <span class="math notranslate nohighlight">\(b_1\)</span>, <span class="math notranslate nohighlight">\(\ldots\)</span>, <span class="math notranslate nohighlight">\(b_m\)</span> on the right-hand sides of the constraints are also non-negative. We can use matrix notation to represent the cost (or profit) vector <span class="math notranslate nohighlight">\(c\)</span> = (<span class="math notranslate nohighlight">\(c_1\)</span>, <span class="math notranslate nohighlight">\(c_2\)</span>, <span class="math notranslate nohighlight">\(\ldots\)</span>, <span class="math notranslate nohighlight">\(c_n\)</span>) the decision variable vector</p>
 <br />
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -444,7 +438,7 @@ x_n
 \[\begin{split}
 A = \begin{bmatrix}
 a_{11} &amp; \cdots &amp; a_{1n} \\
-\vdots &amp; \ddots &amp; \vdots \\
+\vdots &amp; \vdots &amp; \vdots \\
 a_{m1} &amp; \cdots &amp; a_{mn}
 \end{bmatrix}
 \end{split}\]</div>
@@ -469,11 +463,12 @@ a_{m1} &amp; \cdots &amp; a_{mn}
 \end{align*}\end{split}\]</div>
 </ul>
 <br />
-<p>Although this standard form will be required by the Simplex method, it is not necessarily the form that arises naturally when we first formulate linear programming models. Several modifications may be necessary in order to transform an original linear programming formulation (as in Section 2.2) into the standard form.</p>
-<p>To convert a <em>minimization</em> problem to a <em>maximization</em> problem, we can simply multiply the objective function by −1, and then maximize this function. (Recall that there are no sign restrictions on the ( <span class="math notranslate nohighlight">\(c_i\)</span> ). For example, the problem of minimizing (<span class="math notranslate nohighlight">\( z = 3x_1 - 5x_2 \)</span>) is equivalent to maximizing ( <span class="math notranslate nohighlight">\(z = -3x_1 + 5x_2 \)</span>). Negative right-hand sides of the constraints can be made positive by multiplying the constraint by −1 (reversing the sense of the inequality).</p>
-<p>Equality constraints require no modification. Inequality constraints can be converted to equalities through the introduction of additional variables that make up the difference in the left and right sides of the inequalities. Less than or equal to (≤) inequalities require the introduction of variables called <strong>slack variables</strong>.  For example, <span class="math notranslate nohighlight">\( 3x_1 + 4x_2 \leq 7\)</span>  becomes the equality <span class="math notranslate nohighlight">\(3x_1 + 4x_2 + s_1 = 7\)</span> when we introduce the slack variable <span class="math notranslate nohighlight">\(s_1\)</span>, where  <span class="math notranslate nohighlight">\(s_1 \geq 0 \)</span>. Greater than or equal to (≥) constraints are modified by introducing <strong>surplus variables</strong>. For example, <span class="math notranslate nohighlight">\(14x_1 + 3x_2 \geq 12\)</span> becomes the equality <span class="math notranslate nohighlight">\(14x_1 + 3x_2 - s_2 = 12\)</span> where <span class="math notranslate nohighlight">\(s_2\)</span> is the non-negative surplus variable. Although our notation ( <span class="math notranslate nohighlight">\(s_1 , s_2 \)</span>) may suggest otherwise, the slack and surplus variables are treated exactly like any other decision variable throughout the solution process. Their final values may be just as interesting to a systems manager or analyst as the values of the original decision variables.</p>
-<p>Finally, all variables are required to be non-negative in the standard form. If a decision variable should be unrestricted in sign, then that variable may be replaced by the difference of two new non-negative variables. For example, if (<span class="math notranslate nohighlight">\( x_1 \)</span>) is to be an unrestricted variable, then every occurrence of <span class="math notranslate nohighlight">\(x_1\)</span> in the objective function or in any constraint will be replaced by <span class="math notranslate nohighlight">\(x_1' - x_2''\)</span>, where ( <span class="math notranslate nohighlight">\(x_1', x_2'' \geq 0\)</span>). Then in any solution, the sign of the value of <span class="math notranslate nohighlight">\(x_1\)</span> is dependent on the relative values of <span class="math notranslate nohighlight">\(x_1′\)</span> and <span class="math notranslate nohighlight">\(x_2″\)</span></p>
-<p>The reason for placing problems in standard form is that our general solution method will be seen to operate by finding and examining solutions to the system of linear equations ( <span class="math notranslate nohighlight">\(Ax = b\)</span> ), with the aim of selecting a solution that is optimal with respect to the objective function.</p>
+<p>Although this standard form will be required by the Simplex method, it is not necessarily the form that arises naturally when we first formulate linear programming models. Several modifications may be necessary in order to transform an original linear programming formulation (as in <strong>Section 2.2</strong>) into the standard form.</p>
+<p>To convert a minimization problem to a maximization problem, we can simply multiply the objective function by <span class="math notranslate nohighlight">\(−1\)</span>, and then maximize this function. (Recall that there are no sign restrictions on the <span class="math notranslate nohighlight">\(c_i\)</span>.) For example, the problem of minimizing <span class="math notranslate nohighlight">\( z = 3x_1 - 5x_2 \)</span> is equivalent to maximizing <span class="math notranslate nohighlight">\(z = -3x_1 + 5x_2 \)</span>. Negative right hand sides of the constraints can be made positive by multiplying the constraint by <span class="math notranslate nohighlight">\(−1\)</span> (reversing the sense of the inequality).</p>
+<p>Equality constraints require no modification. Inequality constraints can be converted to equalities through the introduction of additional variables that make up the difference in the left and right sides of the inequalities. Less than or equal to (≤) inequalities require the introduction of variables that we will call <strong>slack variables</strong>. For example, a constraint such as <span class="math notranslate nohighlight">\( 3x_1 + 4x_2 \leq 7\)</span>  becomes the equality <span class="math notranslate nohighlight">\(3x_1 + 4x_2 + s_1 = 7\)</span> when we introduce the slack variable <span class="math notranslate nohighlight">\(s_1\)</span>, where  <span class="math notranslate nohighlight">\(s_1 \geq 0 \)</span>. Greater than or equal to (≥) constraints are modified by introducing <strong>surplus variables</strong>. For example, <span class="math notranslate nohighlight">\(14x_1 + 3x_2 \geq 12\)</span> becomes the equality <span class="math notranslate nohighlight">\(14x_1 + 3x_2 - s_2 = 12\)</span> where <span class="math notranslate nohighlight">\(s_2\)</span> is the non-negative surplus variable. Although our notation ( <span class="math notranslate nohighlight">\(s_1 \text{ and } s_2 \)</span>) may suggest otherwise, the slack and surplus variables are going to be treated exactly like any other decision variable throughout the solution process. In fact, their final values in the solution of the linear programming problem may be just as interesting to a systems manager or analyst as are the values of the original decision variables.</p>
+<p>Finally, all variables are required to be non-negative in the standard form. In the event that the actual meaning associated with a decision variable is such that the variable should be unrestricted in sign, then that variable may be replaced by the difference of two new non-negative variables. For example, if <span class="math notranslate nohighlight">\( x_1 \)</span> is to be an unrestricted variable, then every occurrence of <span class="math notranslate nohighlight">\(x_1\)</span> in the objective function or in any constraint will be replaced by <span class="math notranslate nohighlight">\(x_1' - x_2''\)</span>, where <span class="math notranslate nohighlight">\(x_1', x_2'' \geq 0\)</span>. Then in any solution, the sign of the value of <span class="math notranslate nohighlight">\(x_1\)</span> is dependent on the relative values of <span class="math notranslate nohighlight">\(x_1′\)</span> and <span class="math notranslate nohighlight">\(x_2″\)</span></p>
+<p>The reason for placing problems in standard form is that our general solution method will be seen to operate by finding and examining solutions to the system of linear equations <span class="math notranslate nohighlight">\(Ax = b\)</span>, (i.e., by finding values of the decision variables that are consistent with the problem constraints), with the aim of selecting a solution that is optimal with respect to the objective function.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -530,6 +525,21 @@ a_{m1} &amp; \cdots &amp; a_{mn}
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-form-of-a-linear-programming-problem">2.4.1 Standard Form of a Linear Programming Problem</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

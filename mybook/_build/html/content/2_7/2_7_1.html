@@ -178,6 +178,7 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.2</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../2_2/2_2.html">2.2 The Art and Skill of Problem Formulation</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.3</span></p>
 <ul class="nav bd-sidenav">
@@ -397,23 +398,23 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="multiple-optimal-solutions">
 <h1>2.7.1 Multiple Optimal Solutions<a class="headerlink" href="#multiple-optimal-solutions" title="Link to this heading">#</a></h1>
-<p>Recall from our example in Section 2.3.3 that when the line corresponding to the objective function is parallel to one of the straight lines bounding the feasible region, then the objective function can be optimized at all points on that edge of the feasible region. Thus, instead of a unique optimal solution, we have infinitely many optimal solutions from which to choose, thereby permitting management to select on the basis of secondary factors that do not appear in the model.</p>
-<p>This situation can be recognized in the Simplex tableau during Step 2 of the Simplex algorithm. If a zero appears in the objective function row corresponding to a non-basic variable, then that non-basic variable can enter the basis without changing the value of the objective function. In other words, there are two distinct adjacent extreme points that yield the same value of z.</p>
-<p>When we apply the Simplex algorithm to the problem illustrated in Figure 2.3, the initial solution is <span class="math notranslate nohighlight">\(x_1\)</span> = <span class="math notranslate nohighlight">\(x_2\)</span> = 0. In the first iteration, x₂ enters the basis and <span class="math notranslate nohighlight">\(s_1\)</span> leaves, and this solution <span class="math notranslate nohighlight">\(x_1\)</span> = 0, <span class="math notranslate nohighlight">\(x_2\)</span> = 2 yields <span class="math notranslate nohighlight">\(z\)</span> = 4. Next, <span class="math notranslate nohighlight">\(x_2\)</span> enters the basis and <span class="math notranslate nohighlight">\(s_2\)</span> leaves, and we obtain the solution designated as point A in the figure where <span class="math notranslate nohighlight">\(x_1\)</span> = 4/3, <span class="math notranslate nohighlight">\(x_2\)</span> = 10/3, and <span class="math notranslate nohighlight">\(z\)</span> = 8. (Observe that <span class="math notranslate nohighlight">\(s_3\)</span> is a basic variable and, therefore, constraint 3 is not binding at this point.) Now, the third Simplex tableau is as follows.</p>
+<p>Recall from our example in <strong>Section 2.3.3</strong> that when the line corresponding to the objective function is parallel to one of the straight lines bounding the feasible region, then the objective function can be optimized at all points on that edge of the feasible region. Thus, instead of a unique optimal solution, we have infinitely many optimal solutions from which to choose, thereby permitting management to select on the basis of secondary factors that do not appear in the model.</p>
+<p>This situation can be recognized in the Simplex tableau during Step 2 of the Simplex algorithm. If a zero appears in the objective function row corresponding to a non-basic variable, then that non-basic variable can enter the basis without changing the value of the objective function. In other words, there are two distinct <strong>adjacent extreme points</strong> that yield the same value of <span class="math notranslate nohighlight">\(z\)</span>.</p>
+<p>When we apply the Simplex algorithm to the problem illustrated in <strong>Figure 2.3</strong>, the initial solution is <span class="math notranslate nohighlight">\(x_1\)</span> = <span class="math notranslate nohighlight">\(x_2\)</span> = 0. In the first iteration, <span class="math notranslate nohighlight">\(x₂\)</span> enters the basis and <span class="math notranslate nohighlight">\(s_1\)</span> leaves, and this solution <span class="math notranslate nohighlight">\(x_1\)</span> = 0, <span class="math notranslate nohighlight">\(x_2\)</span> = 2 yields <span class="math notranslate nohighlight">\(z\)</span> = 4. Next, <span class="math notranslate nohighlight">\(x_1\)</span> enters the basis and <span class="math notranslate nohighlight">\(s_2\)</span> leaves, and we obtain the solution designated as point A in the figure where <span class="math notranslate nohighlight">\(x_1\)</span> = 4/3, <span class="math notranslate nohighlight">\(x_2\)</span> = 10/3, and <span class="math notranslate nohighlight">\(z\)</span> = 8. (Observe that <span class="math notranslate nohighlight">\(s_3\)</span> is a basic variable and, therefore, constraint 3 is not <em>binding</em> at this point.) Now, the third Simplex tableau is as follows.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
-<th class="head"><p>z</p></th>
-<th class="head"><p>x₁</p></th>
-<th class="head"><p>x₂</p></th>
-<th class="head"><p>s₁</p></th>
-<th class="head"><p>s₂</p></th>
-<th class="head"><p>s₃</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(z\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x₁\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x₂\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s₁\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s₂\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s₃\)</span></p></th>
 <th class="head"><p>Solution</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>z</p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(z\)</span></p></td>
 <td><p>1</p></td>
 <td><p>0</p></td>
 <td><p>0</p></td>
@@ -422,7 +423,7 @@ document.write(`
 <td><p>0</p></td>
 <td><p>8</p></td>
 </tr>
-<tr class="row-odd"><td><p>x₂</p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(x₂\)</span></p></td>
 <td><p>0</p></td>
 <td><p>0</p></td>
 <td><p>1</p></td>
@@ -431,7 +432,7 @@ document.write(`
 <td><p>0</p></td>
 <td><p>10/3</p></td>
 </tr>
-<tr class="row-even"><td><p>x₁</p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(x₁\)</span></p></td>
 <td><p>0</p></td>
 <td><p>1</p></td>
 <td><p>0</p></td>
@@ -440,7 +441,7 @@ document.write(`
 <td><p>0</p></td>
 <td><p>4/3</p></td>
 </tr>
-<tr class="row-odd"><td><p>s₃</p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(s₃\)</span></p></td>
 <td><p>0</p></td>
 <td><p>0</p></td>
 <td><p>0</p></td>
@@ -452,21 +453,21 @@ document.write(`
 </tbody>
 </table>
 </div>
-<p>This solution is optimal since all elements on the top row are non-negative. The zero in the top row corresponding to the non-basic variable <span class="math notranslate nohighlight">\(s_1\)</span> signals that this problem has multiple optimal solutions. And, in fact, if we apply another pivot operation (by bringing <span class="math notranslate nohighlight">\(s_2\)</span> into the basis and selecting <span class="math notranslate nohighlight">\(s_3\)</span> to leave the basis), we obtain the fourth tableau</p>
+<p>This solution is optimal since all elements on the top row are non-negative. The zero in the top row corresponding to the non-basic variable <span class="math notranslate nohighlight">\(s_1\)</span> signals that this problem has multiple optimal solutions. And, in fact, if we apply another pivot operation (by bringing <span class="math notranslate nohighlight">\(s_1\)</span> into the basis and selecting <span class="math notranslate nohighlight">\(s_3\)</span> to leave the basis), we obtain the fourth tableau</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
-<th class="head"><p>z</p></th>
-<th class="head"><p>x₁</p></th>
-<th class="head"><p>x₂</p></th>
-<th class="head"><p>s₁</p></th>
-<th class="head"><p>s₂</p></th>
-<th class="head"><p>s₃</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(z\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x₁\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x₂\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s₁\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s₂\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s₃\)</span></p></th>
 <th class="head"><p>Solution</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>z</p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(z\)</span></p></td>
 <td><p>1</p></td>
 <td><p>0</p></td>
 <td><p>0</p></td>
@@ -475,7 +476,7 @@ document.write(`
 <td><p>0</p></td>
 <td><p>8</p></td>
 </tr>
-<tr class="row-odd"><td><p>x₂</p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(x₂\)</span></p></td>
 <td><p>0</p></td>
 <td><p>0</p></td>
 <td><p>1</p></td>
@@ -484,7 +485,7 @@ document.write(`
 <td><p>-1/2</p></td>
 <td><p>1</p></td>
 </tr>
-<tr class="row-even"><td><p>x₁</p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(x₁\)</span></p></td>
 <td><p>0</p></td>
 <td><p>1</p></td>
 <td><p>0</p></td>
@@ -493,7 +494,7 @@ document.write(`
 <td><p>1</p></td>
 <td><p>6</p></td>
 </tr>
-<tr class="row-odd"><td><p>s₁</p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(s₁\)</span></p></td>
 <td><p>0</p></td>
 <td><p>0</p></td>
 <td><p>0</p></td>
@@ -505,7 +506,7 @@ document.write(`
 </tbody>
 </table>
 </div>
-<p>This solution corresponds to point B in Figure 2.3 where <span class="math notranslate nohighlight">\(x_1\)</span> = 6, <span class="math notranslate nohighlight">\(x_2\)</span> = 1, and <span class="math notranslate nohighlight">\(z\)</span> = 8; and where <span class="math notranslate nohighlight">\(s_1\)</span> is basic and consequently constraint 1 is not binding at this point.</p>
+<p>This solution corresponds to point B in <em>Figure 2.3</em> where <span class="math notranslate nohighlight">\(x_1\)</span> = 6, <span class="math notranslate nohighlight">\(x_2\)</span> = 1, and <span class="math notranslate nohighlight">\(z\)</span> = 8; and where <span class="math notranslate nohighlight">\(s_1\)</span> is basic and consequently constraint 1 is not binding at this point.</p>
 </section>
 
     <script type="text/x-thebe-config">

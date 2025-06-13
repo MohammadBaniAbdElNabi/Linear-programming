@@ -178,6 +178,7 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.2</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../2_2/2_2.html">2.2 The Art and Skill of Problem Formulation</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Section 2.3</span></p>
 <ul class="nav bd-sidenav">
@@ -409,8 +410,9 @@ document.write(`
 <h1>2.6 Initial Solutions for General Constraints<a class="headerlink" href="#initial-solutions-for-general-constraints" title="Link to this heading">#</a></h1>
 <section id="artificial-variables">
 <h2>2.6.1 Artificial Variables<a class="headerlink" href="#artificial-variables" title="Link to this heading">#</a></h2>
-<p>In the original presentation of the Simplex algorithm in Section 2.5, our sample problem was one in which all constraints were of the less-than-or-equal (≤) type. In that case, we observed that by adding slack variables (in order to achieve equality constraints), we fortuitously also obtained an initial feasible set of basic variables. The coefficients of the slack variables provided the required unit vectors, embedded in the matrix of coefficients of the linear system of equations. In this section, we will see how to obtain an initial basic feasible solution for problems with more general forms of constraints, and to then use the Simplex method to solve such problems.</p>
-<p>First of all, recall that all right hand sides <span class="math notranslate nohighlight">\( b_i \)</span> of constraints must be non-negative. Any constraint with a negative constant on the right hand side can be multiplied by –1 in order to satisfy this requirement. For example, an equality constraint such as:</p>
+<p>In the original presentation of the Simplex algorithm in <strong>Section 2.5</strong>, our sample problem was one in which all constraints were of the less-than-or-equal (≤) type. In that case, we observed that by adding slack variables (in order to achieve equality constraints), we fortuitously also obtained an initial feasible set of basic variables. The coefficients of the slack variables provided the required unit vectors, embedded in the matrix of coefficients of the linear system of equations. In this section, we will see how to obtain an initial basic feasible solution for problems with more general forms of constraints, and to then use the Simplex method to solve such problems.</p>
+<p>First of all, recall that all right hand sides <span class="math notranslate nohighlight">\(b_i\)</span> of constraints must be non-negative. Any
+constraint with a negative constant on the right hand side can be multiplied by −1 in order to satisfy this requirement. For example, an equality constraint such as:</p>
 <div class="math notranslate nohighlight">
 \[
 -3x_1 + 4x_2 = -6
@@ -423,12 +425,12 @@ document.write(`
 <p>An inequality such as:</p>
 <div class="math notranslate nohighlight">
 \[
-5x_1 - 8x_2 \geq -10
+5x_1 - 8x_2 \leq -10
 \]</div>
 <p>can be replaced by</p>
 <div class="math notranslate nohighlight">
 \[
--5x_1 + 8x_2 \leq 10
+-5x_1 + 8x_2 \geq 10
 \]</div>
 <p>At this point, it should be clear that typical linear programming problems in standard form contain equality constraints involving only the original decision variables as well as constraints that include slack variables and surplus variables. Slack variables can conveniently be used as basic variables; however, basic variables corresponding to equality constraints and greater than or equal (≥) constraints are not always immediately available. Although it may be possible, by trial and error, to obtain a feasible starting basis for some problems, we prefer to use an approach that is straightforward and simple, and that can be used predictably in all cases.<br />
 We will deal with this situation by introducing additional variables, called artificial variables, solely for the purpose of obtaining an initial basis. These variables have no real meaning in the problem being solved, and will not be a part of the final solution. They merely provide a mechanism that will allow us to create a starting basic solution configuration, and then to apply the Simplex algorithm to the problem. (Note that it may not be necessary to add an artificial variable to every constraint; a constraint with a slack variable does not need an artificial variable.)</p>
@@ -448,25 +450,25 @@ We will deal with this situation by introducing additional variables, called art
 -2x_1 + x_2 - s_1 = 1 \\
 x_1 + x_2 = 3
 \end{split}\]</div>
-<p>is in standard form, but since there is no obvious starting solution (as there would have been if we had added slack variables in each constraint), we will introduce two artificial variables, <span class="math notranslate nohighlight">\( R_1 \)</span> and <span class="math notranslate nohighlight">\( R_2 \)</span>, for this purpose. The constraint set becomes</p>
+<p>is in standard form, but since there is no obvious starting solution (as there would have been if we had added <em>slack</em> variables in each constraint), we will introduce two artificial variables, <span class="math notranslate nohighlight">\( R_1 \)</span> and <span class="math notranslate nohighlight">\( R_2 \)</span>, for this purpose. The constraint set becomes</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 -2x_1 + x_2 - s_1 + R_1 = 1 \\
 x_1 + x_2 + R_2 = 3
 \end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\( x_1, x_2, s_1, R_1, R_2 \geq 0 \)</span>. We now have initial basic variables <span class="math notranslate nohighlight">\( R_1 \)</span> and <span class="math notranslate nohighlight">\( R_2 \)</span> for this enlarged problem; however, we must realize that the original equality constraint set is satisfied only if both <span class="math notranslate nohighlight">\( R_1 \)</span> and <span class="math notranslate nohighlight">\( R_2 \)</span> have values of zero. Therefore, the artificial variables must play only a temporary role in the solution.</p>
-<p>There are two primary approaches that we can use to ensure that the artificial variables are not in the final solution. One method, commonly called the Big-M method, achieves this end by creating a modified objective function with huge negative coefficients –M on the artificial variables. In our example, the modified objective function would be</p>
+<p>There are two primary approaches that we can use to ensure that the artificial variables are not in the final solution. One method, commonly called the <strong>Big-M method</strong>, achieves this end by creating a modified objective function with huge negative coefficients <span class="math notranslate nohighlight">\(–M\)</span> on the artificial variables. In our example, the modified objective function would be</p>
 <div class="math notranslate nohighlight">
 \[
 z_M = x_1 + 3x_2 + 0s_1 - M R_1 - M R_2
 \]</div>
-<p>When the Simplex method is applied to maximize this function, the heavy negative weights on the artificial variables will tend to drive <span class="math notranslate nohighlight">\( R_1 \)</span> and <span class="math notranslate nohighlight">\( R_2 \)</span> out of the basis, and the final solution will typically involve only the decision variables <span class="math notranslate nohighlight">\( x_i \)</span> and the slack or surplus variables.</p>
+<p>When the Simplex method is applied to <em>maximize</em> this function, the heavy negative weights on the artificial variables will tend to drive <span class="math notranslate nohighlight">\( R_1 \)</span> and <span class="math notranslate nohighlight">\( R_2 \)</span> out of the basis, and the final solution will typically involve only the decision variables <span class="math notranslate nohighlight">\( x_i \)</span> and the slack or surplus variables.</p>
 <p>For two reasons, the Big-M method is not considered to be a practical approach.</p>
 <ul />
-1. If the Simplex method terminates with an optimal solution (or with an indication that the linear program is unbounded), and at least one of the artificial variables is basic (positive) in the solution, then the original problem has no feasible solution. Moreover, in order to discover that no solution exists, we have had to solve an entire large (enlarged because of the additional artificial variables) linear programming problem. 
-</ul>
-<ul />
-2. A more serious difficulty with this method arises from a computational standpoint. The value of M must be chosen to be overwhelmingly large relative to all other problem parameters, in order to be sure that artificial variables do not remain in the basis of a feasible problem. However, as was pointed out in Chapter 1, computer arithmetic involving quantities of vastly different magnitudes leads to round-off error in which the smaller quantities (such as our original objective coefficients) are dwarfed by the artificial coefficients and are completely lost.
+<ol class="arabic simple">
+<li><p>If the Simplex method terminates with an optimal solution (or with an indication that the linear program is unbounded), and at least one of the artificial variables is basic (positive) in the solution, then the original problem has no feasible solution. Moreover, in order to discover that no solution exists, we have had to solve an entire large (enlarged because of the additional artificial variables) linear programming problem.</p></li>
+<li><p>A more serious difficulty with this method arises from a computational standpoint. The value of M must be chosen to be overwhelmingly large relative to all other problem parameters, in order to be sure that artificial variables do not remain in the basis of a feasible problem. However, as was pointed out in <strong>Chapter 1</strong>, computer arithmetic involving quantities of vastly different magnitudes leads to round-off error in which the smaller quantities (such as our original objective coefficients) are dwarfed by the artificial coefficients and are completely lost.</p></li>
+</ol>
 </ul>
 <p>Thus, despite its intuitive appeal, the Big-M method is very poorly suited for computer implementation, and nowadays is rarely seen in commercial software.</p>
 <p>The more practical alternative to solving linear programming problems having artificial variables is found in the <strong>two-phase</strong> Simplex method.</p>
