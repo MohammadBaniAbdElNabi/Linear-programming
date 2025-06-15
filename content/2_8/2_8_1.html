@@ -431,7 +431,7 @@ In general, the corresponding dual problem is constructed as follows:</p>
  If the constraint is an equality, then <span class="math notranslate nohighlight">\(yᵢ\)</span> is unrestricted in sign in the dual. <br>
 • The right hand sides in the primal are the objective function coefficients in the dual. <br>
 • The objective function coefficients in the primal are the right hand sides in the dual. <br>
-• The coefficient matrix in the primal is transposed to form the coefficient matrix for the dual. <br></p>
+• The coefficient matrix in the primal is transposed to form the coefficient matrix for the dual. <br></p>
 </ul>
 <p>The dual problem corresponding to the earlier primal problem is a problem with <span class="math notranslate nohighlight">\(m\)</span> variables and <span class="math notranslate nohighlight">\(n\)</span> constraints and can be written as:</p>
 <ul />
@@ -526,7 +526,7 @@ The properties described earlier were based on an assumption that optimal soluti
 <li><p>Both primal and dual problems are feasible, and both have optimal (and equal) solutions.</p></li>
 <li><p>Both primal and dual problems are infeasible (have no feasible solution).</p></li>
 <li><p>The primal problem is feasible but unbounded, and the dual problem is infeasible.</p></li>
-<li><p>The dual problem is feasible but unbounded, and the primal problem is infeasible.</p></li>
+<li><p>The dual problem is feasible but unbounded, and the primal problem is infeasible. <br></p></li>
 </ol>
 <p>Because the pertinent parameters and goals of any linear programming problem can be expressed in either a primal or dual form, and because solving either the primal or dual problem yields enough information to easily construct a solution to the other, we might reasonably wonder which problem, primal or dual, should we solve when using the Simplex method.</p>
 <p>From the standpoint of computational efficiency, we might wish to choose to solve the problem with the <em>fewer number of constraints</em>. As is discussed further in <strong>Section 2.10.3</strong>,the computation time required for the Simplex method is strongly dependent on the number of constraints, and almost independent of the number of variables. Therefore, in the absence of other identifiable structural characteristics of a problem that might make it amenable to the use of specialized solution methods, we could expect to be able to solve most quickly the problem having the smaller number of constraints. This choice becomes more compelling when the linear programming problem has thousands of constraints, and is of much less importance for more moderate-sized problems of a few hundred or less constraints.</p>
