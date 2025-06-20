@@ -8,7 +8,7 @@ The online book is designed to be an interactive learning experience. You can no
 
 #### Running Codes
 
-* **Locate the Rocket Icon:** {🚀} On the top right of the pages with code, you will find a rocket icon. Hovering over it will reveal a "Live Code" button.
+* **Locate the Rocket Icon 🚀:** On the top right of the pages with code, you will find a rocket icon. Hovering over it will reveal a "Live Code" button.
   
   **or**
   
