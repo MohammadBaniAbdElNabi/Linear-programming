@@ -1,19 +1,30 @@
-# Linear Programming
+# **Online Book Guide**
 
-## 2.1 The Linear Programming Model
+Welcome! This guide will walk you through the instructions & features of our online book.
 
-Linear programming is a special class of mathematical programming models in which the objective function and the constraints can be expressed as linear functions of the decision variables. As with the more general mathematical programming models, the decision variables represent quantities that are, in some sense, controllable inputs to the system being modeled. An objective function represents some principal objective criterion or goal that measures the effectiveness of the system (such as maximizing profits or productivity, or minimizing cost or consumption). There is always some practical limitation on the availability of resources (time, materials, machines, energy, or manpower) for the system, and such constraints are expressed as linear inequalities or equations involving the decision variables. Solving a linear programming problem means determining actual values of the decision variables that optimize the objective function, subject to the limitations imposed by the constraints. <br>
-The use of linear programming models for system optimization arises quite naturally in a wide variety of applications. Some models may not be strictly linear, but can be made linear by applying appropriate mathematical transformations. Still other applications are admittedly not at all linear, but can be effectively approximated by linear models. The ease with which linear programming problems can usually be solved makes this an attractive means of dealing with otherwise intractable nonlinear problems.<br>
-In the following section, we will see examples of the wide variety of applications that can be modeled with linear programming. In each case, the first task will be to identify the controllable decision variables xi, where $i$ = 1, ..., $n$. Then the objective criterion will be established: to either maximize or minimize some function of the form
+#### Getting Started
 
-$$
-z = c_1 x_1 + c_2 x_2 +...+ c_n x_n = \sum_{i=1}^n (c_i x_i)
-$$
+The online book is designed to be an interactive learning experience. You can not only read the content but also execute and modify the embedded code examples directly in your browser.
 
-where $c_i$ represents problem dependent constants. Finally, resource limitations and bounds on decision variables will be written as equations or inequalities relating a linear function of the decision variables to some problem dependent constant; for example,
+#### Running Codes
 
-$$
-a_1 x_1 + a_2 x_2 +...+ a_n x_n \leq b
-$$
+* **Locate the Rocket Icon 🚀:** On the top right of the pages with code, you will find a rocket icon. Hovering over it will reveal a "Live Code" button.
+  
+  **or**
+  
+* **Launch in Colab:**  Clicking the ![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg) button at the top of any code page will launch it as a Jupyter notebook in Google Colaboratory, allowing you to run the code in an interactive, live environment.
+  
+#### Interacting with the Code
 
-Although the primary purpose of this chapter will be to present methods of solving linear programming problems, the first critical step in successful problem-solving lies in the correct formulation of an application problem into the linear programming framework.
+* **Execute Code Cells:** Once the (**Live Code**) button is clicked, you can run each code block (or "cell") by clicking the "run" button below it or by selecting the cell and pressing `Shift + Enter`.
+* **Modify and Re-run:** The real power of this interactive environment is the ability to edit the code. You can click into any code cell, make your changes, and then re-run it to see how your modifications affect the output. This is a great way to experiment and deepen your understanding.
+* **See Updated Solutions:** After re-running a cell, the output below it will update to reflect the new solution based on your changes.
+
+***Note**: When you run the first code cell, it connects to a virtual machine and sets up the environment (e.g., installs required libraries). This initial setup may take a minute, so a brief wait is expected. Subsequent runs will be significantly faster.*
+
+#### Exploring Other Features
+
+* **Full Screen Mode:** For a more immersive reading experience, you can use the full-screen button, typically located at the top right of the page.
+* **Download Notebooks:** You can download the notebook files (.ipynb) to run them locally using Jupyter Notebook or JupyterLab. Just look for the ⬇️ icon at the top right of the desired section and select the appropriate format.
+
+We encourage you to actively engage with the material by running, editing, and experimenting with the code. Happy exploring!
