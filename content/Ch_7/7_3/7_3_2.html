@@ -1,0 +1,820 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>7.3.2 Steady-State Performance Measures &#8212; Linear Programming Chapter</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/Ch_7/7_3/7_3_2';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="7.4 SOFTWARE for queueing models" href="../7_4/7_4.html" />
+    <link rel="prev" title="7.3.1 Notation and Definitions" href="7_3_1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Linear Programming Chapter</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Linear Programming
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 1 - Introduction to Operations Research</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_1/1_1/1_1.html"><strong>1 Introduction to Operations Research</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_1/1_2/1_2.html"><strong>1.2 SYSTEM MODELING PRINCIPLES</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_1/1_3/1_3.html"><strong>1.3 ALGORITHM EFFICIENCY AND PROBLEM COMPLEXITY</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_1/1_4/1_4.html"><strong>1.4 OPTIMALITY AND PRACTICALITY</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_1/1_5/1_5.html"><strong>1.5 SOFTWARE FOR OPERATIONS RESEARCH</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_1/1_6/1_6_1.html"><strong>1.6 ILLUSTRATIVE APPLICATIONS</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_1/1_6/1_6_3.html"><strong>1.6.3 Mining And Social Conflicts (Charles 2016)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_1/1_7/1_7.html"><strong>1.7 SUMMARY</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_1/REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html"><strong>REFERENCES AND SUGGESTED READINGS</strong></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 2 - Linear Programming</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_2/2_2.html">2.2 The Art and Skill of Problem Formulation</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_3/2_3_1.html">2.3 Graphical Solution of Linear Programming Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_3/2_3_2.html">2.3.2 Graphical Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_3/2_3_3.html">2.3.3 Multiple Optimal Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_3/2_3_4.html">2.3.4 No Optimal Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_3/2_3_5.html">2.3.5 No Feasible Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_3/2_3_6.html">2.3.6 General Solution Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_4/2_4_1.html">2.4 Preparation for the Simplex Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_4/2_4_2.html">2.4.2 Solutions of Linear Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_5/2_5.html">2.5 The Simplex Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_6/2_6_1.html">2.6 Initial Solutions for General Constraints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_6/2_6_2.html">2.6.2 The Two Phase Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_7/2_7.html">2.7 Information in the Tableau</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_7/2_7_1.html">2.7.1 Multiple Optimal Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_7/2_7_2.html">2.7.2 Unbounded Solution (No Optimal Solution)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_7/2_7_3.html">2.7.3 Degenerate Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_7/2_7_4.html">2.7.4 Analyzing the Optimal Tableau: Shadow Prices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_8/2_8.html">2.8 Duality and Sensitivity Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_8/2_8_1.html">2.8.1 The Dual Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_8/2_8_2.html">2.8.2 Postoptimality and Sensitivity Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_9/2_9.html">2.9 Revised Simplex and Computational Efficiency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_10/2_10.html">2.10 Software for Linear Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_10/2_10_1.html">2.10.1 Extensions to General Simplex Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_10/2_10_2.html">2.10.2 Interior Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_10/2_10_3.html">2.10.3 Software for Solving Linear Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_11/2_11_1.html">2.11 Illustrative Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_11/2_11_2.html">2.11.2 Aircraft and Munitions Procurement (Might 1987)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_11/2_11_3.html">2.11.3 Grape Processing: Materials Planning and Production (Schuster and Allen 1998)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_12/2_12.html">2.12 Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/Exercises/Exercises_1.html">Exercises (2.1 - 2.15)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/Exercises/Exercises_2.html">Exercises (2.16 - 2.47)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/References/References.html">References and Suggested Readings</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 3 - Network Analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_1/3_1.html"><strong>3</strong> Network Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_2/3_2.html">3.2 MAXIMUM FLOW IN NETWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_2/3_2_1.html">3.2.1 Maximum-Flow Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_2/3_2_2.html">3.2.2 Extensions to the Maximum Flow Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_3/3_3.html">3.3 MINIMUM COST NETWORK FLOW PROBLEMS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_3/3_3_1.html">3.3.1 Transportation Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_3/3_3_2.html">3.3.2 Assignment Problem and Stable Matching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_3/3_3_3.html">3.3.3 Capacitated Transshipment Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_4/3_4.html">3.4 NETWORK CONNECTIVITY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_4/3_4_1.html">3.4.1 Minimum Spanning Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_5/3_5.html">3.5 SHORTEST PATH PROBLEMS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_5/3_5_1.html">3.5.1 Shortest Path Through an Acyclic Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_5/3_5_2.html">3.5.2 Shortest Paths from Source to All Other Nodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_5/3_5_3.html">3.5.3. Problems Solvable with Shortest Path Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_6/3_6.html">3.6 DYNAMIC PROGRAMMING</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_6/3_6_1.html">3.6.1 Labeling Method for Multi-Stage Decision Making</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_6/3_6_2.html">3.6.2 Tabular Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_6/3_6_3.html">3.6.3 General Recursive Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_7/3_7.html">3.7 PROJECT MANAGEMENT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_7/3_7_1.html">3.7.1 Project Networks and Critical Paths</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_7/3_7_2.html">3.7.2 Cost vs. Time Trade-Offs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_7/3_7_3.html">3.7.3 Probabilistic Project Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_8/3_8.html">3.8 SOFTWARE FOR NETWORK ANALYSIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_9/3_9.html">3.9 ILLUSTRATIVE APPLICATIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_9/3_9_1.html">3.9.1 DNA Sequence Comparison using A Shortest Path Algorithm <strong>(Waterman 1988), (Wagner and Fischer 1974)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_9/3_9_2.html">3.9.2 Multiprocessor Network Traffic Scheduling <strong>(Bianchini and Shen 1987)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_9/3_9_3.html">3.9.3 Shipping Cotton from Farms to Gins <strong>(Glover, Klingman, and Phillips 1992), (Klingman, Randolph, and Fuller 1976)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_10/3_10.html">3.10 SUMMARY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/Exercises/Exercises.html">EXERCISES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 4 - Integer Programming</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_1/4_1.html"><strong>4</strong> Integer Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_2/4_2.html">4.2 TYPICAL INTEGER PROGRAMMING PROBLEMS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_2/4_2_1.html">4.2.1 General Integer Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_2/4_2_2.html">4.2.2 Zero-One Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_2/4_2_3.html">4.2.3 Mixed Integer Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_3/4_3.html">4.3 ZERO-ONE MODEL FORMULATIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_3/4_3_1.html">4.3.1 Traveling Salesman Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_3/4_3_2.html">4.3.2 Knapsack Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_3/4_3_3.html">4.3.3 Bin Packing Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_3/4_3_4.html">4.3.4 Set Partitioning/Covering/Packing Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_3/4_3_5.html">4.3.5 Generalized Assignment Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4.html">4.4 BRANCH-AND-BOUND</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_1.html">4.4.1 A Simple Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_2.html">4.4.2 A Basic Branch-and-Bound Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_3.html">4.4.3 Knapsack Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_4.html">4.4.4 From Basic Method to Commercial Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_5/4_5.html">4.5 CUTTING PLANES AND FACETS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_6/4_6.html">4.6 COVER INEQUALITIES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7.html">4.7 LAGRANGIAN RELAXATION</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_1.html">4.7.1 Relaxing Integer Programming Constraints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_2.html">4.7.2 A Simple Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_3.html">4.7.3 The Integrality Gap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_4.html">4.7.4 The Generalized Assignment Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_5.html">4.7.5 A Basic Lagrangian Relaxation Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_6.html">4.7.6 A Customer Allocation Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_8/4_8.html">4.8 COLUMN GENERATION</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_9/4_9.html">4.9 SOFTWARE for integer programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_10/4_10.html">4.10 ILLUSTRATIVE APPLICATIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_10/4_10_1.html">4.10.1 Solid Waste Management <strong>(Antunes 1999)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_10/4_10_2.html">4.10.2 Timber Harvest Planning <strong>(Epstein et al. 1999)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_11/4_11.html">4.11 SUMMARY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/Exercises/Exercises.html">EXERCISES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 6 - Markov Processes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_1/6_1.html"><strong>6</strong> Markov Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_2/6_2.html">6.2 STATE PROBABILITIES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_3/6_3.html">6.3 FIRST PASSAGE PROBABILITIES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_4/6_4.html">6.4 PROPERTIES OF THE STATES IN A MARKOV PROCESS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_5/6_5.html">6.5 STEADY-STATE ANALYSIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_6/6_6.html">6.6 EXPECTED FIRST PASSAGE TIMES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_7/6_7.html">6.7 ABSORBING CHAINS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_8/6_8.html">6.8 SOFTWARE for markov processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_9/6_9.html">6.9 ILLUSTRATIVE APPLICATIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_9/6_9_1.html">6.9.1 Water Reservoir Operations <strong>(Wang and Adams 1986)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_9/6_9_2.html">6.9.2 Markov Analysis of Dynamic Memory Allocation <strong>(Pflug 1984)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_9/6_9_3.html">6.9.3 Markov Models for Manufacturing Production Capability <strong>(Foster and Garcia-Diaz 1983)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_9/6_9_4.html">6.9.4 Markov Decision Processes in Dairy Farming <strong>(Suvak et al. 2016), (Rukav et al. 2014)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_10/6_10.html">6.10 SUMMARY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/Exercises/Exercises.html">EXERCISES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 7 - Queueing Models</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7_1/7_1.html"><strong>7</strong> Queueing Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_2/7_2.html">7.2 ARRIVAL AND SERVICE PATTERNS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_2/7_2_1.html">7.2.1 The Exponential Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_2/7_2_2.html">7.2.2 Birth-and-Death Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_3.html">7.3 ANALYSIS OF SIMPLE QUEUEING SYSTEMS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_3_1.html">7.3.1 Notation and Definitions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7.3.2 Steady-State Performance Measures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_4/7_4.html">7.4 SOFTWARE for queueing models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_5/7_5.html">7.5 ILLUSTRATIVE APPLICATIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_5/7_5_1.html">7.5.1 Cost Efficiency and Service Quality in Hospitals <strong>(Green 2002)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_5/7_5_2.html">7.5.2 Queueing Models in Manufacturing <strong>(Suri et al. 1995)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_5/7_5_3.html">7.5.3 Nurse Staffing Based on Queueing Models <strong>(De Véricourt and Jennings 2011)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_6/7_6.html">7.6 SUMMARY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Exercises/Exercises.html">EXERCISES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 8 - Simulation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_1/8_1.html"><strong>8</strong> Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_2/8_2.html">8.2 DISCRETE SIMULATION MODELS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_2/8_2_1.html">8.2.1 Event-Driven Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_2/8_2_2.html">8.2.2 Generating Random Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_3/8_3.html">8.3 OBSERVATIONS OF SIMULATIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_3/8_3_1.html">8.3.1 Gathering Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_3/8_3_2.html">8.3.2 Design of Simulation Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_4/8_4.html">8.4 SOFTWARE for simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_5/8_5.html">8.5 ILLUSTRATIVE APPLICATIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_5/8_5_1.html">8.5.1 Finnish Air Force Fleet Maintenance <strong>(Mattila, Virtanen, and Raivio 2008)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_5/8_5_2.html">8.5.2 Simulation of a Semiconductor Manufacturing Line <strong>(Miller 1990)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_5/8_5_3.html">8.5.3 Simulation of Eurotunnel Terminals <strong>(Salt 1991)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_5/8_5_4.html">8.5.4 Simulation for NASA’s Space Launch Vehicles Operations <strong>(Kaylani et al. 2008)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/Exercises/Exercises.html">EXERCISES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 9 - Decision Analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_1/9_1.html"><strong>9</strong> Decision Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_2/9_2.html">9.2 AN INTRODUCTION TO GAME THEORY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_2/9_2_1.html">9.2.1 Maximin Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_2/9_2_2.html">9.2.2 Maximax Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_2/9_2_3.html">9.2.3 Laplace Principle (Principle of Insufficient Reason)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_2/9_2_4.html">9.2.4 Hurwicz Principle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_2/9_2_5.html">9.2.5 Savage Minimax Regret</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_3/9_3.html">9.3 DECISION TREES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_4/9_4.html">9.4 UTILITY THEORY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_4/9_4_1.html">9.4.1 The Axioms of Utility Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_4/9_4_2.html">9.4.2 Utility Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_4/9_4_3.html">9.4.3 The Shape of the Utility Curve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_5/9_5.html">9.5 THE PSYCHOLOGY OF DECISION-MAKING</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_5/9_5_1.html">9.5.1 Misconceptions of Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_5/9_5_2.html">9.5.2 Availability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_5/9_5_3.html">9.5.3 Anchoring and Adjustment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_5/9_5_4.html">9.5.4 Dissonance Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_5/9_5_5.html">9.5.5 The Framing Effect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_5/9_5_6.html">9.5.6 The Sunk-cost Fallacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_5/9_5_7.html">9.5.7 Irrational Human Behavior</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_6/9_6.html">9.6 SOFTWARE for Decision analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_7/9_7.html">9.7 ILLUSTRATIVE APPLICATIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_7/9_7_1.html">9.7.1 Decision Support System for Minimizing Costs in the Maritime Industry <strong>(Diz et al. 2014)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_7/9_7_2.html">9.7.2 Refinery Pricing Under Uncertainty <strong>(Keefer 1995)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_7/9_7_3.html">9.7.3 Decisions for Radioactive Waste Management <strong>(Perdue and Kumar 1999)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_7/9_7_4.html">9.7.4 Investment Decisions and Risk in Petroleum Exploration <strong>(Walls, Morahan, and Dyer 1995)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_8/9_8.html">9.8 SUMMARY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/Exercises/Exercises.html">EXERCISES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 10 - Heuristic and Metaheuristic Techniques for Optimization</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_1/10_1.html"><strong>10</strong> Heuristic and Metaheuristic Techniques for Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_2/10_2.html">10.2 LOCAL IMPROVEMENT HEURISTICS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_3/10_3.html">10.3 SIMULATED ANNEALING</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_4/10_4.html">10.4 PARALLEL ANNEALING</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_5/10_5.html">10.5 GENETIC ALGORITHMS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_6/10_6.html">10.6 TABU SEARCH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_7/10_7.html">10.7 CONSTRAINT PROGRAMMING AND LOCAL SEARCH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_8/10_8.html">10.8 OTHER METAHEURISTICS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_9/10_9.html">10.9 SOFTWARE for metaheuristics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_10/10_10.html">10.10 ILLUSTRATIVE APPLICATIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_10/10_10_1.html">10.10.1 FedEx Flight Management Using Simulated Annealing <strong>(Campbell, Durfee, and Hines 1997)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_10/10_10_2.html">10.10.2 Ecosystem Management Using Genetic Algorithm Heuristics <strong>(Hughell and Roise 1995)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_10/10_10_3.html">10.10.3 Efficient Routing And Delivery of Meals on Wheels <strong>(Manikas, Kroes, and Gattiker 2016)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_11/10_11.html">10.11 SUMMARY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/Exercises/Exercises.html">EXERCISES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix - Review of Essential Mathematics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Appendix/A_1/A_1.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Appendix/A_2/A_2.html">A.2 MATRICES AND MATRIX OPERATIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Appendix/A_3/A_3.html">A.3 LINEAR EQUATIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Appendix/A_4/A_4.html">A.4 QUADRATIC FORMS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Appendix/REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/content/Ch_7/7_3/7_3_2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>7.3.2 Steady-State Performance Measures</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="steady-state-performance-measures">
+<h1>7.3.2 Steady-State Performance Measures<a class="headerlink" href="#steady-state-performance-measures" title="Link to this heading">#</a></h1>
+<p>If we consider any state in the rate diagram shown in Figure 7.2, and assume the system to have reached steady-state, then it must be true that the mean rate at which transitions are made <em>into</em> the state must equal the mean rate at which transitions are made <em>out of</em> the state. In fact, we can write an equation for each state that expresses this fact and that accounts for all possible ways in which transitions into and out of the state can occur. The set of equations that results from doing this are called flow balancing equations, and we can write them in the following way.</p>
+<p>First consider state 0, the simplest case, because there is only one path leading in and one path leading out. The mean rate out of state 0 is the probability of being in state 0 times the rate of departures from state 0, p0λ. The mean rate in is the probability of being in state 1 times the rate of transitions from state 1 to state 0, p1μ. Therefore, the equation for state 0 is</p>
+<ul class="simple">
+<li><p>p0λ = p1μ</p></li>
+</ul>
+<p>For all other states, there are two arcs leading in and two arcs leading out. Still, the “rate-in = rate-out” principle holds and we can write for state 1:</p>
+<ul class="simple">
+<li><p>Rate in: p0λ + p2μ</p></li>
+<li><p>Rate out: p1λ + p1μ</p></li>
+<li><p>therefore, p0λ + p2μ = p1λ + p1μ</p></li>
+</ul>
+<p>And similarly for state 2,</p>
+<p>p1λ + p3μ = p2λ + p2μ</p>
+<p>and for state n</p>
+<p>pn-1λ + pn+1μ = pnλ + pnμ</p>
+<p>By first solving the state 0 equation for p1 in terms of p0, we can proceed to the state 1 equation and solve for p2 in terms of p0, and successively solve for all pn as follows:</p>
+<p>p1 = (λ/μ)p0</p>
+<ul class="simple">
+<li><p>p2 = (λ/μ)p1 = (λ/μ)2p0</p></li>
+<li><p>p3 = (λ/μ)p2 = (λ/μ)2p1 = (λ/μ)3p0</p></li>
+<li><p>.</p></li>
+<li><p>.</p></li>
+<li><p>.</p></li>
+<li><p>pn = (λ/μ)pn-1 = (λ/μ)np0</p></li>
+</ul>
+<p>So, for the birth-and-death process model in which all arrivals are characterized by the parameter λ and all departures by the parameter μ, any of the pi can be computed in terms of the parameters λ and μ and the probability p0. To obtain the value of p0, we just observe that the sum of all the pi must equal to one:</p>
+<ul class="simple">
+<li><p>p0 + p1 + p2 + … + pn + … = 1</p></li>
+</ul>
+<p>Then,</p>
+<ul class="simple">
+<li><p>1= p0 + (λ/μ) p0 + (λ/μ)2 p0 + … + (λ/μ)n p0 + …</p></li>
+<li><p>= p0[1 + (λ/μ) + (λ/μ)2 + … + (λ/μ)n + …]</p></li>
+</ul>
+<p>The series in square brackets converges, if (λ/μ) &lt; 1, to the quantity</p>
+<ul class="simple">
+<li><p>![](data:image/x-wmf;base64,183GmgAAAAAAAKAGYAQBCQAAAADQXAEACQAAAzYCAAAEAKUAAAAAAAUAAAACAQEAAAAFAAAAAQL///8ABQAAAC4BGQAAAAUAAAALAgAAAAAFAAAADAJgBKAGCwAAACYGDwAMAE1hdGhUeXBlAAAAARIAAAAmBg8AGgD/////AAAQAAAAwP///7j///9gBgAAGAQAAAUAAAAJAgAAAAIFAAAAFAKoAxwCHAAAAPsCBf7jAAAAAACQAQAAAAEAAgAQU3ltYm9sAAAg2fd2QHf+5v7///84FAodAAAKAAAAAAAEAAAALQEAAAkAAAAyCgAAAAABAAAAKHkAAAUAAAAUAqgDtgUcAAAA+wIF/uMAAAAAAJABAAAAAQACABBTeW1ib2wAACDZ93ZAd/7m/v///+UaCqoAAAoAAAAAAAQAAAAtAQEABAAAAPABAAAJAAAAMgoAAAAAAQAAACl5AAAIAAAA+gIAABAAAAAAAAACBAAAAC0BAAAFAAAAFAIAAkAABQAAABMCAAJCBgUAAAAUAm4B4QIcAAAA+wKA/gAAAAAAAJABAAAAAAACABBUaW1lcyBOZXcgUm9tYW4A/v///zgUCh4AAAoAAAAAAAQAAAAtAQIABAAAAPABAQAJAAAAMgoAAAAAAQAAADEdAAMFAAAAFAKMAzAAHAAAAPsCgP4AAAAAAACQAQAAAAAAAgAQVGltZXMgTmV3IFJvbWFuAP7////lGgqrAAAKAAAAAAAEAAAALQEBAAQAAADwAQIADAAAADIKAAAAAAMAAAAxli8A6gDMAgADBQAAABQCjAO0AhwAAAD7AoD+AAAAAAAAkAEBAAABAAIAEFN5bWJvbAAAINn3dkB3/ub+////OBQKHwAACgAAAAAABAAAAC0BAgAEAAAA8AEBAAoAAAAyCgAAAAACAAAAbG3yAQADpQAAACYGDwA/AUFwcHNNRkNDAQAYAQAAGAEAAERlc2lnbiBTY2llbmNlLCBJbmMuAAUBAAYJRFNNVDYAARNXaW5BbGxCYXNpY0NvZGVQYWdlcwARBVRpbWVzIE5ldyBSb21hbgARA1N5bWJvbAARBUNvdXJpZXIgTmV3ABEETVQgRXh0cmEAEgAIIS8n8l8hjyEvR19BUPIfHkFQ9BUPQQD0RfQl9I9CX0EA9BAPQ19BAPIfIKXyCiX0jyH0EA9BAPQPSPQX9I9BAPIaX0RfRfRfRfRfQQ8MAQABAAECAgICAAIAAQEBAAMAAQAEAAAKAQAQAAAAAAAAAA8BAwALAAAPAAEADwECAIgxAAAPAAEADwECAIgxAAIAghMgAwABAwAPAAEADwECBIS7A2wCAIIvAAIEhLwDbQACAJYoAAIAlikAAAAAAACICgAAACYGDwAKAP////8BAAAAAAAIAAAA+gIAAAAAAAAAAAAABAAAAC0BAQAcAAAA+wIQAAcAAAAAALwCAAAAAAECAiJTeXN0ZW0AAC4AigAAAAoAZQ5mKy4AigD/////0NIZAAQAAAAtAQMABAAAAPABAgADAAAAAAA=)</p></li>
+</ul>
+<p>Therefore,</p>
+<ul class="simple">
+<li><p>1 = p0 ![](data:image/x-wmf;base64,183GmgAAAAAAAKAGYAQBCQAAAADQXAEACQAAAzYCAAAEAKUAAAAAAAUAAAACAQEAAAAFAAAAAQL///8ABQAAAC4BGQAAAAUAAAALAgAAAAAFAAAADAJgBKAGCwAAACYGDwAMAE1hdGhUeXBlAAAAARIAAAAmBg8AGgD/////AAAQAAAAwP///7j///9gBgAAGAQAAAUAAAAJAgAAAAIFAAAAFAKoAxwCHAAAAPsCBf7jAAAAAACQAQAAAAEAAgAQU3ltYm9sAAAg2fd2QHf+5v7///93FwrmAAAKAAAAAAAEAAAALQEAAAkAAAAyCgAAAAABAAAAKG0AAAUAAAAUAqgDtgUcAAAA+wIF/uMAAAAAAJABAAAAAQACABBTeW1ib2wAACDZ93ZAd/7m/v///+UaCn0AAAoAAAAAAAQAAAAtAQEABAAAAPABAAAJAAAAMgoAAAAAAQAAACkbAAAIAAAA+gIAABAAAAAAAAACBAAAAC0BAAAFAAAAFAIAAkAABQAAABMCAAJCBgUAAAAUAm4B4QIcAAAA+wKA/gAAAAAAAJABAAAAAAACABBUaW1lcyBOZXcgUm9tYW4A/v///3cXCucAAAoAAAAAAAQAAAAtAQIABAAAAPABAQAJAAAAMgoAAAAAAQAAADEbAAMFAAAAFAKMAzAAHAAAAPsCgP4AAAAAAACQAQAAAAAAAgAQVGltZXMgTmV3IFJvbWFuAP7////lGgp+AAAKAAAAAAAEAAAALQEBAAQAAADwAQIADAAAADIKAAAAAAMAAAAxli/k6gDMAgADBQAAABQCjAO0AhwAAAD7AoD+AAAAAAAAkAEBAAABAAIAEFN5bWJvbAAAINn3dkB3/ub+////dxcK6AAACgAAAAAABAAAAC0BAgAEAAAA8AEBAAoAAAAyCgAAAAACAAAAbG3yAQADpQAAACYGDwA/AUFwcHNNRkNDAQAYAQAAGAEAAERlc2lnbiBTY2llbmNlLCBJbmMuAAUBAAYJRFNNVDYAARNXaW5BbGxCYXNpY0NvZGVQYWdlcwARBVRpbWVzIE5ldyBSb21hbgARA1N5bWJvbAARBUNvdXJpZXIgTmV3ABEETVQgRXh0cmEAEgAIIS8n8l8hjyEvR19BUPIfHkFQ9BUPQQD0RfQl9I9CX0EA9BAPQ19BAPIfIKXyCiX0jyH0EA9BAPQPSPQX9I9BAPIaX0RfRfRfRfRfQQ8MAQABAAECAgICAAIAAQEBAAMAAQAEAAAKAQAQAAAAAAAAAA8BAwALAAAPAAEADwECAIgxAAAPAAEADwECAIgxAAIAghMgAwABAwAPAAEADwECBIS7A2wCAIIvAAIEhLwDbQACAJYoAAIAlikAAAAAAACICgAAACYGDwAKAP////8BAAAAAAAIAAAA+gIAAAAAAAAAAAAABAAAAC0BAQAcAAAA+wIQAAcAAAAAALwCAAAAAAECAiJTeXN0ZW0AAC4AigAAAAoAoBtmli4AigD/////0NIZAAQAAAAtAQMABAAAAPABAgADAAAAAAA=)</p></li>
+</ul>
+<p>and</p>
+<ul class="simple">
+<li><p>p0 = 1 - (λ/μ)</p></li>
+</ul>
+<p>More intuitively, you may also recall that ρ = λ/sμ is the probability of the service facility being in use at any given time. For a single service facility in which the same parameter μ characterizes service times (as in Figure 7.2), regardless of the number of customers requiring service, we let s = 1. Therefore, ρ = λ/μ is the probability of a busy service facility, and thus 1 - (λ/μ) = 1 - ρ is the probability of an idle service facility. This is exactly what is meant by the probability of there being zero customers in the system, so it is reasonable that p0 = 1 - (λ/μ).</p>
+<p>We can now express all of the system state probabilities in terms of λ and μ as follows:</p>
+<ul class="simple">
+<li><p>pn = (λ/μ)n p0</p></li>
+<li><p>pn = (λ/μ)n[1 - (λ/μ)]</p></li>
+<li><p>or pn = ρn (1 - ρ)</p></li>
+</ul>
+<p>Our original purpose in developing these formulae was so that we could compute system performance measures such as the expected number of customers in the system L, and the expected amount of time each customer spends in the system. By definition of expected number of customers, we know</p>
+<p>L =![](data:image/x-wmf;base64,183GmgAAAAAAAAACoAMBCQAAAACwXwEACQAAA+cBAAACAKAAAAAAAAUAAAACAQEAAAAFAAAAAQL///8ABQAAAC4BGQAAAAUAAAALAgAAAAAFAAAADAKgAwACCwAAACYGDwAMAE1hdGhUeXBlAACgABIAAAAmBg8AGgD/////AAAQAAAAwP///6n////AAQAASQMAAAUAAAAJAgAAAAIFAAAAFAJAAz8BHAAAAPsCIP8AAAAAAACQAQAAAAAAAgAQVGltZXMgTmV3IFJvbWFuAP7///93Fwq0AAAKAAAAAAAEAAAALQEAAAkAAAAyCgAAAAABAAAAMADAAQUAAAAUAkADPQAcAAAA+wIg/wAAAAAAAJABAQAAAAACABBUaW1lcyBOZXcgUm9tYW4A/v///+UaCk4AAAoAAAAAAAQAAAAtAQEABAAAAPABAAAJAAAAMgoAAAAAAQAAAG4AwAEFAAAAFAICAaIAHAAAAPsCIP8AAAAAAACQAQAAAAEAAgAQU3ltYm9sAAAg2fd2QHf+5v7///93Fwq1AAAKAAAAAAAEAAAALQEAAAQAAADwAQEACQAAADIKAAAAAAEAAAClAMABBQAAABQCQAO7AAkAAAAyCgAAAAABAAAAPXnAAQUAAAAUAmACgAAcAAAA+wKA/gAAAAAAAJABAAAAAQACABBTeW1ib2wAACDZ93ZAd/7m/v///+UaCk8AAAoAAAAAAAQAAAAtAQEABAAAAPABAAAJAAAAMgoAAAAAAQAAAFMgAAOgAAAAJgYPADUBQXBwc01GQ0MBAA4BAAAOAQAARGVzaWduIFNjaWVuY2UsIEluYy4ABQEABglEU01UNgABE1dpbkFsbEJhc2ljQ29kZVBhZ2VzABEFVGltZXMgTmV3IFJvbWFuABEDU3ltYm9sABEFQ291cmllciBOZXcAEQRNVCBFeHRyYQASAAghLyfyXyGPIS9HX0FQ8h8eQVD0FQ9BAPRF9CX0j0JfQQD0EA9DX0EA8h8gpfIKJfSPIfQQD0EA9A9I9Bf0j0EA8hpfRF9F9F9F9F9BDwwBAAEAAQICAgIAAgABAQEAAwABAAQAAAoBAAMAFyAAAQADABcQAAEAEAAAAAAAAAAPAQIEhaMDUwALDwABAA8BAgCDbgACBIY9AD0CAIgwAAAPAAEBAAABAQEADwECBIYeIqUAAAAAaAoAAAAmBg8ACgD/////AQAAAAAAHAAAAPsCEAAHAAAAAAC8AgAAAAABAgIiU3lzdGVtAKkuAIoAAAAKAKQWZqkuAIoAAAAAANDSGQAEAAAALQEAAAQAAADwAQEAAwAAAAAA) (n • pn)</p>
+<p>=![](data:image/x-wmf;base64,183GmgAAAAAAAAACoAMBCQAAAACwXwEACQAAA+cBAAACAKAAAAAAAAUAAAACAQEAAAAFAAAAAQL///8ABQAAAC4BGQAAAAUAAAALAgAAAAAFAAAADAKgAwACCwAAACYGDwAMAE1hdGhUeXBlAACgABIAAAAmBg8AGgD/////AAAQAAAAwP///6n////AAQAASQMAAAUAAAAJAgAAAAIFAAAAFAJAAz8BHAAAAPsCIP8AAAAAAACQAQAAAAAAAgAQVGltZXMgTmV3IFJvbWFuAP7////mGAouAAAKAAAAAAAEAAAALQEAAAkAAAAyCgAAAAABAAAAMB3AAQUAAAAUAkADPQAcAAAA+wIg/wAAAAAAAJABAQAAAAACABBUaW1lcyBOZXcgUm9tYW4A/v///wkYClMAAAoAAAAAAAQAAAAtAQEABAAAAPABAAAJAAAAMgoAAAAAAQAAAG4AwAEFAAAAFAICAaIAHAAAAPsCIP8AAAAAAACQAQAAAAEAAgAQU3ltYm9sAAAg2fd2QHf+5v7////mGAovAAAKAAAAAAAEAAAALQEAAAQAAADwAQEACQAAADIKAAAAAAEAAAClecABBQAAABQCQAO7AAkAAAAyCgAAAAABAAAAPQTAAQUAAAAUAmACgAAcAAAA+wKA/gAAAAAAAJABAAAAAQACABBTeW1ib2wAACDZ93ZAd/7m/v///6QWCmsAAAoAAAAAAAQAAAAtAQEABAAAAPABAAAJAAAAMgoAAAAAAQAAAFMgAAOgAAAAJgYPADUBQXBwc01GQ0MBAA4BAAAOAQAARGVzaWduIFNjaWVuY2UsIEluYy4ABQEABglEU01UNgABE1dpbkFsbEJhc2ljQ29kZVBhZ2VzABEFVGltZXMgTmV3IFJvbWFuABEDU3ltYm9sABEFQ291cmllciBOZXcAEQRNVCBFeHRyYQASAAghLyfyXyGPIS9HX0FQ8h8eQVD0FQ9BAPRF9CX0j0JfQQD0EA9DX0EA8h8gpfIKJfSPIfQQD0EA9A9I9Bf0j0EA8hpfRF9F9F9F9F9BDwwBAAEAAQICAgIAAgABAQEAAwABAAQAAAoBAAMAFyAAAQADABcQAAEAEAAAAAAAAAAPAQIEhaMDUwALDwABAA8BAgCDbgACBIY9AD0CAIgwAAAPAAEBAAABAQEADwECBIYeIqUAAAAAaAoAAAAmBg8ACgD/////AQAAAAAAHAAAAPsCEAAHAAAAAAC8AgAAAAABAgIiU3lzdGVtAJwuAIoAAAAKAHcXZpwuAIoAAAAAANDSGQAEAAAALQEAAAQAAADwAQEAAwAAAAAA) [n • ρn(1 - ρ)]</p>
+<p>= (1 - ρ) [1ρ1 + 2ρ2 + … + nρn + …]</p>
+<p>= (1 - ρ) [1 + ρ + ρ2 + ρ3 + ρ4 + …] [ρ + ρ2 + ρ3 + ρ4 + …]</p>
+<p>= (1 - ρ) ![](data:image/x-wmf;base64,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)</p>
+<p>= (1 - ρ) (1/(1 - ρ)) (1/(1 - ρ) - 1)</p>
+<p>since</p>
+<ul class="simple">
+<li><p>![](data:image/x-wmf;base64,183GmgAAAAAAAAACoAMBCQAAAACwXwEACQAAA+cBAAACAKAAAAAAAAUAAAACAQEAAAAFAAAAAQL///8ABQAAAC4BGQAAAAUAAAALAgAAAAAFAAAADAKgAwACCwAAACYGDwAMAE1hdGhUeXBlAACgABIAAAAmBg8AGgD/////AAAQAAAAwP///6n////AAQAASQMAAAUAAAAJAgAAAAIFAAAAFAJAAz8BHAAAAPsCIP8AAAAAAACQAQAAAAAAAgAQVGltZXMgTmV3IFJvbWFuAP7///+DFQqiAAAKAAAAAAAEAAAALQEAAAkAAAAyCgAAAAABAAAAMADAAQUAAAAUAkADPQAcAAAA+wIg/wAAAAAAAJABAQAAAAACABBUaW1lcyBOZXcgUm9tYW4A/v///xsXCnQAAAoAAAAAAAQAAAAtAQEABAAAAPABAAAJAAAAMgoAAAAAAQAAAG4AwAEFAAAAFAICAaIAHAAAAPsCIP8AAAAAAACQAQAAAAEAAgAQU3ltYm9sAAAg2fd2QHf+5v7///+DFQqjAAAKAAAAAAAEAAAALQEAAAQAAADwAQEACQAAADIKAAAAAAEAAAClAMABBQAAABQCQAO7AAkAAAAyCgAAAAABAAAAPQDAAQUAAAAUAmACgAAcAAAA+wKA/gAAAAAAAJABAAAAAQACABBTeW1ib2wAACDZ93ZAd/7m/v///xsXCnUAAAoAAAAAAAQAAAAtAQEABAAAAPABAAAJAAAAMgoAAAAAAQAAAFMAAAOgAAAAJgYPADUBQXBwc01GQ0MBAA4BAAAOAQAARGVzaWduIFNjaWVuY2UsIEluYy4ABQEABglEU01UNgABE1dpbkFsbEJhc2ljQ29kZVBhZ2VzABEFVGltZXMgTmV3IFJvbWFuABEDU3ltYm9sABEFQ291cmllciBOZXcAEQRNVCBFeHRyYQASAAghLyfyXyGPIS9HX0FQ8h8eQVD0FQ9BAPRF9CX0j0JfQQD0EA9DX0EA8h8gpfIKJfSPIfQQD0EA9A9I9Bf0j0EA8hpfRF9F9F9F9F9BDwwBAAEAAQICAgIAAgABAQEAAwABAAQAAAoBAAMAFyAAAQADABcQAAEAEAAAAAAAAAAPAQIEhaMDUwALDwABAA8BAgCDbgACBIY9AD0CAIgwAAAPAAEBAAABAQEADwECBIYeIqUAAAAAaAoAAAAmBg8ACgD/////AQAAAAAAHAAAAPsCEAAHAAAAAAC8AgAAAAABAgIiU3lzdGVtAGcuAIoAAAAKAHcXZmcuAIoAAAAAANDSGQAEAAAALQEAAAQAAADwAQEAAwAAAAAA)xn = 1/(1 - x) for |x| &lt; 1</p></li>
+</ul>
+<p>Therefore,</p>
+<ul class="simple">
+<li><p>L = ![](data:image/x-wmf;base64,183GmgAAAAAAAIADIAQBCQAAAACwWQEACQAAA5oBAAAEAJQAAAAAAAUAAAACAQEAAAAFAAAAAQL///8ABQAAAC4BGQAAAAUAAAALAgAAAAAFAAAADAIgBIADCwAAACYGDwAMAE1hdGhUeXBlAADgABIAAAAmBg8AGgD/////AAAQAAAAwP///7j///9AAwAA2AMAAAgAAAD6AgAAEAAAAAAAAAIEAAAALQEAAAUAAAAUAgACQAAFAAAAEwIAAjgDBQAAAAkCAAAAAgUAAAAUAowDMAAcAAAA+wKA/gAAAAAAAJABAAAAAAACABBUaW1lcyBOZXcgUm9tYW4A/v///+YYCtIAAAoAAAAAAAQAAAAtAQEACgAAADIKAAAAAAIAAAAxluoAAAMFAAAAFAJuAU0BHAAAAPsCgP4AAAAAAACQAQEAAAEAAgAQU3ltYm9sAAAg2fd2QHf+5v7///9kHAoEAAAKAAAAAAAEAAAALQECAAQAAADwAQEACQAAADIKAAAAAAEAAABylgADBQAAABQCjAM0AgkAAAAyCgAAAAABAAAAcpYAA5QAAAAmBg8AHgFBcHBzTUZDQwEA9wAAAPcAAABEZXNpZ24gU2NpZW5jZSwgSW5jLgAFAQAGCURTTVQ2AAETV2luQWxsQmFzaWNDb2RlUGFnZXMAEQVUaW1lcyBOZXcgUm9tYW4AEQNTeW1ib2wAEQVDb3VyaWVyIE5ldwARBE1UIEV4dHJhABIACCEvJ/JfIY8hL0dfQVDyHx5BUPQVD0EA9EX0JfSPQl9BAPQQD0NfQQDyHyCl8gol9I8h9BAPQQD0D0j0F/SPQQDyGl9EX0X0X0X0X0EPDAEAAQABAgICAgACAAEBAQADAAEABAAACgEAEAAAAAAAAAAPAQMACwAADwABAA8BAgSEwQNyAA8AAQAPAQIAiDEAAgCCEyACBITBA3IAAAAACgAAACYGDwAKAP////8BAAAAAAAIAAAA+gIAAAAAAAAAAAAABAAAAC0BAQAcAAAA+wIQAAcAAAAAALwCAAAAAAECAiJTeXN0ZW0AAC4AigAAAAoAgxVmii4AigD/////0NIZAAQAAAAtAQMABAAAAPABAgADAAAAAAA=)</p></li>
+</ul>
+<p>From this we can use Little’s formula L = λW to obtain the expected time in the system W. Because W = Wq + 1/μ, we can then compute the expected time a customer spends in queue, Wq. And from this we can obtain the expected queue length Lq using Lq = λWq.</p>
+<p>Example 7.3</p>
+<p>Suppose computer programs are submitted for execution on a university’s central computing facility, and that these programs arrive at a rate of 10 per minute. Assume average run-time for a program is 5 seconds, and that both interarrival times and run-times are exponentially distributed. During what fraction of the time is the CPU idle? What is the expected turnaround time of a job in this system? What is the average number of jobs in the job queue?</p>
+<p>This system is assumed to be an M/M/1 queueing system with λ = 10 jobs per minute and μ= 12 jobs per minute. We will also assume that job queues may become arbitrarily long and that there is an infinitely large user population. Since ρ= 10/12 &lt; 1, the system will reach steady-state and we can use the formulae developed above to answer these questions. Since the utilization factor ρ= 5/6, the CPU will be idle 1/6 of the time, or for 10 seconds out of every minute. (Since 10 jobs each take an average of 5 seconds, the CPU is busy for 50 seconds each minute.)</p>
+<p>Turnaround time is defined to be waiting time plus execution time, which we call W. We know L = ρ/(1 - ρ) = (5/6)/(1/6) = 5, and from this we can calculate, using Little’s formula, W = L/λ = 5/10 = 1/2 minute. The average queue length is Lq = λWq. Since we have just computed W to be 1/2 minute, we can use the formula Wq = W - 1/μ= 1/2 - 1/12 = 5/12 minutes (or 25 seconds) for expected waiting time spent in the queue. Then the average number of jobs in the queue is Lq = 10 • 5/12 = 41/6 jobs. (Because the job queue itself occupies some computer memory, this tells how much space is typically devoted to this system function, and it also indicates how many jobs are experiencing delay.)</p>
+<p>Now suppose we want to know the probability that the number of jobs in the system becomes 4 or more. This can be calculated as 1 minus the probability that there are fewer than 4 (i.e., 0, 1, 2, or 3) customers in the system:</p>
+<ul class="simple">
+<li><p>Probability [≥ 4 jobs] = 1 - [p0 + p1 + p2 + p3].</p></li>
+</ul>
+<p>We know</p>
+<ul class="simple">
+<li><p>p0 = 1 - λ/μ= 1 - 5/6 = .1667</p></li>
+</ul>
+<p>p1 = ρp0 = (5/6)(1/6) = 5/36 = .1389</p>
+<p>p2 = ρ2p0 = (5/6)2(1/6) = .1158</p>
+<p>p3 = ρ3p0 = (5/6)3(1/6) = .0965</p>
+<p>Therefore,</p>
+<ul class="simple">
+<li><p>Probability [≥ 4 jobs] = 1 - [.1667 + .1389 + .1158 + .0965] = .48225</p></li>
+</ul>
+<p>In general, the probability that there are at least k jobs in the system is given by:</p>
+<ul class="simple">
+<li><p>![](data:image/x-wmf;base64,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)</p></li>
+</ul>
+<p>In our example, ρ = 5/6, and k = 4, so the probability of at least four jobs in the system is (5/6)4 = .48225. ■</p>
+<p>The formulas developed above are valid only in queueing systems that eventually reach steady-state. Our underlying assumption that the arrival rate λ be less than the service rate μ is sufficient to guarantee that the system will stabilize. Notice that as ρ approaches 1, both W and Wq become large. Clearly, for ρ &gt; 1, arrivals are occurring faster than a constantly busy service facility can keep up with the demand. When ρ = 1, the sequence is undefined. However, if we look back at the original state equations, we discover that (λ/μ) = 1 implies that p0 = p1 = p2 = p3 = … There are infinitely many states, all equally likely, which means that the actual probability of being in any given state is zero in the limit.</p>
+<p>We have also assumed that the system has an infinite capacity. If this were not the case, then arriving customers would occasionally encounter a full system, and although they would <em>arrive at</em> the system according to the arrival parameter λ, they would not be permitted to <em>join</em> the system at rate λ. Thus, the effective arrival rate would not be constant and would vary in time, according to whether the system is at capacity. For this case, the pn formulae remain valid as before. However, if we let N denote the system capacity, the steady-state equation for state N is simply</p>
+<ul class="simple">
+<li><p>pN-1λ = pNμ</p></li>
+</ul>
+<p>and</p>
+<ul class="simple">
+<li><p>pN = (λ/μ)pN-1 = (λ/μ)Np0</p></li>
+</ul>
+<p>just as before. However, there is no state N + 1. We now have a finite set of states whose probabilities must sum to 1:</p>
+<ul class="simple">
+<li><p>p0 + p1 + p2 + … + pN = 1</p></li>
+</ul>
+<p>Then,</p>
+<ul class="simple">
+<li><p>p0 [1 + (λ/μ) + (λ/μ)2 + (λ/μ)3 + … + (λ/μ)N] = 1</p></li>
+</ul>
+<p>The series in the brackets is a geometric progression that sums to</p>
+<ul class="simple">
+<li><p>![](data:image/x-wmf;base64,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)</p></li>
+</ul>
+<p>when λ ≠ μ; therefore,</p>
+<ul class="simple">
+<li><p>![](data:image/x-wmf;base64,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) = 1</p></li>
+</ul>
+<p>or</p>
+<ul class="simple">
+<li><p>p0 = ![](data:image/x-wmf;base64,183GmgAAAAAAAGAFIAQBCQAAAABQXwEACQAAA3gCAAAEAKkAAAAAAAUAAAACAQEAAAAFAAAAAQL///8ABQAAAC4BGQAAAAUAAAALAgAAAAAFAAAADAIgBGAFCwAAACYGDwAMAE1hdGhUeXBlAADgABIAAAAmBg8AGgD/////AAAQAAAAwP///7j///8gBQAA2AMAAAgAAAD6AgAAEAAAAAAAAAIEAAAALQEAAAUAAAAUAgACQAAFAAAAEwIAAgEFBQAAAAkCAAAAAgUAAAAUAuACaQQcAAAA+wIg/wAAAAAAAJABAAAAAAACABBUaW1lcyBOZXcgUm9tYW4A/v///2UUCjQAAAoAAAAAAAQAAAAtAQEACQAAADIKAAAAAAEAAAAxIMABBQAAABQCbgEUARwAAAD7AoD+AAAAAAAAkAEAAAAAAAIAEFRpbWVzIE5ldyBSb21hbgD+////Lh0KBQAACgAAAAAABAAAAC0BAgAEAAAA8AEBAAoAAAAyCgAAAAACAAAAMZbqAAADBQAAABQCjAMwABwAAAD7AoD+AAAAAAAAkAEAAAAAAAIAEFRpbWVzIE5ldyBSb21hbgD+////ZRQKNQAACgAAAAAABAAAAC0BAQAEAAAA8AECAAoAAAAyCgAAAAACAAAAMZbqAAADBQAAABQC4AI9AxwAAAD7AiD/AAAAAAAAkAEBAAAAAAIAEFRpbWVzIE5ldyBSb21hbgD+////Lh0KBgAACgAAAAAABAAAAC0BAgAEAAAA8AEBAAkAAAAyCgAAAAABAAAATgDAAQUAAAAUAm4BGAMcAAAA+wKA/gAAAAAAAJABAQAAAQACABBTeW1ib2wAACDZ93ZAd/7m/v///2UUCjYAAAoAAAAAAAQAAAAtAQEABAAAAPABAgAJAAAAMgoAAAAAAQAAAHIgAAMFAAAAFAKMAzQCCQAAADIKAAAAAAEAAABylgADBQAAABQC4AL2AxwAAAD7AiD/AAAAAAAAkAEAAAABAAIAEFN5bWJvbAAAINn3dkB3/ub+////Lh0KBwAACgAAAAAABAAAAC0BAgAEAAAA8AEBAAkAAAAyCgAAAAABAAAAK3nAAakAAAAmBg8ASAFBcHBzTUZDQwEAIQEAACEBAABEZXNpZ24gU2NpZW5jZSwgSW5jLgAFAQAGCURTTVQ2AAETV2luQWxsQmFzaWNDb2RlUGFnZXMAEQVUaW1lcyBOZXcgUm9tYW4AEQNTeW1ib2wAEQVDb3VyaWVyIE5ldwARBE1UIEV4dHJhABIACCEvJ/JfIY8hL0dfQVDyHx5BUPQVD0EA9EX0JfSPQl9BAPQQD0NfQQDyHyCl8gol9I8h9BAPQQD0D0j0F/SPQQDyGl9EX0X0X0X0X0EPDAEAAQABAgICAgACAAEBAQADAAEABAAACgEAEAAAAAAAAAAPAQMACwAADwABAA8BAgCIMQACAIITIAIEhMEDcgAPAAEADwECAIgxAAIAghMgAgSEwQNyDwADABwAAAsBAQEADwECAINOAAIEhisAKwIAiDEAAAAAAAAACgAAACYGDwAKAP////8BAAAAAAAIAAAA+gIAAAAAAAAAAAAABAAAAC0BAQAcAAAA+wIQAAcAAAAAALwCAAAAAAECAiJTeXN0ZW0AAC4AigAAAAoA5hhmQS4AigD/////0NIZAAQAAAAtAQMABAAAAPABAgADAAAAAAA=)</p></li>
+</ul>
+<p>When λ= μ, we get λ/μ = 1 and p0 = 1/(1 + N).</p>
+<p>Other system measures can be computed as before. It can be shown that, when ρ ≠ 1:</p>
+<ul class="simple">
+<li><p>L = ![](data:image/x-wmf;base64,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)</p></li>
+</ul>
+<p>When ρ= 1, L = N/2. Moreover, if a customer arrives when the system is full (with probability pN),the customer will not enter the system. Therefore, the <em>effective</em> arrival rate λe is</p>
+<ul class="simple">
+<li><p>λe = λ(1 - pN)</p></li>
+<li><p>W = L/λe</p></li>
+<li><p>Wq = Lq/λe</p></li>
+<li><p>W = Wq + 1/μ</p></li>
+</ul>
+<p>These formulae are still valid when λ &gt; μ. As the arrival rate increases relative to the service rate, the system just loses more customers. It is interesting to note that, even in a saturated system in which the arrival rate is greater than the service rate, there is always still some probability p0 that the system will be empty and the server will experience some idle time.</p>
+<p>We have derived performance measures for single-server (M/M/1) systems. For multiple-server systems (where s &gt; 1), the actual service rate depends on the number of customers in the system. Obviously, if there is only one customer present, then service is being rendered at rate µ. But if there are two customers present, and s ≥ 2, then the system service rate is 2μ. Likewise, if s = 3, then the system service rate is 3μ. However, if there are s service facilities, the maximum system service rate is sμ, even if there are more than s customers. This is illustrated by the rate diagram in Figure 7.3.</p>
+<p>Insert Figure 7.3 Here</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Figure 7.3</strong> Rate diagram for multiple servers (s = n).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The results obtained from a birth-and-death process model for an M/M/s system, for s &gt; 1, differ from our previous results because service rates are sensitive to the current customer load. Under the assumption that ρ &lt; 1, that is λ &lt; sμ, it can be shown that</p>
+<ul class="simple">
+<li><p>![](data:image/x-wmf;base64,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)</p></li>
+</ul>
+<p>and</p>
+<p>The expected number in queue can be shown to be</p>
+<ul class="simple">
+<li><p>Lq = ![](data:image/x-wmf;base64,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)</p></li>
+</ul>
+<p>where ρ = λ/sμ and, as before,</p>
+<ul>
+<li><p>Lq = λWq</p></li>
+<li><p>W = Wq + 1/μ</p></li>
+<li><p>L = λW = Lq + λ/μ</p>
+<p>7.3.3 Practical Limits of Queueing Models</p>
+</li>
+</ul>
+<p>In the previous sections, we attempted to give a very brief introduction to the simplest queueing models and to the mathematical foundations underlying these models. When the systems being studied are more complex, we find that the analytical approach to modeling their behavior grows dramatically in complexity. And for some systems, no analytical models have been developed that are applicable at all.</p>
+<p>In selected applications, decomposing or partitioning the system may be a reasonable approach. For example, in a very complex multiple-server system, we might simplify the analysis by just considering the servers that create the bottlenecks in the system, and in that way decompose the system into more manageable parts.</p>
+<p>The problem of scheduling operating rooms in a hospital provides another good example. We may be able to learn much about the system by treating the operating rooms as a set of parallel identical servers. But in reality, the operating rooms are <em>not</em> identical; each one could be characterized by the unique equipment installed in the room. Therefore, it might be useful to partition the patients into several parallel streams of customers, each requiring a different group of identical operating theaters.</p>
+<p>There are many examples of systems that involve certain characteristics of queueing models, but whose components do not fit into the standard roles of “customers” and “servers” as we have defined them, or whose customers and servers do not behave according to the simple paradigms to which the equations of analytical queueing models are applicable. In such systems, although we cannot directly and easily <em>compute</em> system characteristics such as average queue length, average time spent in a queue, server utilization, etc., we might instead be able to <em>write a computer program</em> to play out and mimic the behavior of the entities in the system. By enacting these behaviors under the control of a computer program, we can then also “observe” the performance of the “simulated” system, and, within the computer program, accumulate enough information about the system to then quantify the observed system characteristics. When this is done properly and skillfully, the results may be just as valuable and reliable as the analytical results that can be directly derived for simpler systems.</p>
+<p>Although queueing analysis and simulation are often used to accomplish similar goals, the two approaches are quite different. Chapter 8 describes how to develop a simulation of a system, how to cause “events” to happen in the simulated system, how to make observations and gather data about the effects of these events in the simulated system, and thereby infer how the real system being modeled would behave and what some of its essential characteristics are.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "MohammadBaniAbdElNabi/Linear-programming",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content\Ch_7\7_3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="7_3_1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">7.3.1 Notation and Definitions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../7_4/7_4.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">7.4 SOFTWARE for queueing models</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ghaith Rabadi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
