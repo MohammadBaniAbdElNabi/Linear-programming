@@ -1,0 +1,114 @@
+/* ================================================
+ * Custom CSS: Operations Research textbook
+ * Visual reference: OR Book Sent to Printer.pdf
+ * Chapter 2 excluded from local edits.
+ * ================================================ */
+
+/* --- Body text: justified paragraphs, consistent line-height --- */
+article.bd-article p {
+    text-align: justify;
+    line-height: 1.65;
+}
+
+/* --- Chapter / section title (h1) ---
+     Matches PDF chapter title style: bold, with a bottom rule */
+article.bd-article h1 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    border-bottom: 2px solid #333;
+    padding-bottom: 0.4rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    color: #000;
+}
+
+/* --- Section headings (h2) --- */
+article.bd-article h2 {
+    font-size: 1.15rem;
+    font-weight: bold;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: #000;
+}
+
+/* --- Subsection headings (h3) --- */
+article.bd-article h3 {
+    font-size: 1.05rem;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #000;
+}
+
+/* --- Displayed math block spacing ---
+     Matches PDF equation layout: extra space before/after */
+article.bd-article div.math {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+/* --- Table styling: top rule / header rule / bottom rule, no inner borders ---
+     Matches PDF book table style */
+article.bd-article table {
+    border-collapse: collapse;
+    margin: 1.5rem auto;
+    font-size: 0.95em;
+}
+
+article.bd-article table thead th {
+    border-top: 2px solid #333;
+    border-bottom: 1px solid #333;
+    padding: 0.4rem 1.2rem;
+    font-weight: bold;
+    background: transparent;
+}
+
+article.bd-article table tbody td {
+    border: none;
+    padding: 0.3rem 1.2rem;
+}
+
+article.bd-article table tbody tr:last-child td {
+    border-bottom: 1px solid #333;
+}
+
+/* --- Figure captions --- */
+article.bd-article figcaption,
+article.bd-article p.caption {
+    font-size: 0.9rem;
+    margin-top: 0.4rem;
+    text-align: left;
+}
+
+/* --- Horizontal rules --- */
+article.bd-article hr {
+    border: none;
+    border-top: 2px solid #333;
+    margin: 1.5rem 0;
+}
+
+/* --- KEY TERMS section list ---
+     After converting KEY TERMS to ## KEY TERMS, the ul that follows
+     gets two-column layout with no bullets, matching the PDF Key Terms layout. */
+#key-terms ul {
+    list-style: none;
+    padding-left: 0;
+    column-count: 2;
+    column-gap: 2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+#key-terms ul li {
+    margin-bottom: 0.15rem;
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+}
+
+/* --- REFERENCES AND SUGGESTED READINGS section ---
+     Hanging indent for citation paragraphs, matching PDF reference style. */
+#references-and-suggested-readings p {
+    padding-left: 2.5em;
+    text-indent: -2.5em;
+    margin-bottom: 0.35rem;
+}

@@ -1,81 +1,45 @@
 # REFERENCES AND SUGGESTED READINGS
 
-Aarts, E. , and J. Korst. 1989. _Simulated Annealing and Boltzmann Machines: A Stochastic Approach to Combinatorial Optimization and Neural Computing_. New York: John Wiley & Sons.
 
-Aarts, E., and J. K. Lenstra. 1997. _Local Search in Combinatorial Optimization_. Chichester, England: John Wiley & Sons.
+Aarts, E., and J. Korst. 1989. Simulated Annealing and Boltzmann Machines: A Stochastic Approach to Combinatorial Optimization and Neural Computing. New York: John Wiley \& Sons.
+Aarts, E., and J. K. Lenstra. 1997. Local Search in Combinatorial Optimization. Chichester, UK: John Wiley \& Sons.
+Anily, S., and A. Federgruen. 1985. Probabilistic analysis of simulated annealing methods. Preprint. Technical Report, Graduate School of Business. New York: Columbia University, pp. 289-304.
+Burke, E. K, and G. Kendall. 2014. Search methodologies: Introductory Tutorials in Optimization and Decision Support Techniques, 2nd ed. New York: Springer.
+Campbell, K. W., R. Bret Durfee, and G. S. Hines. 1997. FedEx generates bid lines using simulated annealing. Interfaces 27 (2): 1-16.
+Carter, M. W., and C. C. Price. 1988. Local Improvement Heuristics. Toronto, Canada: Department of Industrial Engineering, University of Toronto.
+Coughlin, J. P., and R. H. Baran. 1995. Neural Computation in Hopfield Networks and Boltzmann Machines. Newark, NJ: University of Delaware Press.
 
-Anily, S, and A Federgruen. 1985. "Probabilistic analysis of simulated annealing methods." _preprint_:289-304.
+Darwin, C. 1859. On the Origin of Species by Means of Natural Selection, or Preservation of Favoured Races in the Struggle for Life. London, UK: Murray.
+Du, K.-L., and M. N. S. Swamy. 2010. Search and Optimization by Metaheuristics: Techniques and Algorithms Inspired by Nature. Cham, Switzerland: Springer International Publishing AG.
+Ferreiro, A. M., J. A. García, J. G. López-Salas, and C. Vázquez. 2013. An efficient implementation of parallel simulated annealing algorithm in GPUs. Journal of Global Optimization 57 (3): 863-890.
+Garcia, C., and G. Rabadi. 2011. A meta RaPS algorithm for spatial scheduling with release times. International Journal of Planning and Scheduling 1(1-2): 19-31.
+Gendreau, M., and J.-Y. Potvin. 2010. Handbook of Metaheuristics, Vol. 2. New York: Springer.
+Glover, F., and M. Laguna. 1997. Tabu Search. Boston, MA: Kluwer Academic.
+Glover, F. 1989. Tabu search part I. ORSA Journal on Computing 1 (3): 190-206.
+Glover, F. W., and G. A. Kochenberger. 2006. Handbook of Metaheuristics, Vol. 57. New York: Springer Science \& Business Media.
+Goldberg, D. E. 1994. Genetic and evolutionary algorithms come of age. Communications of the ACM 37 (3): 113-120.
+Goldberg, D. E, K. Deb, and J. H. Clark. 1992. Genetic algorithms, noise, and the sizing of populations. Complex Systems 6: 333-362.
+Goldberg, D. E., and J. H. Holland. 1988. Genetic algorithms and machine learning. Machine Learning 3 (2): 95-99.
+Goldberg, D. E. 1989. Genetic Algorithms in Search, Optimization, and Machine Learning. Reading, MA: Addison-Wesley.
+Hentenryck, P. V., and L. Michel. 2009. Constraint-based Local Search. Cambridge, UK: The MIT press.
+Holland, J. H. 1975. Adaption in Natural and Artificial Systems. Ann Arbor, MI: The University of Michigan Press.
+Hughell, D. A., and J. P. Roise. 1995. Spatially explicit multi-objective analysis for timber and wildlife. Quantitative Tools for Wildlife Analysis and Management Working Group at the SAF National Convention, Portland, ME.
+Kaplan, S., and G. Rabadi. 2013. A simulated annealing and meta-raps algorithms for the aerial refueling scheduling problem with due date-to-deadline windows and release time. Engineering Optimization 45 (1): 67-87.
+Kirkpatrick, S. 1984. Optimization by simulated annealing: Quantitative studies. Journal of Statistical Physics 34 (5): 975-986.
+Kirkpatrick, S., C. D. Gelatt, and M. P. Vecchi. 1983. Optimization by simulated annealing. Science 220 (4598): 671-680.
+Lin, S., and B. W. Kernighan. 1973. An effective heuristic algorithm for the traveling-salesman problem. Operations Research 21 (2): 498-516.
+Lucas, R. A., and C. C. Price. 1992. Neural Computing Models and Parallel Simulated Annealing for Quadratic Assignment Problems. Nacogdoches, TX: Stephen F. Austin State University.
+Lundy, M., and A. Mees. 1986. Convergence of an annealing algorithm. Mathematical Programming 34 (1): 111-124.
+Manikas, A. S., J. R. Kroes, and T. F. Gattiker. 2016. Metro meals on wheels Treasure Valley employs a low-cost routing tool to improve deliveries. Interfaces 46 (2): 154-167.
+Metropolis, N., A. W. Rosenbluth, M. N. Rosenbluth, A. H. Teller, and E. Teller. 1953. Equation of state calculations by fast computing machines. The Journal of Chemical Physics 21 (6): 1087-1092.
+Moraga, R. J. 2016. Metaheuristic for randomized priority search (Meta-RaPS): A tutorial. In Heuristics, Metaheuristics and Approximate Methods in Planning and Scheduling. Cham, Switzerland: Springer, pp. 95-108.
+Price, C. C., and L. A. Wahsheh. 1999. Cascaded Boltzmann machines for combinatorial optimization. Proceedings of the 4 th Multiconference on Systemics, Orlando, FL.
+Rabadi, G., R. J. Moraga, and A. Al-Salem. 2006. Heuristics for the unrelated parallel machine scheduling problem with setup times. Journal of Intelligent Manufacturing 17 (1): 85-97.
+Reeves, C. R. 1997. Genetic algorithms for the operations researcher. INFORMS Journal on Computing 9 (3): 231-250.
 
-Burke, Edmund K, and Graham Kendall. 2014. _Search methodologies : Introductory Tutorials in Optimization and Decision Support Techniques_: Springer.
-
-Campbell, Kevin W, R Bret Durfee, and Gail S Hines. 1997. "FedEx generates bid lines using simulated annealing." _Interfaces_ 27 (2):1-16.
-
-Carter, M. W., and C. C. Price. 1988. Local Improvement Heuristics. Ontario, Canada: Department of Industrial Engineering, University of Toronto.
-
-Coughlin, James P, and Robert H Baran. 1995. _Neural Computation in Hopfield Networks and Boltzmann Machines_. Newark, NJ: University of Delaware Press.
-
-Darwin, Charles. 1859. On the Origin of Species by Means of Natural Selection, or Preservation of Favoured Races in the Struggle for Life: Murray. London.
-
-Du, K-L, and Swamy, M.N.S. 2010. _Search and Optimization by Metaheuristics: Techniques and Algorithms Inspired by Nature_ Switzerland: Springer International Publishing AG
-
-Ferreiro, AM, JA García, José G López-Salas, and Carlos Vázquez. 2013. "An efficient implementation of parallel simulated annealing algorithm in GPUs." _Journal of Global Optimization_ 57 (3):863-890.
-
-Garcia, Christopher, and Ghaith Rabadi. 2011. "A Meta RaPS algorithm for spatial scheduling with release times." _International Journal of Planning and Scheduling_ 1 (1-2):19-31.
-
-Gendreau, Michel, and Jean-Yves Potvin. 2010. _Handbook of metaheuristics_. Vol. 2: Springer.
-
-Glover, F., and M. Laguna. 1997. _Tabu Search_. Boston, MA Kluwer Academic.
-
-Glover, Fred. 1989. "Tabu search part I." _ORSA Journal on computing_ 1 (3):190-206.
-
-Glover, Fred W, and Gary A Kochenberger. 2006. _Handbook of metaheuristics_. Vol. 57: Springer Science & Business Media.
-
-Goldberg, David E. 1994. "Genetic and evolutionary algorithms come of age." _Communications of the ACM_ 37 (3):113-120.
-
-Goldberg, David E, Kalyanmoy Deb, and James H Clark. 1992. "Genetic algorithms, noise, and the sizing of populations." _Complex Systems_ 6:333-362.
-
-Goldberg, David E, and John H Holland. 1988. "Genetic algorithms and machine learning." _Machine learning_ 3 (2):95-99.
-
-Goldberg, DE. 1989. _Genetic Algorithms in Search, Optimization, and Machine Learning_. Reading, Ma: Addison-Wesley.
-
-Hentenryck, Pascal Van, and Laurent Michel. 2009. _Constraint-based local search_: The MIT press.
-
-Holland, JH. 1975. "Adaption in natural and artiﬁcial systems." _Ann Arbor MI: The University of Michigan Press_.
-
-Hughell, David A, and Joseph P Roise. 1995. "Spatially explicit multi-objective analysis for timber and wildlife." Quantitative Tools for Wildlife Analysis and Management Working Group at the SAF National Convention, Portland, ME.
-
-Kaplan, S, and G Rabadi. 2013. "A simulated annealing and meta-raps algorithms for the aerial refueling scheduling problem with due date-to-deadline windows and release time." _Engineering Optimization_ 45 (1):67-87.
-
-Kirkpatrick, Scott. 1984. "Optimization by simulated annealing: Quantitative studies." _Journal of statistical physics_ 34 (5):975-986.
-
-Kirkpatrick, Scott, C Daniel Gelatt, and Mario P Vecchi. 1983. "Optimization by simulated annealing." _science_ 220 (4598):671-680.
-
-Lin, Shen, and Brian W Kernighan. 1973. "An effective heuristic algorithm for the traveling-salesman problem." _Operations research_ 21 (2):498-516.
-
-Lucas, R. A, and C. C. Price. 1992. Neural Computing Models and Parallel Simulated Annealing for Quadratic Assignment Problems. Stephen F. Austin State University.
-
-Lundy, Miranda, and Alistair Mees. 1986. "Convergence of an annealing algorithm." _Mathematical programming_ 34 (1):111-124.
-
-Manikas, Andrew S, James R Kroes, and Thomas F Gattiker. 2016. "Metro Meals on Wheels Treasure Valley Employs a Low-Cost Routing Tool to Improve Deliveries." _Interfaces_ 46 (2):154-167.
-
-Metropolis, Nicholas, Arianna W Rosenbluth, Marshall N Rosenbluth, Augusta H Teller, and Edward Teller. 1953. "Equation of state calculations by fast computing machines." _The journal of chemical physics_ 21 (6):1087-1092.
-
-Moraga, Reinaldo J. 2016. "Metaheuristic for Randomized Priority Search (Meta-RaPS): A Tutorial." In _Heuristics, Metaheuristics and Approximate Methods in Planning and Scheduling_, 95-108. Springer.
-
-Price, C. C., and L. A. Wahsheh. 1999. "Cascaded Boltzmann Machines for Combinatorial Optimization." Proc. 4th Multiconference on Systemics Orlando, FL.
-
-Rabadi, Ghaith, Reinaldo J Moraga, and Ameer Al-Salem. 2006. "Heuristics for the unrelated parallel machine scheduling problem with setup times." _Journal of Intelligent Manufacturing_ 17 (1):85-97.
-
-Reeves, Colin R. 1997. "Genetic algorithms for the operations researcher." _INFORMS journal on computing_ 9 (3):231-250.
-
-Resende, Mauricio GC, and Celso C Ribeiro. 2003. " Greedy randomized adaptive search procedures." In _Handbook of Metaheuristics_, edited by In F. Glover and G. Kochenberger, 219-249. Kluwer Academic Publishers.
-
-Santé, Inés, Francisco F Rivera, Rafael Crecente, Marcos Boullón, Marcos Suárez, Juan Porta, Jorge Parapar, and Ramón Doallo. 2016. "A simulated annealing algorithm for zoning in planning using parallel computing." _Computers, Environment and Urban Systems_ 59:95-106.
-
-Siarry, Patrick (Ed.). 2016. _Metaheuristics_. 1st ed. ed.
-
-Sivanandam, SN, and SN Deepa. 2007. _Introduction to genetic algorithms_: Springer Science & Business Media.
-
-Taillard, Eric. 2016. "Tabu Search." In _Metaheuristics_, 51-76. Springer.
-
-Wang, Chao, Dong Mu, Fu Zhao, and John W Sutherland. 2015. "A parallel simulated annealing method for the vehicle routing problem with simultaneous pickup-delivery and time windows." _Computers & Industrial Engineering_ 83:111-122.
+Resende, M. G. C., and C. C. Ribeiro. 2003. Greedy randomized adaptive search procedures. In F. Glover and G. Kochenberger (Eds.), Handbook of Metaheuristics. Dordrecht, the Netherlands: Kluwer Academic Publishers, pp. 219-249.
+Santé, I., F. F. Rivera, R. Crecente, M. Boullón, M. Suárez, J. Porta, J. Parapar, and R. Doallo. 2016. A simulated annealing algorithm for zoning in planning using parallel computing. Computers, Environment and Urban Systems 59: 95-106.
+Siarry, P. (Ed.). 2016. Metaheuristics, 1st ed. Cham, Switzerland: Springer.
+Sivanandam, S. N., and S. N. Deepa. 2007. Introduction to Genetic Algorithms. Berlin, Germany: Springer Science \& Business Media.
+Taillard, E. 2016. Tabu search. In Metaheuristics. Cham, Switzerland: Springer, pp. 51-76.
+Wang, C., D. Mu, F. Zhao, and J. W. Sutherland. 2015. A parallel simulated annealing method for the vehicle routing problem with simultaneous pickup-delivery and time windows. Computers \& Industrial Engineering 83: 111-122.

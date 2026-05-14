@@ -37,6 +37,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=d06703b7" />
   
   <!-- So that users can add custom icons -->
   <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -60,6 +61,8 @@
     <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'content/Ch_1/1_3/1_3';</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -164,15 +167,15 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 1 - Introduction to Operations Research</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../1_1/1_1.html"><strong>1 Introduction to Operations Research</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../1_2/1_2.html"><strong>1.2 SYSTEM MODELING PRINCIPLES</strong></a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>1.3 ALGORITHM EFFICIENCY AND PROBLEM COMPLEXITY</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../1_4/1_4.html"><strong>1.4 OPTIMALITY AND PRACTICALITY</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../1_5/1_5.html"><strong>1.5 SOFTWARE FOR OPERATIONS RESEARCH</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../1_6/1_6_1.html"><strong>1.6 ILLUSTRATIVE APPLICATIONS</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../1_6/1_6_3.html"><strong>1.6.3 Mining And Social Conflicts (Charles 2016)</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../1_7/1_7.html"><strong>1.7 SUMMARY</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html"><strong>REFERENCES AND SUGGESTED READINGS</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_1/1_1.html">1 Introduction to Operations Research</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_2/1_2.html">1.2 SYSTEM MODELING PRINCIPLES</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1.3 ALGORITHM EFFICIENCY AND PROBLEM COMPLEXITY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_4/1_4.html">1.4 OPTIMALITY AND PRACTICALITY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_5/1_5.html">1.5 SOFTWARE FOR OPERATIONS RESEARCH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_6/1_6_1.html">1.6 ILLUSTRATIVE APPLICATIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_6/1_6_3.html">1.6.3 Mining and Social Conflicts (Charles 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_7/1_7.html">1.7 SUMMARY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 2 - Linear Programming</span></p>
 <ul class="nav bd-sidenav">
@@ -213,9 +216,9 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 3 - Network Analysis</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_1/3_1.html"><strong>3</strong> Network Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_1/3_1.html">3 Network Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_2/3_2.html">3.2 MAXIMUM FLOW IN NETWORKS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_2/3_2_1.html">3.2.1 Maximum-Flow Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_2/3_2_1.html">3.2.1 Maximum Flow Algorithm</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_2/3_2_2.html">3.2.2 Extensions to the Maximum Flow Problem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_3/3_3.html">3.3 MINIMUM COST NETWORK FLOW PROBLEMS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_3/3_3_1.html">3.3.1 Transportation Problem</a></li>
@@ -224,34 +227,34 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_4/3_4.html">3.4 NETWORK CONNECTIVITY</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_4/3_4_1.html">3.4.1 Minimum Spanning Trees</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_5/3_5.html">3.5 SHORTEST PATH PROBLEMS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_5/3_5_1.html">3.5.1 Shortest Path Through an Acyclic Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_5/3_5_1.html">3.5.1 Shortest Path through an Acyclic Network</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_5/3_5_2.html">3.5.2 Shortest Paths from Source to All Other Nodes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_5/3_5_3.html">3.5.3. Problems Solvable with Shortest Path Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_5/3_5_3.html">3.5.3 Problems Solvable with Shortest Path Methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_6/3_6.html">3.6 DYNAMIC PROGRAMMING</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_6/3_6_1.html">3.6.1 Labeling Method for Multi-Stage Decision Making</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_6/3_6_2.html">3.6.2 Tabular Method</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_6/3_6_3.html">3.6.3 General Recursive Method</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_7/3_7.html">3.7 PROJECT MANAGEMENT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_7/3_7_1.html">3.7.1 Project Networks and Critical Paths</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_7/3_7_2.html">3.7.2 Cost vs. Time Trade-Offs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_7/3_7_2.html">3.7.2 Cost versus Time Trade-Offs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_7/3_7_3.html">3.7.3 Probabilistic Project Scheduling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_8/3_8.html">3.8 SOFTWARE FOR NETWORK ANALYSIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_9/3_9.html">3.9 ILLUSTRATIVE APPLICATIONS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_9/3_9_1.html">3.9.1 DNA Sequence Comparison using A Shortest Path Algorithm <strong>(Waterman 1988), (Wagner and Fischer 1974)</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_9/3_9_2.html">3.9.2 Multiprocessor Network Traffic Scheduling <strong>(Bianchini and Shen 1987)</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_9/3_9_3.html">3.9.3 Shipping Cotton from Farms to Gins <strong>(Glover, Klingman, and Phillips 1992), (Klingman, Randolph, and Fuller 1976)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_9/3_9_1.html">3.9.1 DNA Sequence Comparison Using a Shortest Path Algorithm (Waterman 1988; Wagner and Fischer 1974)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_9/3_9_2.html">3.9.2 Multiprocessor Network Traffic Scheduling (Bianchini and Shen 1987)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_9/3_9_3.html">3.9.3 Shipping Cotton from Farms to Gins (Glover et al. 1992; Klingman et al. 1976)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_10/3_10.html">3.10 SUMMARY</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_3/Exercises/Exercises.html">EXERCISES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_3/REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 4 - Integer Programming</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_1/4_1.html"><strong>4</strong> Integer Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_1/4_1.html">4 Integer Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_2/4_2.html">4.2 TYPICAL INTEGER PROGRAMMING PROBLEMS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_2/4_2_1.html">4.2.1 General Integer Problems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_2/4_2_2.html">4.2.2 Zero-One Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_2/4_2_2.html">4.2.2 Zero-One (0-1) Problems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_2/4_2_3.html">4.2.3 Mixed Integer Problems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_3/4_3.html">4.3 ZERO-ONE MODEL FORMULATIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_3/4_3.html">4.3 ZERO-ONE (0-1) MODEL FORMULATIONS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_3/4_3_1.html">4.3.1 Traveling Salesman Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_3/4_3_2.html">4.3.2 Knapsack Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_3/4_3_3.html">4.3.3 Bin Packing Model</a></li>
@@ -272,72 +275,72 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_5.html">4.7.5 A Basic Lagrangian Relaxation Algorithm</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_6.html">4.7.6 A Customer Allocation Problem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_8/4_8.html">4.8 COLUMN GENERATION</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_9/4_9.html">4.9 SOFTWARE for integer programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_9/4_9.html">4.9 SOFTWARE FOR INTEGER PROGRAMMING</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_10/4_10.html">4.10 ILLUSTRATIVE APPLICATIONS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_10/4_10_1.html">4.10.1 Solid Waste Management <strong>(Antunes 1999)</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_10/4_10_2.html">4.10.2 Timber Harvest Planning <strong>(Epstein et al. 1999)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_10/4_10_1.html">4.10.1 Solid Waste Management (Antunes 1999)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_10/4_10_2.html">4.10.2 Timber Harvest Planning (Epstein et al. 1999)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_11/4_11.html">4.11 SUMMARY</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/Exercises/Exercises.html">EXERCISES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 6 - Markov Processes</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_1/6_1.html"><strong>6</strong> Markov Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_1/6_1.html">6 Markov Processes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_2/6_2.html">6.2 STATE PROBABILITIES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_3/6_3.html">6.3 FIRST PASSAGE PROBABILITIES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_4/6_4.html">6.4 PROPERTIES OF THE STATES IN A MARKOV PROCESS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_5/6_5.html">6.5 STEADY-STATE ANALYSIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_6/6_6.html">6.6 EXPECTED FIRST PASSAGE TIMES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_7/6_7.html">6.7 ABSORBING CHAINS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_8/6_8.html">6.8 SOFTWARE for markov processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_8/6_8.html">6.8 SOFTWARE FOR MARKOV PROCESSES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_9/6_9.html">6.9 ILLUSTRATIVE APPLICATIONS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_9/6_9_1.html">6.9.1 Water Reservoir Operations <strong>(Wang and Adams 1986)</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_9/6_9_2.html">6.9.2 Markov Analysis of Dynamic Memory Allocation <strong>(Pflug 1984)</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_9/6_9_3.html">6.9.3 Markov Models for Manufacturing Production Capability <strong>(Foster and Garcia-Diaz 1983)</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_9/6_9_4.html">6.9.4 Markov Decision Processes in Dairy Farming <strong>(Suvak et al. 2016), (Rukav et al. 2014)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_9/6_9_1.html">6.9.1 Water Reservoir Operations (Wang and Adams 1986)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_9/6_9_2.html">6.9.2 Markov Analysis of Dynamic Memory Allocation (Pflug 1984)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_9/6_9_3.html">6.9.3 Markov Models for Manufacturing Production Capability (Foster and Garcia-Diaz 1983)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_9/6_9_4.html">6.9.4 Markov Decision Processes in Dairy Farming (Rukav et al. 2014, Suvak et al. 2016)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_10/6_10.html">6.10 SUMMARY</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_6/Exercises/Exercises.html">EXERCISES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_6/REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 7 - Queueing Models</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_1/7_1.html"><strong>7</strong> Queueing Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_1/7_1.html">7 Queueing Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_2/7_2.html">7.2 ARRIVAL AND SERVICE PATTERNS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_2/7_2_1.html">7.2.1 The Exponential Distribution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_2/7_2_2.html">7.2.2 Birth-and-Death Processes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_3/7_3.html">7.3 ANALYSIS OF SIMPLE QUEUEING SYSTEMS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_3/7_3_1.html">7.3.1 Notation and Definitions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_3/7_3_2.html">7.3.2 Steady-State Performance Measures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_4/7_4.html">7.4 SOFTWARE for queueing models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_3/7_3_2.html">7.3.2 Steady State Performance Measures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_4/7_4.html">7.4 SOFTWARE FOR QUEUEING MODELS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_5/7_5.html">7.5 ILLUSTRATIVE APPLICATIONS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_5/7_5_1.html">7.5.1 Cost Efficiency and Service Quality in Hospitals <strong>(Green 2002)</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_5/7_5_2.html">7.5.2 Queueing Models in Manufacturing <strong>(Suri et al. 1995)</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_5/7_5_3.html">7.5.3 Nurse Staffing Based on Queueing Models <strong>(De Véricourt and Jennings 2011)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_5/7_5_1.html">7.5.1 Cost Efficiency and Service Quality in Hospitals (Green 2002)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_5/7_5_2.html">7.5.2 Queueing Models in Manufacturing (Suri et al. 1995)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_5/7_5_3.html">7.5.3 Nurse Staffing Based on Queueing Models (De Véricourt and Jennings 2011)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_6/7_6.html">7.6 SUMMARY</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_7/Exercises/Exercises.html">EXERCISES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_7/REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 8 - Simulation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_1/8_1.html"><strong>8</strong> Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_1/8_1.html">8 Simulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_2/8_2.html">8.2 DISCRETE SIMULATION MODELS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_2/8_2_1.html">8.2.1 Event-Driven Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_2/8_2_2.html">8.2.2 Generating Random Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_3/8_3.html">8.3 OBSERVATIONS OF SIMULATIONS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_3/8_3_1.html">8.3.1 Gathering Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_3/8_3_2.html">8.3.2 Design of Simulation Experiments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_4/8_4.html">8.4 SOFTWARE for simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_4/8_4.html">8.4 SOFTWARE FOR SIMULATION</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_5/8_5.html">8.5 ILLUSTRATIVE APPLICATIONS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_5/8_5_1.html">8.5.1 Finnish Air Force Fleet Maintenance <strong>(Mattila, Virtanen, and Raivio 2008)</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_5/8_5_2.html">8.5.2 Simulation of a Semiconductor Manufacturing Line <strong>(Miller 1990)</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_5/8_5_3.html">8.5.3 Simulation of Eurotunnel Terminals <strong>(Salt 1991)</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_5/8_5_4.html">8.5.4 Simulation for NASA’s Space Launch Vehicles Operations <strong>(Kaylani et al. 2008)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_5/8_5_1.html">8.5.1 Finnish Air Force Fleet Maintenance (Mattila et al. 2008)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_5/8_5_2.html">8.5.2 Simulation of a Semiconductor Manufacturing Line (Miller 1990)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_5/8_5_3.html">8.5.3 Simulation of Eurotunnel Terminals (Salt 1991)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_5/8_5_4.html">8.5.4 Simulation for NASA’s Space Launch Vehicles Operations (Kaylani et al. 2008)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_8/Exercises/Exercises.html">EXERCISES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_8/REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 9 - Decision Analysis</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_1/9_1.html"><strong>9</strong> Decision Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_1/9_1.html">9 Decision Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_2/9_2.html">9.2 AN INTRODUCTION TO GAME THEORY</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_2/9_2_1.html">9.2.1 Maximin Strategy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_2/9_2_2.html">9.2.2 Maximax Strategy</a></li>
@@ -355,21 +358,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_5/9_5_3.html">9.5.3 Anchoring and Adjustment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_5/9_5_4.html">9.5.4 Dissonance Reduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_5/9_5_5.html">9.5.5 The Framing Effect</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_5/9_5_6.html">9.5.6 The Sunk-cost Fallacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_5/9_5_6.html">9.5.6 The Sunk Cost Fallacy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_5/9_5_7.html">9.5.7 Irrational Human Behavior</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_6/9_6.html">9.6 SOFTWARE for Decision analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_6/9_6.html">9.6 SOFTWARE FOR DECISION ANALYSIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_7/9_7.html">9.7 ILLUSTRATIVE APPLICATIONS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_7/9_7_1.html">9.7.1 Decision Support System for Minimizing Costs in the Maritime Industry <strong>(Diz et al. 2014)</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_7/9_7_2.html">9.7.2 Refinery Pricing Under Uncertainty <strong>(Keefer 1995)</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_7/9_7_3.html">9.7.3 Decisions for Radioactive Waste Management <strong>(Perdue and Kumar 1999)</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_7/9_7_4.html">9.7.4 Investment Decisions and Risk in Petroleum Exploration <strong>(Walls, Morahan, and Dyer 1995)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_7/9_7_1.html">9.7.1 Decision Support System for Minimizing Costs in the Maritime Industry (Diz et al. 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_7/9_7_2.html">9.7.2 Refinery Pricing under Uncertainty (Keefer 1995)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_7/9_7_3.html">9.7.3 Decisions for Radioactive Waste Management (Perdue and Kumar 1999)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_7/9_7_4.html">9.7.4 Investment Decisions and Risk in Petroleum Exploration (Walls et al. 1995)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_8/9_8.html">9.8 SUMMARY</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_9/Exercises/Exercises.html">EXERCISES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_9/REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 10 - Heuristic and Metaheuristic Techniques for Optimization</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_1/10_1.html"><strong>10</strong> Heuristic and Metaheuristic Techniques for Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_1/10_1.html">10 Heuristic and Metaheuristic Techniques for Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_2/10_2.html">10.2 LOCAL IMPROVEMENT HEURISTICS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_3/10_3.html">10.3 SIMULATED ANNEALING</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_4/10_4.html">10.4 PARALLEL ANNEALING</a></li>
@@ -377,18 +380,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_6/10_6.html">10.6 TABU SEARCH</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_7/10_7.html">10.7 CONSTRAINT PROGRAMMING AND LOCAL SEARCH</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_8/10_8.html">10.8 OTHER METAHEURISTICS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_9/10_9.html">10.9 SOFTWARE for metaheuristics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_9/10_9.html">10.9 SOFTWARE FOR METAHEURISTICS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_10/10_10.html">10.10 ILLUSTRATIVE APPLICATIONS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_10/10_10_1.html">10.10.1 FedEx Flight Management Using Simulated Annealing <strong>(Campbell, Durfee, and Hines 1997)</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_10/10_10_2.html">10.10.2 Ecosystem Management Using Genetic Algorithm Heuristics <strong>(Hughell and Roise 1995)</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_10/10_10_3.html">10.10.3 Efficient Routing And Delivery of Meals on Wheels <strong>(Manikas, Kroes, and Gattiker 2016)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_10/10_10_1.html">10.10.1 FedEx Flight Management Using Simulated Annealing (Campbell et al. 1997)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_10/10_10_2.html">10.10.2 Ecosystem Management Using Genetic Algorithm Heuristics (Hughell and Roise 1995)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_10/10_10_3.html">10.10.3 Efficient Routing and Delivery of Meals on Wheels (Manikas et al. 2016)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_11/10_11.html">10.11 SUMMARY</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_10/Exercises/Exercises.html">EXERCISES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_10/REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix - Review of Essential Mathematics</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../Appendix/A_1/A_1.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Appendix/A_1/A_1.html">Appendix: Review of Essential Mathematics-Notation, Definitions, and Matrix Algebra</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Appendix/A_2/A_2.html">A.2 MATRICES AND MATRIX OPERATIONS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Appendix/A_3/A_3.html">A.3 LINEAR EQUATIONS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Appendix/A_4/A_4.html">A.4 QUADRATIC FORMS</a></li>
@@ -541,31 +544,37 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="algorithm-efficiency-and-problem-complexity">
-<h1><strong>1.3 ALGORITHM EFFICIENCY AND PROBLEM COMPLEXITY</strong><a class="headerlink" href="#algorithm-efficiency-and-problem-complexity" title="Link to this heading">#</a></h1>
-<p>An algorithm is a sequence of operations that can be carried out in a finite amount of time. An algorithm prescribes a process that may be repetitive in some sense (perhaps iterative or recursive) but that will eventually terminate. Practical examples of algorithms include recipes for cooking, the instructions in an owner’s manual for connecting a new sound system component, and computer programs that do not contain infinite loops. Algorithms are the processes that software developers put into action when they create computer programs for solving all kinds of problems.</p>
-<p>In the 1930s, a mathematician by the name of Alan Turing developed a general computational model (which now bears his name) that is powerful enough to represent all possible numeric and symbolic computational procedures. Turing also demonstrated the existence of problems for which no algorithms exist that successfully handle all possible instances of the problem. Such problems are called unsolvable or undecidable problems. (It had been previously assumed that an algorithm could be developed for any problem if the problem-solver were merely clever enough.) Some of the earliest problems to be classified as unsolvable were of only theoretical interest; but more recently, other more practical unsolvable problems have been identified.</p>
-<p>When such problems do arise in actual practice, we might just try to deal with special or limited cases, rather than with the general problem. Special cases of unsolvable problems, perhaps involving highly restricted inputs, may not be unsolvable, and therefore it may be entirely possible to design algorithms for these cases. Alternatively, we might find it fairly simple to use human “ingenuity” (a very poorly defined talent that cannot be easily automated) to deal with individual problem instances on a case-by-case basis.</p>
-<p>While unsolvable (or undecidable) problems do exist, most analysts would prefer to concentrate on the many important solvable problems that face us; that is, problems for which algorithms <em>can</em> be developed. With this in mind, the next question to arise might be: are all solvable problems of similar difficulty, or are there some that are truly more difficult than others? What is meant by a “difficult” problem? And just what is known about algorithms, and the complexity (or computational behavior) of algorithms? This is a topic of study that has undergone enormous progress during the past several decades, and the advances that have been made in this field have provided valuable concepts, notations, and tools that allow for discussion and analysis of an algorithm’s performance.</p>
-<p>Several factors influence the amount of time it takes for a computer program to execute to solve a problem: the programming language used, the programmer’s skill, the hardware used in executing the program, and the task load on the computer system during execution. But none of these factors is a direct consequence of the underlying algorithm that has been implemented in software. Given a particular algorithm, its performance is strongly dependent on the “size” of the problem being solved. For example, we would expect a sorting algorithm to take longer to sort a list of 10,000 names than to sort a list of 100 names. Similarly, we recognize that solving a system of equations takes longer when there are more equations and more variables. For this reason, the performance of an algorithm is often described as a function of a variable denoting the problem size, which denotes the size of the data set that is input to the algorithm.</p>
-<p>During the early years of the discipline of Operations Research, relatively little was understood about the formal properties of algorithms and the inherent complexity of problems. However, the 1970s and 1980s witnessed remarkable developments in this arena. Two interesting classes of problems have been defined. One class (called class P) of problems contains those problems that can be solved by an algorithm within an amount of computation time proportional to some polynomial function of problem size; that is, the problems are solvable by polynomial-time algorithms. The other class (called class NP for <strong>N</strong>ondeterministic <strong>P</strong>olynomial time) contains problems that may require computation time proportional to some exponential (or larger) function of problem size; these algorithms are called exponential-time algorithms. For a more precise description of these problem classes, based on the notions of deterministic and nondeterministic Turing machines, refer to any elementary textbook on algorithms or theory of computation, such as (Cormen et al. 2009, Baase and Gelder 2000, Manber 1989, Hein 1995).</p>
-<p>Within the class NP, there is another special class of important problems called NP-complete which are characterized as being the most difficult problems in NP. This class includes many very practical problems and so has received considerable attention from analysts. Another class of NP problems known as <strong>NP-hard</strong> is at least as hard as the hardest NP problem. Some of these NP problems, and their practical applications, are described in Chapters 3, 4, and 10.</p>
-<p>The problems in class P are generally considered to be “easy” problems - not necessarily in the conceptual sense but in the sense that efficient algorithms for these problems exist that execute in reasonably small amounts of computation time. NP-complete and NP-hard problems, in contrast, appear to require computation time that grows as an exponential function of problem size. This implies that unacceptably large amounts of computation time could be required for solving problems of any practical size, and therefore such problems have been termed “intractable” problems. Solutions for such problems are not necessarily difficult to conceptualize or even to implement in computer code, but the execution time may be completely unaffordable - both physically and financially.</p>
-<p>It is known that P ⊆ NP but it is an open question whether P = NP. In other words, are the NP-complete problems truly more costly to solve than the problems in P, or have analysts just not yet been clever enough to discover efficient algorithms for these apparently difficult problems? Discovery of an efficient (polynomial-time) algorithm for any NP-complete problem would be sufficient to establish that P = NP and, therefore, that all the NP-complete problems can be solved efficiently. In the absence of any such discovery, analysts are faced daily with the need to solve practical problems that are computationally intractable. Chapter 10 reveals how some of these problems are dealt with in effective and affordable ways. An informative overview of this subject is available in (Garey and Johnson 1979).</p>
-<p>Most of the problem models presented in this book are not intractable, and the solution methods for these problems are based on polynomial-time algorithms. These methods find optimal solutions in an amount of time proportional to a polynomial function of the problem size. Depending on the nature of the data (e.g., the distribution of data values or the arrangement of the data values in the data set), the execution time for a given algorithm may vary. Sorting a list of 10,000 names that are already in order <em>may</em> take less time than to sort 10,000 names that are scrambled - if the algorithm is sensitive to the initial ordering and can take advantage of it. Similarly, finding the “best” solution to a system of equations <em>may</em> be rather easy if a “reasonably good” solution is already known.</p>
-<p>Thus, we will see that, under different circumstances, the same algorithm may require execution time that is a <em>different</em> function of problem size. If so, which of these different functions should analysts use to characterize the performance of the algorithm? There are several possibilities: the most favorable (fastest) case, the average case, or the most unfavorable (slowest) case.</p>
-<p>To help phrase an answer to this question, special notations have been developed that facilitate describing the computation time required to execute an algorithm to completion. For this particular purpose, we do not want to try to capture specific information about how an algorithm is implemented (programmed) or on what type of computer it is to be executed; rather, we should focus on the algorithm itself and, in particular, the step count, or the number of steps inherent in carrying out the algorithm. For some purposes, one might want to characterize the best case performance of an algorithm (the fewest number of steps that it could ever need under any circumstances). Best case might be the choice of an optimist, but using this as an indicator of algorithm performance could be misleading; and in any case, this is rarely indicative of what analysts need to know in order to assess the dependable performance of the algorithm. For example, multiplying two n × n matrices generally takes time proportional to n3; but of course, if one of the matrices is the identity matrix, this could be discovered in only n2 steps (inspecting each element of the matrix) and the rest of the process could be omitted. Using the function n2 to describe the step count, or run-time, of a matrix multiplication routine does give an accurate measure of this best case, but it is not generally indicative of the time required for matrix multiplication.</p>
-<p>An algorithm’s average case performance may seem to be the most practical characterization because it indicates the typical, or expected, step count. It would certainly be useful to know the “most likely” amount of time required to execute an algorithm. But because such an analysis must be based on statistical assumptions about the nature, order, or distribution of the data on which the algorithm operates, the validity of such assumptions may be on shaky ground for any particular set of data. Indeed, the expected performance may never actually be observed on any given set of input data. In addition, the statistical analysis that must be carried out in order to characterize an algorithm’s average behavior is often quite a mathematically difficult analysis.</p>
-<p>The characterization of an algorithm that is both straightforward and often of greatest practical value is the worst case performance, that is, the greatest number of steps that may be necessary for guaranteed completion of the execution of the algorithm. For this purpose, we introduce a notation called big-Oh notation, which is written as O(f(n)) and pronounced “big Oh of f of n,” where n denotes problem size and f(n) is some function of problem size. The meaning of the notation is as follows. An algorithm is said to be O(f(n)) if there exist constants c and n0 such that for all n &gt; n0, the execution time of the algorithm is ≤ c ⋅ f(n). The function f(n) is the algorithm’s worst case step count, measured as a function of the problem size. The constant c is called a constant of proportionality, and is intended to account for the various extraneous factors that influence execution time, such as hardware speed, programming style, and computer system load during execution of the algorithm. The problem size threshold n0 accounts for the fact that for very small problem sizes, the algorithm may not reveal its characteristic worst case performance. Paraphrased, the definition given above may be stated as follows: To say that an algorithm is O(f(n)), or “of order f(n),” means that for large enough problem sizes, the execution time is proportional to at most f(n).</p>
-<p>Thus, a matrix multiplication algorithm is O(n3) because the process may take n3 steps, although the algorithm <em>could</em> be programmed to look for special input forms that may in certain cases permit completion of the task in fewer than n3 steps. Some algorithms may operate in such a way that their worst case performance is also the best case; the performance of such algorithms does not vary depending on the nature of the data, but, of course, does vary with problem size.</p>
-<p>There are even some algorithms whose performance is independent of problem size, and therefore not really dependent on any function of problem size n. (For example, retrieving the first item in a list takes the same amount of time regardless of the length of the list). If we need to describe the worst-case performance of such an algorithm, we could use the notation O(1), where f(n) is just the constant function 1. Where appropriate throughout this book, the big-Oh notation is used to describe the worst case performance of the algorithms that are presented.</p>
-<p>Many of the methods studied in this book are based on algorithms whose complexity functions range from n, n2, n3, up to 2n , n!, and nn. To give an idea of the relative growth rates of these functions as n increases, Table 1.1 shows indications of function values. Instead of raw numeric values, we can impose a more practical interpretation and assume that the function values f(n) denote the step count of some algorithm, and that each “step” can be executed in 1 second on a computer. The entries in the table can then be viewed as estimates of actual amounts of computation times that would be required to apply algorithms of different complexities to increasingly larger problems of size n. The great differences that are evident between the polynomial functions and the exponential functions are quite dramatic, and the execution times for the exponential algorithms are indeed staggering.</p>
+<h1>1.3 ALGORITHM EFFICIENCY AND PROBLEM COMPLEXITY<a class="headerlink" href="#algorithm-efficiency-and-problem-complexity" title="Link to this heading">#</a></h1>
+<p>An algorithm is a sequence of operations that can be carried out in a finite amount of time. An algorithm prescribes a process that may be repetitive in some sense (perhaps iterative or recursive), but that will eventually terminate. Practical examples of algorithms include recipes for cooking, the instructions in an owner’s manual for connecting a new sound system component, and computer programs that do not contain infinite loops. Algorithms are the processes that software developers put into action when they create computer programs for solving all kinds of problems.
+In the 1930s, a mathematician by the name of Alan Turing developed a general computational model (which now bears his name) that is powerful enough to represent all possible numeric and symbolic computational procedures. Turing also demonstrated the existence of problems for which no algorithms exist that successfully handle all possible instances of the problem. Such problems are called unsolvable or undecidable problems. (It had been previously assumed that an algorithm could be developed for any problem if the problem-solver were merely clever enough.) Some of the earliest problems to be classified as unsolvable were of only theoretical interest. However, more recently, other more practical unsolvable problems have been identified.
+When such problems do arise in actual practice, we might just try to deal with special or limited cases, rather than with the general problem. Special cases of unsolvable problems, perhaps involving highly restricted inputs, may not be unsolvable, and therefore it may be entirely possible to design algorithms for these cases. Alternatively, we might find it fairly simple to use human ingenuity (a very poorly defined talent that cannot be easily automated) to deal with individual problem instances on a case-by-case basis.
+While unsolvable (or undecidable) problems do exist, most analysts would prefer to concentrate on the many important solvable problems that face us; that is, problems for which algorithms can be developed. With this in mind, the next question to arise might be: are all solvable problems of similar difficulty, or are there some that are truly more difficult than others? What is meant by a difficult problem? And just what is known about algorithms, and the complexity (or computational behavior) of algorithms? This is a topic of study that has undergone enormous progress during the past several decades, and the advances that have been made in this field have provided valuable concepts, notations, and tools that allow for discussion and analysis of an algorithm’s performance.
+Several factors influence the amount of time it takes for a computer program to execute to solve a problem: the programming language used, the programmer’s skill, the hardware used in executing the program, and the task load on the computer system during execution.</p>
+<p>But none of these factors is a direct consequence of the underlying algorithm that has been implemented in software. Given a particular algorithm, its performance is strongly dependent on the size of the problem being solved. For example, we would expect a sorting algorithm to take longer to sort a list of 10,000 names than to sort a list of 100 names. Similarly, we recognize that solving a system of equations takes longer when there are more equations and more variables. For this reason, the performance of an algorithm is often described as a function of a variable denoting the problem size, which denotes the size of the data set that is input to the algorithm.
+During the early years of the discipline of Operations Research, relatively little was understood about the formal properties of algorithms and the inherent complexity of problems. However, the 1970s and 1980s witnessed remarkable developments in this area. Two interesting classes of problems have been defined. One class of problems (called class P) contains those problems that can be solved by an algorithm within an amount of computation time proportional to some polynomial function of problem size; that is, the problems are solvable by polynomial-time algorithms. The other class (called class NP for nondeterministic polynomial time) contains problems that may require the computation time to be proportional to some exponential (or larger) function of problem size; these algorithms are called exponential-time algorithms. For a more precise description of these problem classes, based on the notions of deterministic and nondeterministic Turing machines, refer to any elementary textbook on algorithms or theory of computation, such as Cormen et al. (2009), Baase and Gelder (2000), Manber (1989), and Hein (1995).</p>
+<p>Within the class NP, there is another special class of important problems called NP-complete, which are characterized as being the most difficult problems in NP. This class includes many very practical problems and so has received considerable attention from analysts. Another class of NP problems, known as NP-hard, are at least as hard as the hardest NP problem. Some of these NP problems, and their practical applications, are described in Chapters 3, 4, and 10.
+The problems in class P are generally considered to be easy problems-not necessarily in the conceptual sense but in the sense that efficient algorithms for these problems exist that execute in reasonably small amounts of computation time. NP-complete and NP-hard problems, in contrast, appear to require computation time that grows as an exponential function of problem size. This implies that unacceptably large amounts of computation time could be required for solving problems of any practical size, and therefore such problems have been termed intractable problems. Solutions for such problems are not necessarily difficult to conceptualize or even to implement in computer code, but the execution time may be completely unaffordable-both physically and financially.
+It is known that <span class="math notranslate nohighlight">\(\mathrm{P} \subseteq \mathrm{NP}\)</span>, but it is an open question whether <span class="math notranslate nohighlight">\(\mathrm{P}=\mathrm{NP}\)</span>. In other words, are the NP-complete problems truly more costly to solve than the problems in P , or have analysts just not yet been clever enough to discover efficient algorithms for these apparently difficult problems? Discovery of an efficient (polynomial-time) algorithm for any NP-complete problem would be sufficient to establish that <span class="math notranslate nohighlight">\(\mathrm{P}=\mathrm{NP}\)</span> and, therefore, that all the NP-complete problems can be solved efficiently. In the absence of any such discovery, analysts are faced daily with the need to solve practical problems that are computationally intractable. Chapter 10 reveals how some of these problems are dealt with in effective and affordable ways. An informative overview of this subject is available in Garey and Johnson (1979).</p>
+<p>Most of the problem models presented in this book are not intractable, and the solution methods for these problems are based on polynomial-time algorithms. These methods find optimal solutions in an amount of time proportional to a polynomial function of the
+problem size. Depending on the nature of the data (e.g., the distribution of data values or the arrangement of the data values in the data set), the execution time for a given algorithm may vary. Sorting a list of 10,000 names that are already in order may take less time than to sort 10,000 names that are scrambled-if the algorithm is sensitive to the initial ordering and can take advantage of it. Similarly, finding the best solution to a system of equations may be rather easy if a reasonably good solution is already known.
+Thus, we will see that, under different circumstances, the same algorithm may require an execution time that is a different function of problem size. If so, which of these different functions should analysts use to characterize the performance of the algorithm? There are several possibilities: the most favorable (fastest) case, the average case, or the most unfavorable (slowest) case.
+To help phrase an answer to this question, special notations have been developed that facilitate describing the computation time required to execute an algorithm to completion. For this particular purpose, we do not want to try to capture specific information about how an algorithm is implemented (programmed), or on what type of computer it is to be executed; rather, we should focus on the algorithm itself and, in particular, the step count, or the number of steps inherent in carrying out the algorithm. For some purposes, one might want to characterize the best case performance of an algorithm (the fewest number of steps that it could ever need under any circumstances). Best case might be the choice of an optimist, but using this as an indicator of algorithm performance could be misleading; and in any case, this is rarely indicative of what analysts need to know in order to assess the dependable performance of the algorithm. For example, multiplying two <span class="math notranslate nohighlight">\(\mathrm{n} \times \mathrm{n}\)</span> matrices generally takes time proportional to <span class="math notranslate nohighlight">\(\mathrm{n}^{3}\)</span>; but of course, if one of the matrices is the identity matrix, this could be discovered in only <span class="math notranslate nohighlight">\(\mathrm{n}^{2}\)</span> steps (inspecting each element of the matrix) and the rest of the process could be omitted. Using the function <span class="math notranslate nohighlight">\(\mathrm{n}^{2}\)</span> to describe the step count, or run-time, of a matrix multiplication routine does give an accurate measure of this best case, but it is not generally indicative of the time required for matrix multiplication.</p>
+<p>An algorithm’s average case performance may seem to be the most practical characterization because it indicates the typical, or expected, step count. It would certainly be useful to know the most likely amount of time required to execute an algorithm. However, because such an analysis must be based on statistical assumptions about the nature, order, or distribution of the data on which the algorithm operates, the validity of such assumptions may be on shaky ground for any particular set of data. Indeed, the expected performance may never actually be observed for any given set of input data. In addition, the statistical analysis that must be carried out in order to characterize an algorithm’s average behavior is often quite a mathematically difficult analysis.</p>
+<p>The characterization of an algorithm that is both straightforward and often of greatest practical value is the worst case performance, that is, the greatest number of steps that may be necessary for guaranteed completion of the execution of the algorithm. For this purpose, we introduce big-Oh notation, which is written as <span class="math notranslate nohighlight">\(O(\mathrm{f}(\mathrm{n}))\)</span> and pronounced “big Oh of f of n ,” where n denotes problem size and <span class="math notranslate nohighlight">\(\mathrm{f}(\mathrm{n})\)</span> is some function of problem size. The meaning of the notation is as follows. An algorithm is said to be <span class="math notranslate nohighlight">\(\mathrm{O}(\mathrm{f}(\mathrm{n}))\)</span> if there exist constants c and <span class="math notranslate nohighlight">\(\mathrm{n}_{0}\)</span> such that for all <span class="math notranslate nohighlight">\(\mathrm{n}&gt;\mathrm{n}_{0}\)</span>, the execution time of the algorithm is <span class="math notranslate nohighlight">\(\leq \mathrm{c} \cdot \mathrm{f}(\mathrm{n})\)</span>. The function <span class="math notranslate nohighlight">\(\mathrm{f}(\mathrm{n})\)</span> is the algorithm’s worst case step count, measured as a function of the problem size. The constant c is called a constant of proportionality and is intended to account for the various extraneous factors that influence execution time, such as hardware speed, programming style, and computer system load during execution of the algorithm. The problem size threshold <span class="math notranslate nohighlight">\(\mathrm{n}_{0}\)</span> accounts for the fact that for very small problem sizes, the algorithm may not reveal its characteristic worst case performance. Paraphrased, the definition given above
+may be stated as follows: To say that an algorithm is <span class="math notranslate nohighlight">\(\mathrm{O}(\mathrm{f}(\mathrm{n}))\)</span>, or “of order <span class="math notranslate nohighlight">\(\mathrm{f}(\mathrm{n})\)</span>,” means that for large enough problem sizes, the execution time is proportional to at most <span class="math notranslate nohighlight">\(\mathrm{f}(\mathrm{n})\)</span>.
+Thus, a matrix multiplication algorithm is <span class="math notranslate nohighlight">\(\mathrm{O}\left(\mathrm{n}^{3}\right)\)</span> because the process may take <span class="math notranslate nohighlight">\(\mathrm{n}^{3}\)</span> steps, although the algorithm could be programmed to look for special input forms that may in certain cases permit completion of the task in fewer than <span class="math notranslate nohighlight">\(\mathrm{n}^{3}\)</span> steps. Some algorithms may operate in such a way that their worst case performance is also the best case; the performance of such algorithms does not vary depending on the nature of the data, but, of course, does vary with problem size.</p>
+<p>There are even some algorithms whose performance is independent of problem size, and therefore not really dependent on any function of problem size n (e.g., retrieving the first item in a list takes the same amount of time regardless of the length of the list). If we need to describe the worst-case performance of such an algorithm, we could use the notation <span class="math notranslate nohighlight">\(\mathrm{O}(1)\)</span>, where <span class="math notranslate nohighlight">\(\mathrm{f}(\mathrm{n})\)</span> is just the constant function 1 . Where appropriate throughout this book, the big-Oh notation is used to describe the worst case performance of the algorithms that are presented.
+Many of the methods studied in this book are based on algorithms whose complexity functions range from <span class="math notranslate nohighlight">\(n, n^{2}, n^{3}\)</span>, up to <span class="math notranslate nohighlight">\(2^{n}, n!\)</span>, and <span class="math notranslate nohighlight">\(n^{n}\)</span>. To give an idea of the relative growth rates of these functions as n increases, Table 1.1 shows indications of function values. Instead of raw numeric values, we can impose a more practical interpretation and assume that the function values <span class="math notranslate nohighlight">\(\mathrm{f}(\mathrm{n})\)</span> denote the step count of some algorithm, and that each step can be executed in 1 second on a computer. The entries in the table can then be viewed as estimates of actual amounts of the computation times required to apply algorithms of different complexities to increasingly larger problems of size n . The great differences that are evident between the polynomial functions and the exponential functions are quite dramatic, and the execution times for the exponential algorithms are indeed staggering.
+In practical applications, problem sizes may well range into the hundreds of thousands, and we will encounter a number of important practical problems for which the only known algorithms have worst case complexity that is exponential. It is obvious from the table that such exponential-time algorithms are completely useless for solving problems of any reasonably large size. Given this dilemma, what are the options? It is pretty clear that, for these types of problems, faster hardware does not offer an immediate solution; CPU chips whose processing speeds are doubled, or even increased by several orders of magnitude, will not make a dent in these formidable execution times. Until some theoretical breakthroughs come to the rescue that suggest new algorithms for solving such problems, we</p>
+<p>TABLE 1.1
+Computation Times</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>f(n)</p></th>
-<th class="head text-left"><p>n = 10</p></th>
-<th class="head text-left"><p>n = 20</p></th>
-<th class="head text-left"><p>n = 50</p></th>
-<th class="head text-left"><p>n = 100</p></th>
+<th class="head text-left"><p><span class="math notranslate nohighlight">\(\mathrm{n}=10\)</span></p></th>
+<th class="head text-left"><p><span class="math notranslate nohighlight">\(\mathrm{n}=20\)</span></p></th>
+<th class="head text-left"><p><span class="math notranslate nohighlight">\(\mathrm{n}=50\)</span></p></th>
+<th class="head text-left"><p><span class="math notranslate nohighlight">\(\mathrm{n}=100\)</span></p></th>
 </tr>
 </thead>
 <tbody>
@@ -575,40 +584,40 @@
 <td class="text-left"><p>50 s</p></td>
 <td class="text-left"><p>100 s</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>n<sup>2</sup></p></td>
+<tr class="row-odd"><td class="text-left"><p><span class="math notranslate nohighlight">\(\mathrm{n}^{2}\)</span></p></td>
 <td class="text-left"><p>100 s</p></td>
-<td class="text-left"><p>400 s<br>7 min</p></td>
-<td class="text-left"><p>2500 s<br>42 min</p></td>
-<td class="text-left"><p>10,000 s<br>2.8 h</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(400 \mathrm{~s} \approx 7 \mathrm{~min}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(2,500 \mathrm{~s} \approx 42 \mathrm{~min}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(10,000 \mathrm{~s} \approx 2.8 \mathrm{~h}\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>n<sup>3</sup></p></td>
-<td class="text-left"><p>1000 s<br>17 min</p></td>
-<td class="text-left"><p>8000 s<br>2 h</p></td>
-<td class="text-left"><p>125,000 s<br>35 h</p></td>
-<td class="text-left"><p>1,000,000 s<br>12 d</p></td>
+<tr class="row-even"><td class="text-left"><p><span class="math notranslate nohighlight">\(\mathrm{n}^{3}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1,000 \mathrm{~s} \approx 17 \mathrm{~min}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(8,000 \mathrm{~s} \approx 2 \mathrm{~h}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(125,000 \mathrm{~s} \approx 35 \mathrm{~h}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1,000,000 \mathrm{~s} \approx 12 \mathrm{~d}\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>2<sup>n</sup></p></td>
-<td class="text-left"><p>1024 s<br>17 min</p></td>
-<td class="text-left"><p>1,048,576 s<br>12 d</p></td>
-<td class="text-left"><p>1.126 × 10<sup>15</sup> s<br>350,000 centuries</p></td>
-<td class="text-left"><p>1.268 × 10<sup>30</sup> s<br>10<sup>21</sup> centuries</p></td>
+<tr class="row-odd"><td class="text-left"><p><span class="math notranslate nohighlight">\(2^{\mathrm{n}}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1,024 \mathrm{~s} \approx 17 \mathrm{~min}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1,048,576 \mathrm{~s} \approx 12 \mathrm{~d}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.126 \times 10^{15} \mathrm{~s} \approx\)</span> 350,000 centuries</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.268 \times 10^{30} \mathrm{~s} \approx 10^{21}\)</span> centuries</p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p>n!</p></td>
-<td class="text-left"><p>3,628,800 s<br>1 month</p></td>
-<td class="text-left"><p>2.433 × 10<sup>18</sup> s<br>10<sup>9</sup> centuries</p></td>
-<td class="text-left"><p>3.041 × 10<sup>64</sup> s<br>10<sup>55</sup> centuries</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(3,628,800 \mathrm{~s} \approx 1\)</span> month</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(2.433 \times 10^{18} \mathrm{~s} \approx 10^{9}\)</span> centuries</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(3.041 \times 10^{64} \mathrm{~s} \approx 10^{55}\)</span> centuries</p></td>
 <td class="text-left"><p></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>n<sup>n</sup></p></td>
-<td class="text-left"><p>10<sup>10</sup> s<br>300 yr</p></td>
-<td class="text-left"><p>1.049 × 10<sup>26</sup> s<br>10<sup>17</sup> centuries</p></td>
-<td class="text-left"><p>8.882 × 10<sup>84</sup> s<br>10<sup>75</sup> centuries</p></td>
+<tr class="row-odd"><td class="text-left"><p><span class="math notranslate nohighlight">\(\mathrm{n}^{\mathrm{n}}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(10^{10} \mathrm{~s} \approx 300 \mathrm{yr}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.049 \times 10^{26} \mathrm{~s} \approx 10^{17}\)</span> centuries</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(8.882 \times 10^{84} \mathrm{~s} \approx 10^{75}\)</span> centuries</p></td>
 <td class="text-left"><p></p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>In practical applications, problem sizes may well range into the hundreds of thousands, and we will encounter a number of important practical problems for which the only known algorithms have worst case complexity that is exponential. It is obvious from the table that such exponential-time algorithms are completely useless for solving problems of any reasonably large size. Given this dilemma, what are the options? It is pretty clear that, for these types of problems, faster hardware does not offer an immediate solution; CPU chips whose processing speeds are doubled, or even increased by several orders of magnitude, will not make a dent in these formidable execution times. Until some theoretical breakthroughs come to the rescue that suggest new algorithms for solving such problems, we may have to settle for using methods that do not solve the problems perfectly but which yield acceptable solutions in an affordable amount of computation time. This may seem to be a disappointing direction to follow, but the discussion in Section 1.4 might provide convincing arguments in defense of suboptimal solutions.</p>
+<p>may have to settle for using methods that do not solve the problems perfectly, but which yield acceptable solutions in an affordable amount of computation time. This may seem to be a disappointing direction to follow, but the discussion in Section 1.4 might provide convincing arguments in defense of suboptimal solutions.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -647,7 +656,7 @@
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><strong>1.2 SYSTEM MODELING PRINCIPLES</strong></p>
+        <p class="prev-next-title">1.2 SYSTEM MODELING PRINCIPLES</p>
       </div>
     </a>
     <a class="right-next"
@@ -655,7 +664,7 @@
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><strong>1.4 OPTIMALITY AND PRACTICALITY</strong></p>
+        <p class="prev-next-title">1.4 OPTIMALITY AND PRACTICALITY</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
