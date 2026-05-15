@@ -1,0 +1,698 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1.6.2 Humanitarian Relief in Natural Disasters (Battini et al. 2014) &#8212; OPERATIONS RESEARCH: A Practical Introduction</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=d06703b7" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/Ch_1/1_6/1_6_2';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="1.6.3 Mining and Social Conflicts (Charles 2016)" href="1_6_3.html" />
+    <link rel="prev" title="1.6 ILLUSTRATIVE APPLICATIONS" href="1_6_1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">OPERATIONS RESEARCH: A Practical Introduction</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Online Book Guide
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 1 - Introduction to Operations Research</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../1_1/1_1.html">Introduction to Operations Research</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_2/1_2.html">1.2 SYSTEM MODELING PRINCIPLES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_3/1_3.html">1.3 ALGORITHM EFFICIENCY AND PROBLEM COMPLEXITY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_4/1_4.html">1.4 OPTIMALITY AND PRACTICALITY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_5/1_5.html">1.5 SOFTWARE FOR OPERATIONS RESEARCH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_6_1.html">1.6 ILLUSTRATIVE APPLICATIONS</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1.6.2 Humanitarian Relief in Natural Disasters (Battini et al. 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_6_3.html">1.6.3 Mining and Social Conflicts (Charles 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1_7/1_7.html">1.7 SUMMARY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 2 - Linear Programming</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_1/2_1.html">Linear Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_2/2_2.html">2.2 The Art and Skill of Problem Formulation</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_3/2_3_1.html">2.3 Graphical Solution of Linear Programming Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_3/2_3_2.html">2.3.2 Graphical Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_3/2_3_3.html">2.3.3 Multiple Optimal Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_3/2_3_4.html">2.3.4 No Optimal Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_3/2_3_5.html">2.3.5 No Feasible Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_3/2_3_6.html">2.3.6 General Solution Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_4/2_4_1.html">2.4 Preparation for the Simplex Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_4/2_4_2.html">2.4.2 Solutions of Linear Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_5/2_5.html">2.5 The Simplex Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_6/2_6_1.html">2.6 Initial Solutions for General Constraints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_6/2_6_2.html">2.6.2 The Two Phase Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_7/2_7.html">2.7 Information in the Tableau</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_7/2_7_1.html">2.7.1 Multiple Optimal Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_7/2_7_2.html">2.7.2 Unbounded Solution (No Optimal Solution)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_7/2_7_3.html">2.7.3 Degenerate Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_7/2_7_4.html">2.7.4 Analyzing the Optimal Tableau: Shadow Prices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_8/2_8.html">2.8 Duality and Sensitivity Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_8/2_8_1.html">2.8.1 The Dual Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_8/2_8_2.html">2.8.2 Postoptimality and Sensitivity Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_9/2_9.html">2.9 Revised Simplex and Computational Efficiency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_10/2_10.html">2.10 Software for Linear Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_10/2_10_1.html">2.10.1 Extensions to General Simplex Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_10/2_10_2.html">2.10.2 Interior Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_10/2_10_3.html">2.10.3 Software for Solving Linear Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_11/2_11_1.html">2.11 Illustrative Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_11/2_11_2.html">2.11.2 Aircraft and Munitions Procurement (Might 1987)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_11/2_11_3.html">2.11.3 Grape Processing: Materials Planning and Production (Schuster and Allen 1998)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/2_12/2_12.html">2.12 Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/Exercises/Exercises_1.html">Exercises (2.1 - 2.15)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/Exercises/Exercises_2.html">Exercises (2.16 - 2.47)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_2/References/References.html">References and Suggested Readings</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 3 - Network Analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_1/3_1.html">Network Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_2/3_2.html">3.2 MAXIMUM FLOW IN NETWORKS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_2/3_2_1.html">3.2.1 Maximum Flow Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_2/3_2_2.html">3.2.2 Extensions to the Maximum Flow Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_3/3_3.html">3.3 MINIMUM COST NETWORK FLOW PROBLEMS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_3/3_3_1.html">3.3.1 Transportation Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_3/3_3_1_1.html">3.3.1.1 Northwest Corner Rule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_3/3_3_1_2.html">3.3.1.2 Minimum Cost Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_3/3_3_1_3.html">3.3.1.3 Minimum “Row” Cost Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_3/3_3_1_4.html">3.3.1.4 Transportation Simplex Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_3/3_3_1_5.html">3.3.1.5 Transportation Simplex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_3/3_3_2.html">3.3.2 Assignment Problem and Stable Matching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_3/3_3_2_1.html">3.3.2.1 Stable Matching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_3/3_3_3.html">3.3.3 Capacitated Transshipment Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_4/3_4_1.html">3.4 NETWORK CONNECTIVITY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_4/3_4_2.html">3.4.2 Shortest Network Problem: A Variation on Minimum Spanning Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_5/3_5.html">3.5 SHORTEST PATH PROBLEMS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_5/3_5_1.html">3.5.1 Shortest Path through an Acyclic Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_5/3_5_2.html">3.5.2 Shortest Paths from Source to All Other Nodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_5/3_5_3.html">3.5.3 Problems Solvable with Shortest Path Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_6/3_6.html">3.6 DYNAMIC PROGRAMMING</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_6/3_6_1.html">3.6.1 Labeling Method for Multi-Stage Decision Making</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_6/3_6_2.html">3.6.2 Tabular Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_6/3_6_3.html">3.6.3 General Recursive Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_7/3_7.html">3.7 PROJECT MANAGEMENT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_7/3_7_1.html">3.7.1 Project Networks and Critical Paths</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_7/3_7_2.html">3.7.2 Cost versus Time Trade-Offs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_7/3_7_3.html">3.7.3 Probabilistic Project Scheduling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_8/3_8.html">3.8 SOFTWARE FOR NETWORK ANALYSIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_9/3_9_1.html">3.9 ILLUSTRATIVE APPLICATIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_9/3_9_2.html">3.9.2 Multiprocessor Network Traffic Scheduling (Bianchini and Shen 1987)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_9/3_9_3.html">3.9.3 Shipping Cotton from Farms to Gins (Glover et al. 1992; Klingman et al. 1976)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/3_10/3_10.html">3.10 SUMMARY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/Exercises/Exercises.html">EXERCISES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_3/REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 4 - Integer Programming</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_1/4_1.html">4 Integer Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_2/4_2.html">4.2 TYPICAL INTEGER PROGRAMMING PROBLEMS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_2/4_2_1.html">4.2.1 General Integer Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_2/4_2_2.html">4.2.2 Zero-One (0-1) Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_2/4_2_3.html">4.2.3 Mixed Integer Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_3/4_3.html">4.3 ZERO-ONE (0-1) MODEL FORMULATIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_3/4_3_1.html">4.3.1 Traveling Salesman Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_3/4_3_2.html">4.3.2 Knapsack Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_3/4_3_3.html">4.3.3 Bin Packing Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_3/4_3_4.html">4.3.4 Set Partitioning/Covering/Packing Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_3/4_3_5.html">4.3.5 Generalized Assignment Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4.html">4.4 BRANCH-AND-BOUND</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_1.html">4.4.1 A Simple Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_2.html">4.4.2 A Basic Branch-and-Bound Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_3.html">4.4.3 Knapsack Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_4.html">4.4.4 From Basic Method to Commercial Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_4_1.html">4.4.4.1 Branching Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_4_2.html">4.4.4.2 Bounding Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_4_3.html">4.4.4.3 Separation Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_4_4.html">4.4.4.4 The Impact of Model Formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_4_5.html">4.4.4.5 Representation of Real Numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_5/4_5.html">4.5 CUTTING PLANES AND FACETS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_6/4_6.html">4.6 COVER INEQUALITIES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_1.html">4.7 LAGRANGIAN RELAXATION</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_2.html">4.7.2 A Simple Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_3.html">4.7.3 The Integrality Gap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_4.html">4.7.4 The Generalized Assignment Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_5.html">4.7.5 A Basic Lagrangian Relaxation Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_6.html">4.7.6 A Customer Allocation Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_8/4_8.html">4.8 COLUMN GENERATION</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_9/4_9.html">4.9 SOFTWARE FOR INTEGER PROGRAMMING</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_10/4_10_1.html">4.10 ILLUSTRATIVE APPLICATIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_10/4_10_2.html">4.10.2 Timber Harvest Planning (Epstein et al. 1999)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_10/4_10_3.html">4.10.3 Propane Bottling Plants (Sankaran and Raghavan 1997)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_11/4_11.html">4.11 SUMMARY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/Exercises/Exercises.html">EXERCISES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 5 - Nonlinear Optimization</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_5/5_1/5_1_0.html"><strong>Nonlinear Optimization</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_5/5_1/5_1_1.html"><strong>Preliminary Notation and Concepts</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_5/5_2/5_2_0.html"><strong>Unconstrained Optimization</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_5/5_2/5_2_1.html"><strong>One-Dimensional Search</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_5/5_2/5_2_1_1.html"><strong>One-Dimensional Search Algorithm</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_5/5_2/5_2_2.html"><strong>Multivariable Search: Gradient Method</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_5/5_2/5_2_2_1.html"><strong>Multivariable Gradient Search</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_5/5_2/5_2_3.html"><strong>Newton’s Method</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_5/5_2/5_2_4.html"><strong>Quasi-Newton Methods</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_5/5_3/5_3_0.html"><strong>Constrained Optimization</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_5/5_3/5_3_1.html"><strong>Lagrange Multipliers (Equality Constraints)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_5/5_3/5_3_2.html"><strong>Karush–Kuhn–Tucker Conditions (Inequality Constraints)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_5/5_3/5_3_3.html"><strong>Quadratic Programming</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_5/5_3/5_3_4.html"><strong>More Advanced Methods</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_5/5_4/5_4_0.html"><strong>Software for Nonlinear Optimization</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_5/5_5/5_5_1.html"><strong>Illustrative Applications</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_5/5_5/5_5_2.html"><strong>Portfolio Construction (Bertsimas et al. 1999)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_5/5_5/5_5_3.html"><strong>Balancing Rotor Systems (Chen et al. 1991)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_5/5_6/5_6_0.html"><strong>Summary</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_5/5_6/Key_Terms.html"><strong>Key Terms</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_5/5_6/Exercises.html"><strong>Exercises</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_5/5_6/References.html"><strong>References and Suggested Readings</strong></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 6 - Markov Processes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_1/6_1.html">6 Markov Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_2/6_2.html">6.2 STATE PROBABILITIES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_3/6_3.html">6.3 FIRST PASSAGE PROBABILITIES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_4/6_4.html">6.4 PROPERTIES OF THE STATES IN A MARKOV PROCESS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_5/6_5.html">6.5 STEADY-STATE ANALYSIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_6/6_6.html">6.6 EXPECTED FIRST PASSAGE TIMES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_7/6_7.html">6.7 ABSORBING CHAINS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_8/6_8.html">6.8 SOFTWARE FOR MARKOV PROCESSES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_9/6_9_1.html">6.9 ILLUSTRATIVE APPLICATIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_9/6_9_2.html">6.9.2 Markov Analysis of Dynamic Memory Allocation (Pflug 1984)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_9/6_9_3.html">6.9.3 Markov Models for Manufacturing Production Capability (Foster and Garcia-Diaz 1983)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_9/6_9_4.html">6.9.4 Markov Decision Processes in Dairy Farming (Rukav et al. 2014, Suvak et al. 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/6_10/6_10.html">6.10 SUMMARY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/Exercises/Exercises.html">EXERCISES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_6/REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 7 - Queueing Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_1/7_1.html">7 Queueing Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_2/7_2_1.html">7.2 ARRIVAL AND SERVICE PATTERNS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_2/7_2_2.html">7.2.2 Birth-and-Death Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_3/7_3_1.html">7.3 ANALYSIS OF SIMPLE QUEUEING SYSTEMS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_3/7_3_2.html">7.3.2 Steady State Performance Measures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_3/7_3_3.html">7.3.3 Practical Limits of Queueing Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_4/7_4.html">7.4 SOFTWARE FOR QUEUEING MODELS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_5/7_5_1.html">7.5 ILLUSTRATIVE APPLICATIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_5/7_5_2.html">7.5.2 Queueing Models in Manufacturing (Suri et al. 1995)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_5/7_5_3.html">7.5.3 Nurse Staffing Based on Queueing Models (De Véricourt and Jennings 2011)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/7_6/7_6.html">7.6 SUMMARY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/Exercises/Exercises.html">EXERCISES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_7/REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 8 - Simulation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_1/8_1.html">8 Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_2/8_2.html">8.2 DISCRETE SIMULATION MODELS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_2/8_2_1.html">8.2.1 Event-Driven Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_2/8_2_2.html">8.2.2 Generating Random Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_3/8_3.html">8.3 OBSERVATIONS OF SIMULATIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_3/8_3_1_1.html">8.3.1 Gathering Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_3/8_3_1_2.html">8.3.1.2 Average Waiting Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_3/8_3_1_3.html">8.3.1.3 Average Number in Queue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_3/8_3_1_4.html">8.3.1.4 Server Utilization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_3/8_3_2.html">8.3.2 Design of Simulation Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_4/8_4.html">8.4 SOFTWARE FOR SIMULATION</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_5/8_5_1.html">8.5 ILLUSTRATIVE APPLICATIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_5/8_5_2.html">8.5.2 Simulation of a Semiconductor Manufacturing Line (Miller 1990)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_5/8_5_3.html">8.5.3 Simulation of Eurotunnel Terminals (Salt 1991)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_5/8_5_4.html">8.5.4 Simulation for NASA’s Space Launch Vehicles Operations (Kaylani et al. 2008)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_6/8_6.html">8.6 Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/Exercises/Exercises.html">EXERCISES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 9 - Decision Analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_1/9_1.html">9 Decision Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_2/9_2.html">9.2 AN INTRODUCTION TO GAME THEORY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_2/9_2_1.html">9.2.1 Maximin Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_2/9_2_2.html">9.2.2 Maximax Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_2/9_2_3.html">9.2.3 Laplace Principle (Principle of Insufficient Reason)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_2/9_2_4.html">9.2.4 Hurwicz Principle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_2/9_2_5.html">9.2.5 Savage Minimax Regret</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_3/9_3.html">9.3 DECISION TREES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_4/9_4.html">9.4 UTILITY THEORY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_4/9_4_1.html">9.4.1 The Axioms of Utility Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_4/9_4_2.html">9.4.2 Utility Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_4/9_4_3.html">9.4.3 The Shape of the Utility Curve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_5/9_5.html">9.5 THE PSYCHOLOGY OF DECISION-MAKING</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_5/9_5_1.html">9.5.1 Misconceptions of Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_5/9_5_2.html">9.5.2 Availability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_5/9_5_3.html">9.5.3 Anchoring and Adjustment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_5/9_5_4.html">9.5.4 Dissonance Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_5/9_5_5.html">9.5.5 The Framing Effect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_5/9_5_6.html">9.5.6 The Sunk Cost Fallacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_5/9_5_7.html">9.5.7 Irrational Human Behavior</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_6/9_6.html">9.6 SOFTWARE FOR DECISION ANALYSIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_7/9_7.html">9.7 ILLUSTRATIVE APPLICATIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_7/9_7_1.html">9.7.1 Decision Support System for Minimizing Costs in the Maritime Industry (Diz et al. 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_7/9_7_2.html">9.7.2 Refinery Pricing under Uncertainty (Keefer 1995)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_7/9_7_3.html">9.7.3 Decisions for Radioactive Waste Management (Perdue and Kumar 1999)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_7/9_7_4.html">9.7.4 Investment Decisions and Risk in Petroleum Exploration (Walls et al. 1995)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/9_8/9_8.html">9.8 SUMMARY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/Exercises/Exercises.html">EXERCISES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_9/REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 10 - Heuristic and Metaheuristic Techniques for Optimization</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_1/10_1.html">10 Heuristic and Metaheuristic Techniques for Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_2/10_2.html">10.2 LOCAL IMPROVEMENT HEURISTICS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_3/10_3.html">10.3 SIMULATED ANNEALING</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_4/10_4.html">10.4 PARALLEL ANNEALING</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_5/10_5.html">10.5 GENETIC ALGORITHMS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_6/10_6.html">10.6 TABU SEARCH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_7/10_7.html">10.7 CONSTRAINT PROGRAMMING AND LOCAL SEARCH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_8/10_8.html">10.8 OTHER METAHEURISTICS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_9/10_9.html">10.9 SOFTWARE FOR METAHEURISTICS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_10/10_10_1.html">10.10 ILLUSTRATIVE APPLICATIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_10/10_10_2.html">10.10.2 Ecosystem Management Using Genetic Algorithm Heuristics (Hughell and Roise 1995)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_10/10_10_3.html">10.10.3 Efficient Routing and Delivery of Meals on Wheels (Manikas et al. 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/10_11/10_11.html">10.11 SUMMARY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/Exercises/Exercises.html">EXERCISES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_10/REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix - Review of Essential Mathematics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Appendix/A_1/A_1.html">Appendix: Review of Essential Mathematics-Notation, Definitions, and Matrix Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Appendix/A_2/A_2.html">A.2 MATRICES AND MATRIX OPERATIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Appendix/A_3/A_3.html">A.3 LINEAR EQUATIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Appendix/A_4/A_4.html">A.4 QUADRATIC FORMS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Appendix/REFERENCES%20AND%20SUGGESTED%20READINGS/Ref.html">REFERENCES AND SUGGESTED READINGS</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/content/Ch_1/1_6/1_6_2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>1.6.2 Humanitarian Relief in Natural Disasters (Battini et al. 2014)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="humanitarian-relief-in-natural-disasters-battini-et-al-2014">
+<h1>1.6.2 Humanitarian Relief in Natural Disasters (Battini et al. 2014)<a class="headerlink" href="#humanitarian-relief-in-natural-disasters-battini-et-al-2014" title="Link to this heading">#</a></h1>
+<p>Humanitarian relief operations play an increasingly important role in a world stressed by population growth, urban residential density, natural resource use and depletion, global warming, and economic and political factors. Urgent humanitarian needs occur in places where food, water and medical supplies are constantly in demand, requiring routine and sustainable distribution of supplies to save lives and mitigate human suffering. In such situations, analysts regularly study available data to assess the needs, identify sources for supplies, evaluate transportation options, and plan for timely and predictable delivery of appropriate supplies to the most critically vulnerable and to those most urgently in need.
+Even greater logistical challenges are presented when natural disasters occur (Wex et al. 2014). Earthquakes, floods, hurricanes, tsunamis, and fires, for example, often cause sudden and immediate injuries and loss of life, destruction of basic shelter perhaps requiring evacuation and relocation of victims, and interruption of normal availability of food and supplies. And in just such circumstances, relief operations may be seriously hampered: analysts may have only limited access to reliable information with which to identify the locations where rescue crews are needed, the extent of injury and destruction, the status of resources and supplies, and the usability of various modes of transport. Communications,
+water, and basic elements of infrastructure may have fallen prey to the disaster, and local decision making may have become impossible. Managing and executing the logistics of an efficient humanitarian supply chain in response to emergency needs arising from natural catastrophic destruction is an enormous and complex challenge.
+In 2010, Haiti experienced a devastating earthquake that measured 7.2 on the Richter scale. Casualties were high with approximately a quarter of a million people killed and an even greater number of injured survivors. More than half of government and school buildings in Port-au-Prince and in the south and west districts of the country were destroyed or damaged. Financial loss related to the quake exceeded Haiti’s entire 2009 gross domestic product. Overall, nearly 3.5 million people were affected by this catastrophic event.
+Relief efforts typically begin by dispatching emergency rescue units into the areas of destruction, with the aim of reducing casualties and identifying longer term needs. Indeed, relief teams arrived in Haiti from various agencies such as the United Nations, International Red Cross and Red Crescent, the World Food Programme, and UNICEF. Their immediate focus was on delivering temporary shelter such as: blankets, tents, tarpaulins, and mosquito nets; food kits and water cans; and sanitation/hygiene kits.
+The Haitian transport infrastructure was reported to have been very weak even before the earthquake hit, therefore delivering supplies through uncharted damaged areas to the earthquake victims was a difficult challenge. A plan to distribute relief supplies had to be devised, but as is often the case in the humanitarian field, data was incomplete or non-existent. A preliminary step in providing humanitarian aid is to find a means of collecting data, defining the type, extent, and locations in need of help, assessing the status of communication and transportation systems, and identifying sources capable of providing food and supplies and knowledgeable emergency staff personnel.
+Pre-existing road network data were helpful in identifying all available routes and the current condition of roads. And from an inventory of available fleet vehicles (trucks and helicopters), it was possible to determine the cost of operation of each type of vehicle, which ones were undamaged, where they were currently located, and estimates of the time required for each type of vehicle to follow each available route.
+Through cooperation among the agencies, food kits and hygiene kits were packaged in containers of the same size and shape for ease of transport, storage and delivery. Although food supplies were provided by different agencies than were the hygiene supplies, the uniformly shaped kits could be efficiently stacked and mixed together arbitrarily on the different types of delivery vehicles as needed.
+Research analysts had already developed an elaborate network routing model to describe the logistics of general distribution processes, and this previous work was successfully amended to address the Haitian disaster requirements. The purpose ultimately is to find the best and most efficient possible way to deliver supplies to meet the needs of disaster victims; and this was accomplished by varying the type and number of vehicles allocated to achieve the lowest cost distribution plan. Further modifications to the model allowed for consideration of changes in the availability of supplies at their source (based on when and how much assistance could be mustered by the international agencies) and changes in the expected number of people assisted for each delivery to a given location.
+Based on the acquired data, the demand for supplies, and the operational constraints, a mathematical model was developed, and was optimized for the Haitian earthquake scenario. The complex problem described in this way was then expressed in a special form
+using the GAMS modeling system, and was solved with CPLEX software executed on an Intel-based PC running Windows 7. The computational results were then interpreted by analysts, and a distribution plan was created to guide the efficient and effective delivery of food and supplies.
+Analytical approaches have been applied to some extent in the past to create workable distribution systems. However, modern research to significantly improve the effectiveness and efficiency of relief operations is relatively recent. Although every natural disaster presents its own characteristic details, it has been shown here that the modeling and computational tools developed in basic Operations Research can be adapted to the specific needs of distributing available supplies for humanitarian relief in the wake of a natural disaster.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "MohammadBaniAbdElNabi/Linear-programming",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content\Ch_1\1_6"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="1_6_1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">1.6 ILLUSTRATIVE APPLICATIONS</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="1_6_3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">1.6.3 Mining and Social Conflicts (Charles 2016)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ghaith Rabadi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
